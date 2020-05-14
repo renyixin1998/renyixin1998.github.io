@@ -751,7 +751,7 @@
                   <span class="post-meta-item-text">Words count in article&#58;</span>
                 
                 <span title="Words count in article">
-                  771
+                  765
                 </span>
               
 
@@ -790,13 +790,13 @@
       
         
           
-            <h4 id="前言"><strong>0. 前言</strong></h4>
+            <h4 id="前言"><strong>前言</strong></h4>
 <p>本人作为传统工科出身的朋友，专业之余学过一些机器学习和深度学习的理论，了解一些基本的代码原理和架构。同时呢，因为本专业的训练，对控制技术也有（只限于课本的）了解。但是由于没有进行过实践，一直以来对算法和控制的认识都比较割裂，对两者之间如何搭建起桥梁也云里雾里。今天我在MATHWORKS上听了一节关于如何在计算资源有限的树莓派（Raspberry Pi）ARM CPU上运行复杂深度神经网络的讲座，MATLAB在其中起到了重要作用。我将讲座中进行的重要步骤和提要记在下面。形成一个框架，细节可以用到了慢慢填。</p>
-<h4 id="section"><img src="/2020/05/04/MATLAB%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E5%B5%8C%E5%85%A5/%207%207.png"></h4>
+<p><img src="/2020/05/04/MATLAB%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E5%B5%8C%E5%85%A5/%207%207.png"></p>
 <p>Demo 1:训练网络。该步骤使用了迁移学习的思想，用了SqueezeNet模型</p>
 <p>Demo 2:将神经网络部署到树莓派的CPU中，其中涉及到将预训练网络自动生成C++代码</p>
 <p>Demo 3:将神经网络部署到NVIDIA GPU上，其中涉及到将预训练网络自动生成CUDA代码</p>
-<h4 id="连接准备"><strong>1. 连接准备</strong></h4>
+<h4 id="连接准备"><strong>连接准备</strong></h4>
 <h5 id="安装树莓派和网络摄像头同时配置">安装树莓派和网络摄像头，同时配置</h5>
 <h5 id="确认和测试命令行输入webcam确认已经连接获取硬件信息">确认和测试：命令行输入webcam，确认已经连接，获取硬件信息</h5>
 <figure>
@@ -808,7 +808,7 @@
 <h5 id="nvidia-gpu配置">NVIDIA GPU配置：</h5>
 <p><img src="/2020/05/04/MATLAB%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E5%B5%8C%E5%85%A5/%205%205.png"></p>
 <h5 id="确认输入coder.checkgpuinstall确认硬件已经连接检查环境">确认：输入coder.checkGpuInstall，确认硬件已经连接，检查环境</h5>
-<h4 id="预训练squeezenet神经网络在gpu上实现"><strong>2. 预训练Squeezenet神经网络，在GPU上实现</strong></h4>
+<h4 id="预训练squeezenet神经网络在gpu上实现"><strong>预训练Squeezenet神经网络，在GPU上实现</strong></h4>
 <p>此处用迁移学习实现图像识别，一般在应用时只需要优化最后几层的参数，前面特征提取的参数都做的挺好的了。</p>
 <p><img src="/2020/05/04/MATLAB%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E5%B5%8C%E5%85%A5/%209%209.png"></p>
 <p><img src="/2020/05/04/MATLAB%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E5%B5%8C%E5%85%A5/%208%208.png"></p>
@@ -817,7 +817,7 @@
 <p>载入图库----&gt;加载Squeezenet模型并且修改----&gt;调整图库------&gt;进行模型训练----&gt;测试----&gt;导出模型到.mat文件</p>
 <p>注：模型训练中的代码段...,‘ExecutionEnvironment’选项为'gpu'，适用GPU加速</p>
 <p><img src="/2020/05/04/MATLAB%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E5%B5%8C%E5%85%A5/屏幕快照%202020-05-13%20下午9.38.14.png"></p>
-<h4 id="自动生成c代码"><strong>3. 自动生成C++代码</strong></h4>
+<h4 id="自动生成c代码"><strong>自动生成C++代码</strong></h4>
 <p>通过cnncodegen转化成C++代码集：</p>
 <ul>
 <li>本机环境预设置</li>
@@ -827,7 +827,7 @@
 <figure>
 <img src="/2020/05/04/MATLAB%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E5%B5%8C%E5%85%A5/屏幕快照%202020-05-13%20下午9.30.11.png" alt="目标器件为ARM的cnncongegen流程"><figcaption>目标器件为ARM的cnncongegen流程</figcaption>
 </figure>
-<h4 id="在树莓派上进行部署和推断"><strong>4. 在树莓派上进行部署和推断</strong></h4>
+<h4 id="在树莓派上进行部署和推断"><strong>在树莓派上进行部署和推断</strong></h4>
 <p>以下是在树莓派上进行推断的结构图，net.predict(in)处需要放入训练过的模型生成好的C++程序</p>
 <p>在树莓派中构建基于ARM Compute Library的可执行程序</p>
 <p><img src="/2020/05/04/MATLAB%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E5%B5%8C%E5%85%A5/屏幕快照%202020-05-13%20下午9.32.07.png"></p>
@@ -836,7 +836,7 @@
 <figure>
 <img src="/2020/05/04/MATLAB%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E5%B5%8C%E5%85%A5/屏幕快照%202020-05-13%20下午9.45.11.png" alt="99.4%正确率，374ms的腿短时间"><figcaption>99.4%正确率，374ms的腿短时间</figcaption>
 </figure>
-<h4 id="总结"><strong>5.总结</strong></h4>
+<h4 id="总结"><strong>总结</strong></h4>
 <p>回答一下最初的疑惑，算法如何在控制器上体现可以总结为如下框图：</p>
 <p>算法设计----应用设计----独立部署</p>
 <p>其中MATLAB起到的作用有，存储数据，设计神经网络（可以借助大牛们搭好的），借用GPU进行训练，将过程可视化。打包模型之后也能在MATLAB中可以生成C++代码和CUDA代码，独立部署到需要的树莓派/GPU/CPU中去。</p>
