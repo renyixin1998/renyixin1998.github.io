@@ -68,7 +68,7 @@
 
 
 
-  <meta name="keywords" content="可视化,数据分析,MATLAB,分享," />
+  <meta name="keywords" content="MATLAB,神经网络,树莓派," />
 
 
 
@@ -79,23 +79,31 @@
 
 
 
-<meta name="description" content="今天晚上听了MathWorks官网上的一个关于提高数据处理效率的分享。分享由同济电车队的队长马家骏与 MathWorks 中国工程师董淑成共同进行，讲述了车队如何在测试阶段运用MATLAB工具提升调教、Debug与验证工作的效率，从而腾出时间做更有价值的工作。 工具的本质就是为了提高效率。——Yixin 车队所用到的工具链概览：  控制算法的快速原型开发——Simulink+快速原型控制器 数据分">
+<meta name="description" content="0. 前言 本人作为传统工科出身的朋友，专业之余学过一些机器学习和深度学习的理论，了解一些基本的代码原理和架构。同时呢，因为本专业的训练，对控制技术也有（只限于课本的）了解。但是由于没有进行过实践，一直以来对算法和控制的认识都比较割裂，对两者之间如何搭建起桥梁也云里雾里。今天我在MATHWORKS上听了一节关于如何在计算资源有限的树莓派（Raspberry Pi）ARM CPU上运行复杂深度神经网">
 <meta property="og:type" content="article">
-<meta property="og:title" content="电车队分享：利用MATLAB &amp; Simulink 开发自动化与可视化数据分析工具">
-<meta property="og:url" content="http://yoursite.com/2020/05/01/MATLAB&Simulink%20%E5%BC%80%E5%8F%91%E8%87%AA%E5%8A%A8%E5%8C%96%E4%B8%8E%E5%8F%AF%E8%A7%86%E5%8C%96%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90%E5%B7%A5%E5%85%B7/index.html">
+<meta property="og:title" content="如何用MATLAB在计算资源有限的树莓派ARM CPU上运行复杂深度神经网络">
+<meta property="og:url" content="http://yoursite.com/2020/05/04/MATLAB%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E5%B5%8C%E5%85%A5/index.html">
 <meta property="og:site_name" content="Yixin&#39;s sharing">
-<meta property="og:description" content="今天晚上听了MathWorks官网上的一个关于提高数据处理效率的分享。分享由同济电车队的队长马家骏与 MathWorks 中国工程师董淑成共同进行，讲述了车队如何在测试阶段运用MATLAB工具提升调教、Debug与验证工作的效率，从而腾出时间做更有价值的工作。 工具的本质就是为了提高效率。——Yixin 车队所用到的工具链概览：  控制算法的快速原型开发——Simulink+快速原型控制器 数据分">
+<meta property="og:description" content="0. 前言 本人作为传统工科出身的朋友，专业之余学过一些机器学习和深度学习的理论，了解一些基本的代码原理和架构。同时呢，因为本专业的训练，对控制技术也有（只限于课本的）了解。但是由于没有进行过实践，一直以来对算法和控制的认识都比较割裂，对两者之间如何搭建起桥梁也云里雾里。今天我在MATHWORKS上听了一节关于如何在计算资源有限的树莓派（Raspberry Pi）ARM CPU上运行复杂深度神经网">
 <meta property="og:locale" content="en_US">
-<meta property="og:image" content="http://yoursite.com/2020/05/01/MATLAB&Simulink%20%E5%BC%80%E5%8F%91%E8%87%AA%E5%8A%A8%E5%8C%96%E4%B8%8E%E5%8F%AF%E8%A7%86%E5%8C%96%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90%E5%B7%A5%E5%85%B7/1.png">
-<meta property="og:image" content="http://yoursite.com/2020/05/01/MATLAB&Simulink%20%E5%BC%80%E5%8F%91%E8%87%AA%E5%8A%A8%E5%8C%96%E4%B8%8E%E5%8F%AF%E8%A7%86%E5%8C%96%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90%E5%B7%A5%E5%85%B7/2.png">
-<meta property="og:image" content="http://yoursite.com/2020/05/01/MATLAB&Simulink%20%E5%BC%80%E5%8F%91%E8%87%AA%E5%8A%A8%E5%8C%96%E4%B8%8E%E5%8F%AF%E8%A7%86%E5%8C%96%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90%E5%B7%A5%E5%85%B7/3.png">
-<meta property="og:image" content="http://yoursite.com/2020/05/01/MATLAB&Simulink%20%E5%BC%80%E5%8F%91%E8%87%AA%E5%8A%A8%E5%8C%96%E4%B8%8E%E5%8F%AF%E8%A7%86%E5%8C%96%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90%E5%B7%A5%E5%85%B7/4.png">
-<meta property="article:published_time" content="2020-05-01T08:56:17.000Z">
-<meta property="article:modified_time" content="2020-05-07T01:31:57.671Z">
+<meta property="og:image" content="http://yoursite.com/2020/05/04/MATLAB%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E5%B5%8C%E5%85%A5/%207%207.png">
+<meta property="og:image" content="http://yoursite.com/2020/05/04/MATLAB%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E5%B5%8C%E5%85%A5/%203%203.png">
+<meta property="og:image" content="http://yoursite.com/2020/05/04/MATLAB%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E5%B5%8C%E5%85%A5/%204%204.png">
+<meta property="og:image" content="http://yoursite.com/2020/05/04/MATLAB%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E5%B5%8C%E5%85%A5/%205%205.png">
+<meta property="og:image" content="http://yoursite.com/2020/05/04/MATLAB%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E5%B5%8C%E5%85%A5/%209%209.png">
+<meta property="og:image" content="http://yoursite.com/2020/05/04/MATLAB%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E5%B5%8C%E5%85%A5/%208%208.png">
+<meta property="og:image" content="http://yoursite.com/2020/05/04/MATLAB%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E5%B5%8C%E5%85%A5/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202020-05-13%20%E4%B8%8B%E5%8D%889.38.14.png">
+<meta property="og:image" content="http://yoursite.com/2020/05/04/MATLAB%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E5%B5%8C%E5%85%A5/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202020-05-13%20%E4%B8%8B%E5%8D%889.30.11.png">
+<meta property="og:image" content="http://yoursite.com/2020/05/04/MATLAB%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E5%B5%8C%E5%85%A5/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202020-05-13%20%E4%B8%8B%E5%8D%889.32.07.png">
+<meta property="og:image" content="http://yoursite.com/2020/05/04/MATLAB%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E5%B5%8C%E5%85%A5/%2012%2012.png">
+<meta property="og:image" content="http://yoursite.com/2020/05/04/MATLAB%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E5%B5%8C%E5%85%A5/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202020-05-13%20%E4%B8%8B%E5%8D%889.45.11.png">
+<meta property="og:image" content="http://yoursite.com/2020/05/04/MATLAB%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E5%B5%8C%E5%85%A5/%2013%2013.png">
+<meta property="article:published_time" content="2020-05-04T13:17:51.000Z">
+<meta property="article:modified_time" content="2020-05-14T01:12:18.407Z">
 <meta property="article:author" content="Ren Yixin">
-<meta property="article:tag" content="可视化,数据分析,MATLAB,分享">
+<meta property="article:tag" content="MATLAB,神经网络,树莓派">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="http://yoursite.com/2020/05/01/MATLAB&Simulink%20%E5%BC%80%E5%8F%91%E8%87%AA%E5%8A%A8%E5%8C%96%E4%B8%8E%E5%8F%AF%E8%A7%86%E5%8C%96%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90%E5%B7%A5%E5%85%B7/1.png">
+<meta name="twitter:image" content="http://yoursite.com/2020/05/04/MATLAB%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E5%B5%8C%E5%85%A5/%207%207.png">
 
 
 
@@ -125,13 +133,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2020/05/01/MATLAB&Simulink 开发自动化与可视化数据分析工具/"/>
+  <link rel="canonical" href="http://yoursite.com/2020/05/04/MATLAB深度学习嵌入/"/>
 
 
 
 
 
-  <title>电车队分享：利用MATLAB & Simulink 开发自动化与可视化数据分析工具 | Yixin's sharing</title>
+  <title>如何用MATLAB在计算资源有限的树莓派ARM CPU上运行复杂深度神经网络 | Yixin's sharing</title>
   
 
 
@@ -248,7 +256,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/05/01/MATLAB&Simulink%20%E5%BC%80%E5%8F%91%E8%87%AA%E5%8A%A8%E5%8C%96%E4%B8%8E%E5%8F%AF%E8%A7%86%E5%8C%96%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90%E5%B7%A5%E5%85%B7/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/05/04/MATLAB%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E5%B5%8C%E5%85%A5/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Ren Yixin">
@@ -265,7 +273,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">电车队分享：利用MATLAB & Simulink 开发自动化与可视化数据分析工具</h1>
+          <h1 class="post-title" itemprop="name headline">如何用MATLAB在计算资源有限的树莓派ARM CPU上运行复杂深度神经网络</h1>
         
 
         <div class="post-meta">
@@ -277,8 +285,8 @@
               
                 <span class="post-meta-item-text">Posted on</span>
               
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2020-05-01T16:56:17+08:00">
-                2020-05-01
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2020-05-04T21:17:51+08:00">
+                2020-05-04
               </time>
             
 
@@ -331,7 +339,7 @@
                   <span class="post-meta-item-text">Words count in article&#58;</span>
                 
                 <span title="Words count in article">
-                  915
+                  681
                 </span>
               
 
@@ -347,7 +355,7 @@
                   <span class="post-meta-item-text">Reading time &asymp;</span>
                 
                 <span title="Reading time">
-                  3
+                  2
                 </span>
               
             </div>
@@ -368,47 +376,55 @@
       
 
       
-        <p>今天晚上听了MathWorks官网上的一个关于提高数据处理效率的分享。分享由同济电车队的队长马家骏与 MathWorks 中国工程师董淑成共同进行，讲述了车队如何在测试阶段运用MATLAB工具提升调教、Debug与验证工作的效率，从而腾出时间做更有价值的工作。</p>
-<p><strong>工具的本质就是为了提高效率。——Yixin</strong></p>
-<p><strong>车队所用到的工具链概览：</strong></p>
+        <h4 id="前言"><strong>0. 前言</strong></h4>
+<p>本人作为传统工科出身的朋友，专业之余学过一些机器学习和深度学习的理论，了解一些基本的代码原理和架构。同时呢，因为本专业的训练，对控制技术也有（只限于课本的）了解。但是由于没有进行过实践，一直以来对算法和控制的认识都比较割裂，对两者之间如何搭建起桥梁也云里雾里。今天我在MATHWORKS上听了一节关于如何在计算资源有限的树莓派（Raspberry Pi）ARM CPU上运行复杂深度神经网络的讲座，MATLAB在其中起到了重要作用。我将讲座中进行的重要步骤和提要记在下面。形成一个框架，细节可以用到了慢慢填。</p>
+<h4 id="section"><img src="/2020/05/04/MATLAB%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E5%B5%8C%E5%85%A5/%207%207.png"></h4>
+<p>Demo 1:训练网络。该步骤使用了迁移学习的思想，用了SqueezeNet模型</p>
+<p>Demo 2:将神经网络部署到树莓派的CPU中，其中涉及到将预训练网络自动生成C++代码</p>
+<p>Demo 3:将神经网络部署到NVIDIA GPU上，其中涉及到将预训练网络自动生成CUDA代码</p>
+<h4 id="连接准备"><strong>1. 连接准备</strong></h4>
+<h5 id="安装树莓派和网络摄像头同时配置">安装树莓派和网络摄像头，同时配置</h5>
+<h5 id="确认和测试命令行输入webcam确认已经连接获取硬件信息">确认和测试：命令行输入webcam，确认已经连接，获取硬件信息</h5>
+<figure>
+<img src="/2020/05/04/MATLAB%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E5%B5%8C%E5%85%A5/%203%203.png" alt="配置外部硬件"><figcaption>配置外部硬件</figcaption>
+</figure>
+<figure>
+<img src="/2020/05/04/MATLAB%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E5%B5%8C%E5%85%A5/%204%204.png" alt="硬件支持包界面"><figcaption>硬件支持包界面</figcaption>
+</figure>
+<h5 id="nvidia-gpu配置">NVIDIA GPU配置：</h5>
+<p><img src="/2020/05/04/MATLAB%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E5%B5%8C%E5%85%A5/%205%205.png"></p>
+<h5 id="确认输入coder.checkgpuinstall确认硬件已经连接检查环境">确认：输入coder.checkGpuInstall，确认硬件已经连接，检查环境</h5>
+<h4 id="预训练squeezenet神经网络在gpu上实现"><strong>2. 预训练Squeezenet神经网络，在GPU上实现</strong></h4>
+<p>此处用迁移学习实现图像识别，一般在应用时只需要优化最后几层的参数，前面特征提取的参数都做的挺好的了。</p>
+<p><img src="/2020/05/04/MATLAB%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E5%B5%8C%E5%85%A5/%209%209.png"></p>
+<p><img src="/2020/05/04/MATLAB%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E5%B5%8C%E5%85%A5/%208%208.png"></p>
+<h5 id="收集和分类数据">收集和分类数据</h5>
+<h5 id="准备训练及测试图片集">准备训练及测试图片集</h5>
+<p>载入图库----&gt;加载Squeezenet模型并且修改----&gt;调整图库------&gt;进行模型训练----&gt;测试----&gt;导出模型到.mat文件</p>
+<p>注：模型训练中的代码段...,‘ExecutionEnvironment’选项为'gpu'，适用GPU加速</p>
+<p><img src="/2020/05/04/MATLAB%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E5%B5%8C%E5%85%A5/屏幕快照%202020-05-13%20下午9.38.14.png"></p>
+<h4 id="自动生成c代码"><strong>3. 自动生成C++代码</strong></h4>
+<p>通过cnncodegen转化成C++代码集：</p>
 <ul>
-<li>控制算法的快速原型开发——Simulink+快速原型控制器</li>
-<li>数据分析与可视化——MATLAB</li>
-<li>试车数据的记录——CAN记录仪</li>
+<li>本机环境预设置</li>
+<li>cnncodegen（net,'targetlab','libraryname'）;树莓派选择'arm-computer'</li>
+<li>提供主函数，手写main</li>
 </ul>
-<p>对于赛车控制系统的开发和调试，数据分析的好处可谓至关重要：指导开发方向，提高开发速度，加快迭代速度等。然而直接在操作界面上进行数据分析不仅耗时，对各种类型的终端用户都不友好（例如团队中有不会MATLAB或没有Liscense的同学就比较麻烦）。之后的分享中，马家骏针对以上痛点介绍了电车队在调试中使用四个帮助提升开发效率的小技巧。</p>
-<h3 id="利用matlab-gui进行简易数据可视化软件的开发">1. 利用MATLAB GUI进行简易数据可视化软件的开发</h3>
-<ul>
-<li><p>分析数据时重复输入代码</p></li>
-<li><p>有限的MATLAB License</p></li>
-<li><p>该步骤其实就是把流水化的可视化步骤打包起来，用GUI做界面，GUI的相关知识之后我会进行补充。</p>
-<p><img src="/2020/05/01/MATLAB&Simulink%20%E5%BC%80%E5%8F%91%E8%87%AA%E5%8A%A8%E5%8C%96%E4%B8%8E%E5%8F%AF%E8%A7%86%E5%8C%96%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90%E5%B7%A5%E5%85%B7/1.png"></p>
-<p><strong>基于MATLAB GUI开发的简易可视化软件：</strong></p></li>
-</ul>
-<p><img src="/2020/05/01/MATLAB&Simulink%20%E5%BC%80%E5%8F%91%E8%87%AA%E5%8A%A8%E5%8C%96%E4%B8%8E%E5%8F%AF%E8%A7%86%E5%8C%96%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90%E5%B7%A5%E5%85%B7/2.png"></p>
-<h3 id="自动化的数据分析算法">2. 自动化的数据分析算法</h3>
-<ul>
-<li><p>车辆的驱动防滑算法的PID模块的参数标定过程，需要对实车试验数据进行大量的分析</p></li>
-<li><p>通过算法自动判断车辆直线加速的开始与结束，自动得到车辆在某一标定值夏的加速性能，帮助快速筛选出最优标定参数——方向盘上有可调PID的按钮，根据不同路况自动设置。</p>
-<p><img src="/2020/05/01/MATLAB&Simulink%20%E5%BC%80%E5%8F%91%E8%87%AA%E5%8A%A8%E5%8C%96%E4%B8%8E%E5%8F%AF%E8%A7%86%E5%8C%96%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90%E5%B7%A5%E5%85%B7/3.png"></p>
-<p>PID的调节是一个比较复杂的过程，有了这一步对判断参数优劣、快速筛选提供依据。这让我想起了智能焊机项目进行时，学长就系数控制中PID的参数标定做了很长时间，也许这个可视化会是一个节省时间的好方法。</p></li>
-</ul>
-<h3 id="用于数据分析的车辆轨迹重建">3. 用于数据分析的车辆轨迹重建</h3>
-<ul>
-<li>当一个赛车手再反馈问题时，往往记得“第几个弯、什么地形”，而通常不是“几分几秒”，为了数据反馈和处理相连接，方便快速迭代，电车队利用MATLAB重建了车辆轨迹，将数据域从时间转到了赛道上。
-<ul>
-<li>更直观的分析，颜色深浅对应车速</li>
-<li>收集赛道数据——GPS（精度不够）/光学传感器</li>
-<li>方便进行调试——例如，当车手提出第三个弯发生了甩尾现象，后台工程师可以针对传感器中该场景下转弯前赛车速度、转弯后赛车速度、弯角等信息对车辆调教，设置该场景下适宜的控制参数。</li>
-</ul></li>
-</ul>
-<p><img src="/2020/05/01/MATLAB&Simulink%20%E5%BC%80%E5%8F%91%E8%87%AA%E5%8A%A8%E5%8C%96%E4%B8%8E%E5%8F%AF%E8%A7%86%E5%8C%96%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90%E5%B7%A5%E5%85%B7/4.png"></p>
-<h3 id="simulink脚本建立数据回放接口">4. Simulink脚本建立数据回放接口</h3>
-<ul>
-<li>数据分析时需要回放数据到Simulink模型</li>
-<li>传统的方法是手动创建fromworkspace模块，工作重复，输入多的话很耗时间。</li>
-<li>直接读取数据，建立Simulink bus对象，实现一键导入数据——<strong>非常常用的操作：Matlab/simulink用脚本批量创建接口、设置属性、自动对齐等</strong>，能大幅度提升大模型中数据导入的效率。</li>
-</ul>
+<figure>
+<img src="/2020/05/04/MATLAB%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E5%B5%8C%E5%85%A5/屏幕快照%202020-05-13%20下午9.30.11.png" alt="目标器件为ARM的cnncongegen流程"><figcaption>目标器件为ARM的cnncongegen流程</figcaption>
+</figure>
+<h4 id="在树莓派上进行部署和推断"><strong>4. 在树莓派上进行部署和推断</strong></h4>
+<p>以下是在树莓派上进行推断的结构图，net.predict(in)处需要放入训练过的模型生成好的C++程序</p>
+<p>在树莓派中构建基于ARM Compute Library的可执行程序</p>
+<p><img src="/2020/05/04/MATLAB%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E5%B5%8C%E5%85%A5/屏幕快照%202020-05-13%20下午9.32.07.png"></p>
+<p><img src="/2020/05/04/MATLAB%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E5%B5%8C%E5%85%A5/%2012%2012.png"></p>
+<p>运行结果</p>
+<figure>
+<img src="/2020/05/04/MATLAB%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E5%B5%8C%E5%85%A5/屏幕快照%202020-05-13%20下午9.45.11.png" alt="99.4%正确率，374ms的腿短时间"><figcaption>99.4%正确率，374ms的腿短时间</figcaption>
+</figure>
+<h4 id="总结"><strong>5.总结</strong></h4>
+<p>回答一下最初的疑惑，算法如何在控制器上体现可以总结为如下框图：</p>
+<p><img src="/2020/05/04/MATLAB%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E5%B5%8C%E5%85%A5/%2013%2013.png"></p>
 
       
     </div>
@@ -426,7 +442,7 @@
       
         <div class="post-tags">
           
-            <a href="/tags/%E5%8F%AF%E8%A7%86%E5%8C%96-%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90-MATLAB-%E5%88%86%E4%BA%AB/" rel="tag"># 可视化,数据分析,MATLAB,分享</a>
+            <a href="/tags/MATLAB-%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C-%E6%A0%91%E8%8E%93%E6%B4%BE/" rel="tag"># MATLAB,神经网络,树莓派</a>
           
         </div>
       
@@ -439,8 +455,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2020/04/26/%E8%AE%BA%E7%86%B5%E5%92%8C%E6%97%B6%E9%97%B4%E4%B9%8B%E7%9F%A2/" rel="next" title="论熵和时间之矢">
-                <i class="fa fa-chevron-left"></i> 论熵和时间之矢
+              <a href="/2020/05/04/Never%20Waste%20A%20Crisis/" rel="next" title="Never Waste A Crisis">
+                <i class="fa fa-chevron-left"></i> Never Waste A Crisis
               </a>
             
           </div>
@@ -449,8 +465,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2020/05/04/Never%20Waste%20A%20Crisis/" rel="prev" title="Never Waste A Crisis">
-                Never Waste A Crisis <i class="fa fa-chevron-right"></i>
+              <a href="/2020/05/07/5-7diary/" rel="prev" title="5.7diary">
+                5.7diary <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -583,7 +599,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#利用matlab-gui进行简易数据可视化软件的开发"><span class="nav-number">1.</span> <span class="nav-text">1. 利用MATLAB GUI进行简易数据可视化软件的开发</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#自动化的数据分析算法"><span class="nav-number">2.</span> <span class="nav-text">2. 自动化的数据分析算法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#用于数据分析的车辆轨迹重建"><span class="nav-number">3.</span> <span class="nav-text">3. 用于数据分析的车辆轨迹重建</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#simulink脚本建立数据回放接口"><span class="nav-number">4.</span> <span class="nav-text">4. Simulink脚本建立数据回放接口</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#前言"><span class="nav-number">1.</span> <span class="nav-text">0. 前言</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#section"><span class="nav-number">2.</span> <span class="nav-text"></span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#连接准备"><span class="nav-number">3.</span> <span class="nav-text">1. 连接准备</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#安装树莓派和网络摄像头同时配置"><span class="nav-number">3.1.</span> <span class="nav-text">安装树莓派和网络摄像头，同时配置</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#确认和测试命令行输入webcam确认已经连接获取硬件信息"><span class="nav-number">3.2.</span> <span class="nav-text">确认和测试：命令行输入webcam，确认已经连接，获取硬件信息</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#nvidia-gpu配置"><span class="nav-number">3.3.</span> <span class="nav-text">NVIDIA GPU配置：</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#确认输入coder.checkgpuinstall确认硬件已经连接检查环境"><span class="nav-number">3.4.</span> <span class="nav-text">确认：输入coder.checkGpuInstall，确认硬件已经连接，检查环境</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#预训练squeezenet神经网络在gpu上实现"><span class="nav-number">4.</span> <span class="nav-text">2. 预训练Squeezenet神经网络，在GPU上实现</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#收集和分类数据"><span class="nav-number">4.1.</span> <span class="nav-text">收集和分类数据</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#准备训练及测试图片集"><span class="nav-number">4.2.</span> <span class="nav-text">准备训练及测试图片集</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#自动生成c代码"><span class="nav-number">5.</span> <span class="nav-text">3. 自动生成C++代码</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#在树莓派上进行部署和推断"><span class="nav-number">6.</span> <span class="nav-text">4. 在树莓派上进行部署和推断</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#总结"><span class="nav-number">7.</span> <span class="nav-text">5.总结</span></a></li></ol></div>
             
 
           </div>
