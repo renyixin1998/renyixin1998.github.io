@@ -501,7 +501,7 @@
                   <span class="post-meta-item-text">Words count in article&#58;</span>
                 
                 <span title="Words count in article">
-                  1.3k
+                  1.4k
                 </span>
               
 
@@ -517,7 +517,7 @@
                   <span class="post-meta-item-text">Reading time &asymp;</span>
                 
                 <span title="Reading time">
-                  4
+                  5
                 </span>
               
             </div>
@@ -540,66 +540,84 @@
       
         
           
-            <p><strong><em>Alimi L, Chaoui K. Reliability Study of HDPE Pipe Using Slow Crack Growth Model[J].</em></strong></p>
-<h4 id="概述">概述</h4>
+            <h3 id="论文1"><a class="markdownIt-Anchor" href="#论文1"></a> 论文1</h3>
+<p><em><strong>Alimi L, Chaoui K. Reliability Study of HDPE Pipe Using Slow Crack Growth Model[J].</strong></em></p>
+<h4 id="概述"><a class="markdownIt-Anchor" href="#概述"></a> 概述</h4>
 <p>现在有多种预测HDPE寿命模型，彼此之间没有很大的共识，有些特定的参数也不是非常确切。尽管塑料管材标准及其相关的实验室测试也规定了超过50年的安全结构使用寿命，但是可靠性方法仍然是评估剩余结构寿命的一种安全方法。</p>
 <p>这项研究涉及基于寿命估计模型的高密度聚乙烯（HDPE）管可靠性计算。用慢速裂纹扩展（SCG）模型与极限状态函数结合以获得表示失效概率的可靠性指标（β）。与钢质管道相比，塑料管道在此问题上的投入很少。</p>
-<h4 id="顺序">顺序</h4>
+<h4 id="顺序"><a class="markdownIt-Anchor" href="#顺序"></a> 顺序</h4>
 <ul>
-<li><p>物理模型搭建：</p>
+<li>
+<p>物理模型搭建：</p>
 <p>借鉴P.Hutar的文章用Paris公式解释SCG动力学特征</p>
-<p><img src="/2020/05/18/%E7%AE%A1%E9%81%93%E5%8F%AF%E9%9D%A0%E6%80%A7%E5%88%86%E6%9E%90/屏幕快照%202020-05-17%20下午11.50.54.png"></p></li>
-<li><p>可靠性分析</p>
+<p>![](管道可靠性分析/屏幕快照 2020-05-17 下午11.50.54.png)</p>
+</li>
+<li>
+<p>可靠性分析</p>
 <ul>
-<li>定义结构的性能函数（极限函数），用<span class="math inline">\(G(X_j)\)</span>表示，<span class="math inline">\(X_j\)</span>是随机变量。这个方程说明了安全裕度，该裕度由管道商推荐寿命（通常大于50年）和实际计算的寿命之间的差定义。即<span class="math inline">\(G=t_R-t_f\)</span></li>
-<li>失效概率<span class="math inline">\(P_f=P[G(X)&lt;=0]=\phi(-\beta)\)</span> 中<span class="math inline">\(P[G(X)&lt;=0]\)</span>是概率算子，<span class="math inline">\(\phi(-\beta)\)</span>是累积高斯概率函数，<span class="math inline">\(\beta\)</span>是可靠性指标。</li>
-<li><span class="math inline">\(P[G(X)&lt;=0]\)</span>可以由基于FORM/SORM有限元计算的PHIMECA软件计算得出。</li>
-</ul></li>
-<li><p>对各变量对应的可靠性指数<span class="math inline">\(\beta\)</span> 进行分别分析，作图，找安全范围</p>
+<li>定义结构的性能函数（极限函数），用<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>G</mi><mo stretchy="false">(</mo><msub><mi>X</mi><mi>j</mi></msub><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">G(X_j)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1.036108em;vertical-align:-0.286108em;"></span><span class="mord mathdefault">G</span><span class="mopen">(</span><span class="mord"><span class="mord mathdefault" style="margin-right:0.07847em;">X</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.311664em;"><span style="top:-2.5500000000000003em;margin-left:-0.07847em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathdefault mtight" style="margin-right:0.05724em;">j</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.286108em;"><span></span></span></span></span></span></span><span class="mclose">)</span></span></span></span>表示，<span class="katex"><span class="katex-mathml"><math><semantics><mrow><msub><mi>X</mi><mi>j</mi></msub></mrow><annotation encoding="application/x-tex">X_j</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.969438em;vertical-align:-0.286108em;"></span><span class="mord"><span class="mord mathdefault" style="margin-right:0.07847em;">X</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.311664em;"><span style="top:-2.5500000000000003em;margin-left:-0.07847em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathdefault mtight" style="margin-right:0.05724em;">j</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.286108em;"><span></span></span></span></span></span></span></span></span></span>是随机变量。这个方程说明了安全裕度，该裕度由管道商推荐寿命（通常大于50年）和实际计算的寿命之间的差定义。即<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>G</mi><mo>=</mo><msub><mi>t</mi><mi>R</mi></msub><mo>−</mo><msub><mi>t</mi><mi>f</mi></msub></mrow><annotation encoding="application/x-tex">G=t_R-t_f</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord mathdefault">G</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.76508em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathdefault">t</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.32833099999999993em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathdefault mtight" style="margin-right:0.00773em;">R</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:0.9011879999999999em;vertical-align:-0.286108em;"></span><span class="mord"><span class="mord mathdefault">t</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3361079999999999em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathdefault mtight" style="margin-right:0.10764em;">f</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.286108em;"><span></span></span></span></span></span></span></span></span></span></li>
+<li>失效概率<span class="katex"><span class="katex-mathml"><math><semantics><mrow><msub><mi>P</mi><mi>f</mi></msub><mo>=</mo><mi>P</mi><mo stretchy="false">[</mo><mi>G</mi><mo stretchy="false">(</mo><mi>X</mi><mo stretchy="false">)</mo><mo>&lt;</mo><mo>=</mo><mn>0</mn><mo stretchy="false">]</mo><mo>=</mo><mi>ϕ</mi><mo stretchy="false">(</mo><mo>−</mo><mi>β</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">P_f=P[G(X)&lt;=0]=\phi(-\beta)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.969438em;vertical-align:-0.286108em;"></span><span class="mord"><span class="mord mathdefault" style="margin-right:0.13889em;">P</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3361079999999999em;"><span style="top:-2.5500000000000003em;margin-left:-0.13889em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathdefault mtight" style="margin-right:0.10764em;">f</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.286108em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault" style="margin-right:0.13889em;">P</span><span class="mopen">[</span><span class="mord mathdefault">G</span><span class="mopen">(</span><span class="mord mathdefault" style="margin-right:0.07847em;">X</span><span class="mclose">)</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">&lt;</span></span><span class="base"><span class="strut" style="height:0.36687em;vertical-align:0em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord">0</span><span class="mclose">]</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault">ϕ</span><span class="mopen">(</span><span class="mord">−</span><span class="mord mathdefault" style="margin-right:0.05278em;">β</span><span class="mclose">)</span></span></span></span> 中<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>P</mi><mo stretchy="false">[</mo><mi>G</mi><mo stretchy="false">(</mo><mi>X</mi><mo stretchy="false">)</mo><mo>&lt;</mo><mo>=</mo><mn>0</mn><mo stretchy="false">]</mo></mrow><annotation encoding="application/x-tex">P[G(X)&lt;=0]</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault" style="margin-right:0.13889em;">P</span><span class="mopen">[</span><span class="mord mathdefault">G</span><span class="mopen">(</span><span class="mord mathdefault" style="margin-right:0.07847em;">X</span><span class="mclose">)</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">&lt;</span></span><span class="base"><span class="strut" style="height:0.36687em;vertical-align:0em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord">0</span><span class="mclose">]</span></span></span></span>是概率算子，<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>ϕ</mi><mo stretchy="false">(</mo><mo>−</mo><mi>β</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">\phi(-\beta)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault">ϕ</span><span class="mopen">(</span><span class="mord">−</span><span class="mord mathdefault" style="margin-right:0.05278em;">β</span><span class="mclose">)</span></span></span></span>是累积高斯概率函数，<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>β</mi></mrow><annotation encoding="application/x-tex">\beta</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8888799999999999em;vertical-align:-0.19444em;"></span><span class="mord mathdefault" style="margin-right:0.05278em;">β</span></span></span></span>是可靠性指标。</li>
+<li><span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>P</mi><mo stretchy="false">[</mo><mi>G</mi><mo stretchy="false">(</mo><mi>X</mi><mo stretchy="false">)</mo><mo>&lt;</mo><mo>=</mo><mn>0</mn><mo stretchy="false">]</mo></mrow><annotation encoding="application/x-tex">P[G(X)&lt;=0]</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault" style="margin-right:0.13889em;">P</span><span class="mopen">[</span><span class="mord mathdefault">G</span><span class="mopen">(</span><span class="mord mathdefault" style="margin-right:0.07847em;">X</span><span class="mclose">)</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">&lt;</span></span><span class="base"><span class="strut" style="height:0.36687em;vertical-align:0em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord">0</span><span class="mclose">]</span></span></span></span>可以由基于FORM/SORM有限元计算的PHIMECA软件计算得出。</li>
+</ul>
+</li>
+<li>
+<p>对各变量对应的可靠性指数<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>β</mi></mrow><annotation encoding="application/x-tex">\beta</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8888799999999999em;vertical-align:-0.19444em;"></span><span class="mord mathdefault" style="margin-right:0.05278em;">β</span></span></span></span> 进行分别分析，作图，找安全范围</p>
 <ul>
 <li>随裂纹长度的变化</li>
 </ul>
-<p><img src="/2020/05/18/%E7%AE%A1%E9%81%93%E5%8F%AF%E9%9D%A0%E6%80%A7%E5%88%86%E6%9E%90/屏幕快照%202020-05-18%20上午10.48.28.png"></p>
+<p>![](管道可靠性分析/屏幕快照 2020-05-18 上午10.48.28.png)</p>
 <ul>
-<li>材料指数m</li>
+<li>材料指数<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>m</mi></mrow><annotation encoding="application/x-tex">m</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.43056em;vertical-align:0em;"></span><span class="mord mathdefault">m</span></span></span></span></li>
 </ul>
-<p><img src="/2020/05/18/%E7%AE%A1%E9%81%93%E5%8F%AF%E9%9D%A0%E6%80%A7%E5%88%86%E6%9E%90/屏幕快照%202020-05-18%20上午10.48.34.png"></p>
+<p>![](管道可靠性分析/屏幕快照 2020-05-18 上午10.48.34.png)</p>
 <ul>
 <li>随施加应力</li>
 </ul>
-<p><img src="/2020/05/18/%E7%AE%A1%E9%81%93%E5%8F%AF%E9%9D%A0%E6%80%A7%E5%88%86%E6%9E%90/屏幕快照%202020-05-18%20上午10.48.43.png"></p></li>
-<li><p>结论</p>
+<p>![](管道可靠性分析/屏幕快照 2020-05-18 上午10.48.43.png)</p>
+</li>
+<li>
+<p>结论</p>
 <ul>
 <li>基于SCG的塑料管的可靠性随着裂纹长度，压力和指数m的增加而降低</li>
 <li>可以得出不同壁厚的某种管材，在一定的初始裂纹下，承受压力的安全范围</li>
-</ul></li>
+</ul>
+</li>
 </ul>
 <hr>
-<p><strong><em>Alimi L, Chaoui K, Amirat A, et al. Study of reliability index for high-density polyethylene based on pipe standard dimension ratio and fracture toughness limits[J]. The International Journal of Advanced Manufacturing Technology, 2018, 96(1-4): 123-136.</em></strong></p>
-<p>评论：与上一篇文章类似，把失效概率中的概率算子的变量换成了<span class="math inline">\(K_I\)</span>，即安全裕度由材料的临界断裂韧度<span class="math inline">\(K_Ic\)</span>与实际值之间的差异定义。模拟了可靠性指数<span class="math inline">\(\beta\)</span>对工作压力、裂纹长度和SDR三个参数的函数。</p>
+<h3 id="论文3"><a class="markdownIt-Anchor" href="#论文3"></a> 论文3</h3>
+<p><strong>Alimi L, Chaoui K, Amirat A, et al. Study of reliability index for high-density polyethylene based on pipe standard dimension ratio and fracture toughness limits[J]. The International Journal of Advanced Manufacturing Technology, 2018, 96(1-4): 123-136.</strong>*</p>
+<p>评论：与上一篇文章类似，把失效概率中的概率算子的变量换成了<span class="katex"><span class="katex-mathml"><math><semantics><mrow><msub><mi>K</mi><mi>I</mi></msub></mrow><annotation encoding="application/x-tex">K_I</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.83333em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathdefault" style="margin-right:0.07153em;">K</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.32833099999999993em;"><span style="top:-2.5500000000000003em;margin-left:-0.07153em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathdefault mtight" style="margin-right:0.07847em;">I</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span>，即安全裕度由材料的临界断裂韧度<span class="katex"><span class="katex-mathml"><math><semantics><mrow><msub><mi>K</mi><mi>I</mi></msub><mi>c</mi></mrow><annotation encoding="application/x-tex">K_Ic</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.83333em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathdefault" style="margin-right:0.07153em;">K</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.32833099999999993em;"><span style="top:-2.5500000000000003em;margin-left:-0.07153em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathdefault mtight" style="margin-right:0.07847em;">I</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mord mathdefault">c</span></span></span></span>与实际值之间的差异定义。模拟了可靠性指数<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>β</mi></mrow><annotation encoding="application/x-tex">\beta</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8888799999999999em;vertical-align:-0.19444em;"></span><span class="mord mathdefault" style="margin-right:0.05278em;">β</span></span></span></span>对工作压力、裂纹长度和SDR三个参数的函数。</p>
 <p>以上两篇文章在进行可靠性分析时都用到了phimeca软件，再来介绍一下这款软件</p>
-<p><strong><em>Lemaire, Maurice, and Maurice Pendola. Phimeca-soft.&quot;Structural safety 28.1-2 (2006): 130-149.</em></strong></p>
+<hr>
+<h3 id="论文3-2"><a class="markdownIt-Anchor" href="#论文3-2"></a> 论文3</h3>
+<p><em><strong>Lemaire, Maurice, and Maurice Pendola. Phimeca-soft.&quot;Structural safety 28.1-2 (2006): 130-149.</strong></em></p>
 <p>该软件基于<em>FORM/SORM</em>可靠性计算，原理如下图</p>
-<p><img src="/2020/05/18/%E7%AE%A1%E9%81%93%E5%8F%AF%E9%9D%A0%E6%80%A7%E5%88%86%E6%9E%90/1-s2.0-S0167473005000196-gr1.jpg"></p>
+<p><img src="/2020/05/18/%E7%AE%A1%E9%81%93%E5%8F%AF%E9%9D%A0%E6%80%A7%E5%88%86%E6%9E%90/1-s2.0-S0167473005000196-gr1.jpg" alt></p>
 <p>接下来用一个应用来介绍它的用处：</p>
-<h5 id="背景">背景</h5>
+<h5 id="背景"><a class="markdownIt-Anchor" href="#背景"></a> 背景</h5>
 <p>排气歧管在损坏和漏气之前的寿命取决于几个参数：几何形状，与发动机的组装、材料特性、温度以及机械负载条件。制造过程和客户的多样性在这些参数值中引入了很大的可变性，影响了排气歧管的故障风险。传统上，在寿命评估或结构抗力的合理性中不考虑这些可变性的来源。这项工作的目的是将这种不确定性引入歧管的预测行为模型中，以便通过使用形式方法的“可靠性指标”计算来确定失效的可能性。</p>
-<h5 id="歧管介绍">歧管介绍</h5>
+<h5 id="歧管介绍"><a class="markdownIt-Anchor" href="#歧管介绍"></a> 歧管介绍</h5>
 <p>歧管承受热负荷和机械负荷。我们使用具有大约200,000个节点的有限元模型并执行耦合的非线性热力和机械分析来模拟歧管的结构行为。由此分析可以得出有关整个结构的应力和温度的变化情况。</p>
-<h5 id="引入随机量">引入随机量</h5>
+<h5 id="引入随机量"><a class="markdownIt-Anchor" href="#引入随机量"></a> 引入随机量</h5>
 <p>不确定的参数涉及：</p>
 <ul>
-<li><p>在最大和最小发动机功率下废气的温度<span class="math inline">\(T_\max\)</span>和<span class="math inline">\(T_\min\)</span>，两个温度都会影响一个循环中的热和机械性能。</p></li>
-<li>用于制造歧管的内核位置：由于制造过程d <em>x</em>，d <em>y</em>和d <em>z</em>，该位置在三个方向上独立变化。这会导致厚度过大或过低，从而可能重新分配整个结构的热和机械负载。</li>
-<li><p>材料特性（杨氏模量<em>ë</em>，屈服应力<em>σ</em> <em>ÿ</em>和从推导出极限强度<em>σ</em> <em>ý</em>取决于温度以及用于寿命的估计疲劳性能的损坏系数考虑恒定塑料模量）。</p></li>
+<li>
+<p>在最大和最小发动机功率下废气的温度<span class="katex-error" title="ParseError: KaTeX parse error: Got function &#039;\max&#039; with no arguments as subscript at position 3: T_\̲m̲a̲x̲">T_\max</span>和<span class="katex-error" title="ParseError: KaTeX parse error: Got function &#039;\min&#039; with no arguments as subscript at position 3: T_\̲m̲i̲n̲">T_\min</span>，两个温度都会影响一个循环中的热和机械性能。</p>
+</li>
+<li>
+<p>用于制造歧管的内核位置：由于制造过程d <em>x</em>，d <em>y</em>和d <em>z</em>，该位置在三个方向上独立变化。这会导致厚度过大或过低，从而可能重新分配整个结构的热和机械负载。</p>
+</li>
+<li>
+<p>材料特性（杨氏模量<em>ë</em>，屈服应力<em>σ</em> <em>ÿ</em>和从推导出极限强度<em>σ</em> <em>ý</em>取决于温度以及用于寿命的估计疲劳性能的损坏系数考虑恒定塑料模量）。</p>
+</li>
 </ul>
 <p>已经确定了在特定温度下材料性能的平均值和标准偏差。为了获得每个温度下的随机性，物理随机变量的实现定义为</p>
-<p><span class="math inline">\(x(T)=mx(T)+u_X\sigma_X(T)\)</span></p>
+<p><span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>x</mi><mo stretchy="false">(</mo><mi>T</mi><mo stretchy="false">)</mo><mo>=</mo><mi>m</mi><mi>x</mi><mo stretchy="false">(</mo><mi>T</mi><mo stretchy="false">)</mo><mo>+</mo><msub><mi>u</mi><mi>X</mi></msub><msub><mi>σ</mi><mi>X</mi></msub><mo stretchy="false">(</mo><mi>T</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">x(T)=mx(T)+u_X\sigma_X(T)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault">x</span><span class="mopen">(</span><span class="mord mathdefault" style="margin-right:0.13889em;">T</span><span class="mclose">)</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault">m</span><span class="mord mathdefault">x</span><span class="mopen">(</span><span class="mord mathdefault" style="margin-right:0.13889em;">T</span><span class="mclose">)</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord"><span class="mord mathdefault">u</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.32833099999999993em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathdefault mtight" style="margin-right:0.07847em;">X</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mord"><span class="mord mathdefault" style="margin-right:0.03588em;">σ</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.32833099999999993em;"><span style="top:-2.5500000000000003em;margin-left:-0.03588em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathdefault mtight" style="margin-right:0.07847em;">X</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mopen">(</span><span class="mord mathdefault" style="margin-right:0.13889em;">T</span><span class="mclose">)</span></span></span></span></p>
 <p>将包含相关性的九个随机变量引入有限元模型和预测的循环数中。</p>
-<h5 id="结果">结果</h5>
+<h5 id="结果"><a class="markdownIt-Anchor" href="#结果"></a> 结果</h5>
 <p>对于所有上述可变性源，获得的故障概率为1.3％，对应于可靠性指标<em>β</em>为2.24。换句话说，在考虑了机械模型并引入了可变性之后，有1.3％的测试歧管将无法通过严格性测试。</p>
 <p>同时，phimeca-soft还给出的重要性因子，确定所有随机变量的影响力，决定应该改进的部分</p>
-<p><img src="/2020/05/18/%E7%AE%A1%E9%81%93%E5%8F%AF%E9%9D%A0%E6%80%A7%E5%88%86%E6%9E%90/1-s2.0-S0167473005000196-gr10.jpg"></p>
+<p><img src="/2020/05/18/%E7%AE%A1%E9%81%93%E5%8F%AF%E9%9D%A0%E6%80%A7%E5%88%86%E6%9E%90/1-s2.0-S0167473005000196-gr10.jpg" alt></p>
 
           
         
@@ -2458,7 +2476,7 @@ S_{T_0+\delta T}=S_{T_0}+\frac{\partial S}{\partial T_{T=T_0}}
     
       <span class="post-meta-item-text">Site words total count&#58;</span>
     
-    <span title="Site words total count">24.3k</span>
+    <span title="Site words total count">24.5k</span>
   
 </div>
 
@@ -2477,7 +2495,7 @@ S_{T_0+\delta T}=S_{T_0}+\frac{\partial S}{\partial T_{T=T_0}}
 
 <div class="theme-info">
   <div class="powered-by"></div>
-  <span class="post-count">博客全站共24.3k字</span>
+  <span class="post-count">博客全站共24.5k字</span>
 </div>
 
         
