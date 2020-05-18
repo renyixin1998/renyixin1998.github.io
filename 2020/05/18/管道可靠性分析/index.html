@@ -68,7 +68,7 @@
 
 
 
-  <meta name="keywords" content="可视化,数据分析,MATLAB," />
+  <meta name="keywords" content="管道,可靠性分析," />
 
 
 
@@ -79,25 +79,26 @@
 
 
 
-<meta name="description" content="今天晚上听了MathWorks官网上的一个关于提高数据处理效率的分享。分享由同济电车队的队长马家骏与 MathWorks 中国工程师董淑成共同进行，讲述了车队如何在测试阶段运用MATLAB工具提升调教、Debug与验证工作的效率，从而腾出时间做更有价值的工作。 工具的本质就是为了提高效率。——Yixin 车队所用到的工具链概览：  控制算法的快速原型开发——Simulink+快速原型控制器 数据分">
+<meta name="description" content="Alimi L, Chaoui K. Reliability Study of HDPE Pipe Using Slow Crack Growth Model[J]. 概述 现在有多种预测HDPE寿命模型，彼此之间没有很大的共识，有些特定的参数也不是非常确切。尽管塑料管材标准及其相关的实验室测试也规定了超过50年的安全结构使用寿命，但是可靠性方法仍然是评估剩余结构寿命的一种安全方法。 这项研究涉及">
 <meta property="og:type" content="article">
-<meta property="og:title" content="电车队分享：利用MATLAB &amp; Simulink 开发自动化与可视化数据分析工具">
-<meta property="og:url" content="http://yoursite.com/2020/05/01/MATLAB&Simulink%20%E5%BC%80%E5%8F%91%E8%87%AA%E5%8A%A8%E5%8C%96%E4%B8%8E%E5%8F%AF%E8%A7%86%E5%8C%96%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90%E5%B7%A5%E5%85%B7/index.html">
+<meta property="og:title" content="管道可靠性分析">
+<meta property="og:url" content="http://yoursite.com/2020/05/18/%E7%AE%A1%E9%81%93%E5%8F%AF%E9%9D%A0%E6%80%A7%E5%88%86%E6%9E%90/index.html">
 <meta property="og:site_name" content="Yixin&#39;s sharing">
-<meta property="og:description" content="今天晚上听了MathWorks官网上的一个关于提高数据处理效率的分享。分享由同济电车队的队长马家骏与 MathWorks 中国工程师董淑成共同进行，讲述了车队如何在测试阶段运用MATLAB工具提升调教、Debug与验证工作的效率，从而腾出时间做更有价值的工作。 工具的本质就是为了提高效率。——Yixin 车队所用到的工具链概览：  控制算法的快速原型开发——Simulink+快速原型控制器 数据分">
+<meta property="og:description" content="Alimi L, Chaoui K. Reliability Study of HDPE Pipe Using Slow Crack Growth Model[J]. 概述 现在有多种预测HDPE寿命模型，彼此之间没有很大的共识，有些特定的参数也不是非常确切。尽管塑料管材标准及其相关的实验室测试也规定了超过50年的安全结构使用寿命，但是可靠性方法仍然是评估剩余结构寿命的一种安全方法。 这项研究涉及">
 <meta property="og:locale" content="en_US">
-<meta property="og:image" content="http://yoursite.com/2020/05/01/MATLAB&Simulink%20%E5%BC%80%E5%8F%91%E8%87%AA%E5%8A%A8%E5%8C%96%E4%B8%8E%E5%8F%AF%E8%A7%86%E5%8C%96%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90%E5%B7%A5%E5%85%B7/1.png">
-<meta property="og:image" content="http://yoursite.com/2020/05/01/MATLAB&Simulink%20%E5%BC%80%E5%8F%91%E8%87%AA%E5%8A%A8%E5%8C%96%E4%B8%8E%E5%8F%AF%E8%A7%86%E5%8C%96%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90%E5%B7%A5%E5%85%B7/2.png">
-<meta property="og:image" content="http://yoursite.com/2020/05/01/MATLAB&Simulink%20%E5%BC%80%E5%8F%91%E8%87%AA%E5%8A%A8%E5%8C%96%E4%B8%8E%E5%8F%AF%E8%A7%86%E5%8C%96%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90%E5%B7%A5%E5%85%B7/3.png">
-<meta property="og:image" content="http://yoursite.com/2020/05/01/MATLAB&Simulink%20%E5%BC%80%E5%8F%91%E8%87%AA%E5%8A%A8%E5%8C%96%E4%B8%8E%E5%8F%AF%E8%A7%86%E5%8C%96%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90%E5%B7%A5%E5%85%B7/4.png">
-<meta property="article:published_time" content="2020-05-01T08:56:17.000Z">
-<meta property="article:modified_time" content="2020-05-14T01:37:44.146Z">
+<meta property="og:image" content="http://yoursite.com/2020/05/18/%E7%AE%A1%E9%81%93%E5%8F%AF%E9%9D%A0%E6%80%A7%E5%88%86%E6%9E%90/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202020-05-17%20%E4%B8%8B%E5%8D%8811.50.54.png">
+<meta property="og:image" content="http://yoursite.com/2020/05/18/%E7%AE%A1%E9%81%93%E5%8F%AF%E9%9D%A0%E6%80%A7%E5%88%86%E6%9E%90/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202020-05-18%20%E4%B8%8A%E5%8D%8810.48.28.png">
+<meta property="og:image" content="http://yoursite.com/2020/05/18/%E7%AE%A1%E9%81%93%E5%8F%AF%E9%9D%A0%E6%80%A7%E5%88%86%E6%9E%90/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202020-05-18%20%E4%B8%8A%E5%8D%8810.48.34.png">
+<meta property="og:image" content="http://yoursite.com/2020/05/18/%E7%AE%A1%E9%81%93%E5%8F%AF%E9%9D%A0%E6%80%A7%E5%88%86%E6%9E%90/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202020-05-18%20%E4%B8%8A%E5%8D%8810.48.43.png">
+<meta property="og:image" content="http://yoursite.com/2020/05/18/%E7%AE%A1%E9%81%93%E5%8F%AF%E9%9D%A0%E6%80%A7%E5%88%86%E6%9E%90/1-s2.0-S0167473005000196-gr1.jpg">
+<meta property="og:image" content="http://yoursite.com/2020/05/18/%E7%AE%A1%E9%81%93%E5%8F%AF%E9%9D%A0%E6%80%A7%E5%88%86%E6%9E%90/1-s2.0-S0167473005000196-gr10.jpg">
+<meta property="article:published_time" content="2020-05-18T02:49:11.000Z">
+<meta property="article:modified_time" content="2020-05-18T03:37:09.898Z">
 <meta property="article:author" content="Ren Yixin">
-<meta property="article:tag" content="可视化">
-<meta property="article:tag" content="数据分析">
-<meta property="article:tag" content="MATLAB">
+<meta property="article:tag" content="管道">
+<meta property="article:tag" content="可靠性分析">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="http://yoursite.com/2020/05/01/MATLAB&Simulink%20%E5%BC%80%E5%8F%91%E8%87%AA%E5%8A%A8%E5%8C%96%E4%B8%8E%E5%8F%AF%E8%A7%86%E5%8C%96%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90%E5%B7%A5%E5%85%B7/1.png">
+<meta name="twitter:image" content="http://yoursite.com/2020/05/18/%E7%AE%A1%E9%81%93%E5%8F%AF%E9%9D%A0%E6%80%A7%E5%88%86%E6%9E%90/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202020-05-17%20%E4%B8%8B%E5%8D%8811.50.54.png">
 
 
 
@@ -127,13 +128,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2020/05/01/MATLAB&Simulink 开发自动化与可视化数据分析工具/"/>
+  <link rel="canonical" href="http://yoursite.com/2020/05/18/管道可靠性分析/"/>
 
 
 
 
 
-  <title>电车队分享：利用MATLAB & Simulink 开发自动化与可视化数据分析工具 | Yixin's sharing</title>
+  <title>管道可靠性分析 | Yixin's sharing</title>
   
 
 
@@ -260,7 +261,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/05/01/MATLAB&Simulink%20%E5%BC%80%E5%8F%91%E8%87%AA%E5%8A%A8%E5%8C%96%E4%B8%8E%E5%8F%AF%E8%A7%86%E5%8C%96%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90%E5%B7%A5%E5%85%B7/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/05/18/%E7%AE%A1%E9%81%93%E5%8F%AF%E9%9D%A0%E6%80%A7%E5%88%86%E6%9E%90/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Ren Yixin">
@@ -277,7 +278,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">电车队分享：利用MATLAB & Simulink 开发自动化与可视化数据分析工具</h1>
+          <h1 class="post-title" itemprop="name headline">管道可靠性分析</h1>
         
 
         <div class="post-meta">
@@ -289,8 +290,8 @@
               
                 <span class="post-meta-item-text">Posted on</span>
               
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2020-05-01T16:56:17+08:00">
-                2020-05-01
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2020-05-18T10:49:11+08:00">
+                2020-05-18
               </time>
             
 
@@ -312,8 +313,8 @@
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/MATLAB%E8%BF%9B%E9%98%B6%E5%AD%A6%E4%B9%A0/" itemprop="url" rel="index">
-                    <span itemprop="name">MATLAB进阶学习</span>
+                  <a href="/categories/%E6%88%91%E7%9A%84%E5%B0%8F%E7%A7%91%E7%A0%94/" itemprop="url" rel="index">
+                    <span itemprop="name">我的小科研</span>
                   </a>
                 </span>
 
@@ -343,7 +344,7 @@
                   <span class="post-meta-item-text">Words count in article&#58;</span>
                 
                 <span title="Words count in article">
-                  915
+                  1.3k
                 </span>
               
 
@@ -359,7 +360,7 @@
                   <span class="post-meta-item-text">Reading time &asymp;</span>
                 
                 <span title="Reading time">
-                  3
+                  4
                 </span>
               
             </div>
@@ -380,47 +381,66 @@
       
 
       
-        <p>今天晚上听了MathWorks官网上的一个关于提高数据处理效率的分享。分享由同济电车队的队长马家骏与 MathWorks 中国工程师董淑成共同进行，讲述了车队如何在测试阶段运用MATLAB工具提升调教、Debug与验证工作的效率，从而腾出时间做更有价值的工作。</p>
-<p><strong>工具的本质就是为了提高效率。——Yixin</strong></p>
-<p><strong>车队所用到的工具链概览：</strong></p>
+        <p><strong><em>Alimi L, Chaoui K. Reliability Study of HDPE Pipe Using Slow Crack Growth Model[J].</em></strong></p>
+<h4 id="概述">概述</h4>
+<p>现在有多种预测HDPE寿命模型，彼此之间没有很大的共识，有些特定的参数也不是非常确切。尽管塑料管材标准及其相关的实验室测试也规定了超过50年的安全结构使用寿命，但是可靠性方法仍然是评估剩余结构寿命的一种安全方法。</p>
+<p>这项研究涉及基于寿命估计模型的高密度聚乙烯（HDPE）管可靠性计算。用慢速裂纹扩展（SCG）模型与极限状态函数结合以获得表示失效概率的可靠性指标（β）。与钢质管道相比，塑料管道在此问题上的投入很少。</p>
+<h4 id="顺序">顺序</h4>
 <ul>
-<li>控制算法的快速原型开发——Simulink+快速原型控制器</li>
-<li>数据分析与可视化——MATLAB</li>
-<li>试车数据的记录——CAN记录仪</li>
+<li><p>物理模型搭建：</p>
+<p>借鉴P.Hutar的文章用Paris公式解释SCG动力学特征</p>
+<p><img src="/2020/05/18/%E7%AE%A1%E9%81%93%E5%8F%AF%E9%9D%A0%E6%80%A7%E5%88%86%E6%9E%90/屏幕快照%202020-05-17%20下午11.50.54.png"></p></li>
+<li><p>可靠性分析</p>
+<ul>
+<li>定义结构的性能函数（极限函数），用<span class="math inline">\(G(X_j)\)</span>表示，<span class="math inline">\(X_j\)</span>是随机变量。这个方程说明了安全裕度，该裕度由管道商推荐寿命（通常大于50年）和实际计算的寿命之间的差定义。即<span class="math inline">\(G=t_R-t_f\)</span></li>
+<li>失效概率<span class="math inline">\(P_f=P[G(X)&lt;=0]=\phi(-\beta)\)</span> 中<span class="math inline">\(P[G(X)&lt;=0]\)</span>是概率算子，<span class="math inline">\(\phi(-\beta)\)</span>是累积高斯概率函数，<span class="math inline">\(\beta\)</span>是可靠性指标。</li>
+<li><span class="math inline">\(P[G(X)&lt;=0]\)</span>可以由基于FORM/SORM有限元计算的PHIMECA软件计算得出。</li>
+</ul></li>
+<li><p>对各变量对应的可靠性指数<span class="math inline">\(\beta\)</span> 进行分别分析，作图，找安全范围</p>
+<ul>
+<li>随裂纹长度的变化</li>
 </ul>
-<p>对于赛车控制系统的开发和调试，数据分析的好处可谓至关重要：指导开发方向，提高开发速度，加快迭代速度等。然而直接在操作界面上进行数据分析不仅耗时，对各种类型的终端用户都不友好（例如团队中有不会MATLAB或没有Liscense的同学就比较麻烦）。之后的分享中，马家骏针对以上痛点介绍了电车队在调试中使用四个帮助提升开发效率的小技巧。</p>
-<h3 id="利用matlab-gui进行简易数据可视化软件的开发">1. 利用MATLAB GUI进行简易数据可视化软件的开发</h3>
+<p><img src="/2020/05/18/%E7%AE%A1%E9%81%93%E5%8F%AF%E9%9D%A0%E6%80%A7%E5%88%86%E6%9E%90/屏幕快照%202020-05-18%20上午10.48.28.png"></p>
 <ul>
-<li><p>分析数据时重复输入代码</p></li>
-<li><p>有限的MATLAB License</p></li>
-<li><p>该步骤其实就是把流水化的可视化步骤打包起来，用GUI做界面，GUI的相关知识之后我会进行补充。</p>
-<p><img src="/2020/05/01/MATLAB&Simulink%20%E5%BC%80%E5%8F%91%E8%87%AA%E5%8A%A8%E5%8C%96%E4%B8%8E%E5%8F%AF%E8%A7%86%E5%8C%96%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90%E5%B7%A5%E5%85%B7/1.png"></p>
-<p><strong>基于MATLAB GUI开发的简易可视化软件：</strong></p></li>
+<li>材料指数m</li>
 </ul>
-<p><img src="/2020/05/01/MATLAB&Simulink%20%E5%BC%80%E5%8F%91%E8%87%AA%E5%8A%A8%E5%8C%96%E4%B8%8E%E5%8F%AF%E8%A7%86%E5%8C%96%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90%E5%B7%A5%E5%85%B7/2.png"></p>
-<h3 id="自动化的数据分析算法">2. 自动化的数据分析算法</h3>
+<p><img src="/2020/05/18/%E7%AE%A1%E9%81%93%E5%8F%AF%E9%9D%A0%E6%80%A7%E5%88%86%E6%9E%90/屏幕快照%202020-05-18%20上午10.48.34.png"></p>
 <ul>
-<li><p>车辆的驱动防滑算法的PID模块的参数标定过程，需要对实车试验数据进行大量的分析</p></li>
-<li><p>通过算法自动判断车辆直线加速的开始与结束，自动得到车辆在某一标定值夏的加速性能，帮助快速筛选出最优标定参数——方向盘上有可调PID的按钮，根据不同路况自动设置。</p>
-<p><img src="/2020/05/01/MATLAB&Simulink%20%E5%BC%80%E5%8F%91%E8%87%AA%E5%8A%A8%E5%8C%96%E4%B8%8E%E5%8F%AF%E8%A7%86%E5%8C%96%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90%E5%B7%A5%E5%85%B7/3.png"></p>
-<p>PID的调节是一个比较复杂的过程，有了这一步对判断参数优劣、快速筛选提供依据。这让我想起了智能焊机项目进行时，学长就系数控制中PID的参数标定做了很长时间，也许这个可视化会是一个节省时间的好方法。</p></li>
+<li>随施加应力</li>
 </ul>
-<h3 id="用于数据分析的车辆轨迹重建">3. 用于数据分析的车辆轨迹重建</h3>
+<p><img src="/2020/05/18/%E7%AE%A1%E9%81%93%E5%8F%AF%E9%9D%A0%E6%80%A7%E5%88%86%E6%9E%90/屏幕快照%202020-05-18%20上午10.48.43.png"></p></li>
+<li><p>结论</p>
 <ul>
-<li>当一个赛车手再反馈问题时，往往记得“第几个弯、什么地形”，而通常不是“几分几秒”，为了数据反馈和处理相连接，方便快速迭代，电车队利用MATLAB重建了车辆轨迹，将数据域从时间转到了赛道上。
-<ul>
-<li>更直观的分析，颜色深浅对应车速</li>
-<li>收集赛道数据——GPS（精度不够）/光学传感器</li>
-<li>方便进行调试——例如，当车手提出第三个弯发生了甩尾现象，后台工程师可以针对传感器中该场景下转弯前赛车速度、转弯后赛车速度、弯角等信息对车辆调教，设置该场景下适宜的控制参数。</li>
+<li>基于SCG的塑料管的可靠性随着裂纹长度，压力和指数m的增加而降低</li>
+<li>可以得出不同壁厚的某种管材，在一定的初始裂纹下，承受压力的安全范围</li>
 </ul></li>
 </ul>
-<p><img src="/2020/05/01/MATLAB&Simulink%20%E5%BC%80%E5%8F%91%E8%87%AA%E5%8A%A8%E5%8C%96%E4%B8%8E%E5%8F%AF%E8%A7%86%E5%8C%96%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90%E5%B7%A5%E5%85%B7/4.png"></p>
-<h3 id="simulink脚本建立数据回放接口">4. Simulink脚本建立数据回放接口</h3>
+<hr>
+<p><strong><em>Alimi L, Chaoui K, Amirat A, et al. Study of reliability index for high-density polyethylene based on pipe standard dimension ratio and fracture toughness limits[J]. The International Journal of Advanced Manufacturing Technology, 2018, 96(1-4): 123-136.</em></strong></p>
+<p>评论：与上一篇文章类似，把失效概率中的概率算子的变量换成了<span class="math inline">\(K_I\)</span>，即安全裕度由材料的临界断裂韧度<span class="math inline">\(K_Ic\)</span>与实际值之间的差异定义。模拟了可靠性指数<span class="math inline">\(\beta\)</span>对工作压力、裂纹长度和SDR三个参数的函数。</p>
+<p>以上两篇文章在进行可靠性分析时都用到了phimeca软件，再来介绍一下这款软件</p>
+<p><strong><em>Lemaire, Maurice, and Maurice Pendola. Phimeca-soft.&quot;Structural safety 28.1-2 (2006): 130-149.</em></strong></p>
+<p>该软件基于<em>FORM/SORM</em>可靠性计算，原理如下图</p>
+<p><img src="/2020/05/18/%E7%AE%A1%E9%81%93%E5%8F%AF%E9%9D%A0%E6%80%A7%E5%88%86%E6%9E%90/1-s2.0-S0167473005000196-gr1.jpg"></p>
+<p>接下来用一个应用来介绍它的用处：</p>
+<h5 id="背景">背景</h5>
+<p>排气歧管在损坏和漏气之前的寿命取决于几个参数：几何形状，与发动机的组装、材料特性、温度以及机械负载条件。制造过程和客户的多样性在这些参数值中引入了很大的可变性，影响了排气歧管的故障风险。传统上，在寿命评估或结构抗力的合理性中不考虑这些可变性的来源。这项工作的目的是将这种不确定性引入歧管的预测行为模型中，以便通过使用形式方法的“可靠性指标”计算来确定失效的可能性。</p>
+<h5 id="歧管介绍">歧管介绍</h5>
+<p>歧管承受热负荷和机械负荷。我们使用具有大约200,000个节点的有限元模型并执行耦合的非线性热力和机械分析来模拟歧管的结构行为。由此分析可以得出有关整个结构的应力和温度的变化情况。</p>
+<h5 id="引入随机量">引入随机量</h5>
+<p>不确定的参数涉及：</p>
 <ul>
-<li>数据分析时需要回放数据到Simulink模型</li>
-<li>传统的方法是手动创建fromworkspace模块，工作重复，输入多的话很耗时间。</li>
-<li>直接读取数据，建立Simulink bus对象，实现一键导入数据——<strong>非常常用的操作：Matlab/simulink用脚本批量创建接口、设置属性、自动对齐等</strong>，能大幅度提升大模型中数据导入的效率。</li>
+<li><p>在最大和最小发动机功率下废气的温度<span class="math inline">\(T_\max\)</span>和<span class="math inline">\(T_\min\)</span>，两个温度都会影响一个循环中的热和机械性能。</p></li>
+<li>用于制造歧管的内核位置：由于制造过程d <em>x</em>，d <em>y</em>和d <em>z</em>，该位置在三个方向上独立变化。这会导致厚度过大或过低，从而可能重新分配整个结构的热和机械负载。</li>
+<li><p>材料特性（杨氏模量<em>ë</em>，屈服应力<em>σ</em> <em>ÿ</em>和从推导出极限强度<em>σ</em> <em>ý</em>取决于温度以及用于寿命的估计疲劳性能的损坏系数考虑恒定塑料模量）。</p></li>
 </ul>
+<p>已经确定了在特定温度下材料性能的平均值和标准偏差。为了获得每个温度下的随机性，物理随机变量的实现定义为</p>
+<p><span class="math inline">\(x(T)=mx(T)+u_X\sigma_X(T)\)</span></p>
+<p>将包含相关性的九个随机变量引入有限元模型和预测的循环数中。</p>
+<h5 id="结果">结果</h5>
+<p>对于所有上述可变性源，获得的故障概率为1.3％，对应于可靠性指标<em>β</em>为2.24。换句话说，在考虑了机械模型并引入了可变性之后，有1.3％的测试歧管将无法通过严格性测试。</p>
+<p>同时，phimeca-soft还给出的重要性因子，确定所有随机变量的影响力，决定应该改进的部分</p>
+<p><img src="/2020/05/18/%E7%AE%A1%E9%81%93%E5%8F%AF%E9%9D%A0%E6%80%A7%E5%88%86%E6%9E%90/1-s2.0-S0167473005000196-gr10.jpg"></p>
 
       
     </div>
@@ -438,11 +458,9 @@
       
         <div class="post-tags">
           
-            <a href="/tags/%E5%8F%AF%E8%A7%86%E5%8C%96/" rel="tag"># 可视化</a>
+            <a href="/tags/%E7%AE%A1%E9%81%93/" rel="tag"># 管道</a>
           
-            <a href="/tags/%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90/" rel="tag"># 数据分析</a>
-          
-            <a href="/tags/MATLAB/" rel="tag"># MATLAB</a>
+            <a href="/tags/%E5%8F%AF%E9%9D%A0%E6%80%A7%E5%88%86%E6%9E%90/" rel="tag"># 可靠性分析</a>
           
         </div>
       
@@ -455,8 +473,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2020/04/26/%E8%AE%BA%E7%86%B5%E5%92%8C%E6%97%B6%E9%97%B4%E4%B9%8B%E7%9F%A2/" rel="next" title="论熵和时间之矢">
-                <i class="fa fa-chevron-left"></i> 论熵和时间之矢
+              <a href="/2020/05/16/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E6%99%BA%E8%83%BD%E6%B1%BD%E8%BD%A6/" rel="next" title="基于人工智能的汽车智能故障诊断系统设计">
+                <i class="fa fa-chevron-left"></i> 基于人工智能的汽车智能故障诊断系统设计
               </a>
             
           </div>
@@ -464,10 +482,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2020/05/04/Never%20Waste%20A%20Crisis/" rel="prev" title="Never Waste A Crisis">
-                Never Waste A Crisis <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -599,7 +613,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#利用matlab-gui进行简易数据可视化软件的开发"><span class="nav-number">1.</span> <span class="nav-text">1. 利用MATLAB GUI进行简易数据可视化软件的开发</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#自动化的数据分析算法"><span class="nav-number">2.</span> <span class="nav-text">2. 自动化的数据分析算法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#用于数据分析的车辆轨迹重建"><span class="nav-number">3.</span> <span class="nav-text">3. 用于数据分析的车辆轨迹重建</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#simulink脚本建立数据回放接口"><span class="nav-number">4.</span> <span class="nav-text">4. Simulink脚本建立数据回放接口</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#概述"><span class="nav-number">1.</span> <span class="nav-text">概述</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#顺序"><span class="nav-number">2.</span> <span class="nav-text">顺序</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#背景"><span class="nav-number">2.1.</span> <span class="nav-text">背景</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#歧管介绍"><span class="nav-number">2.2.</span> <span class="nav-text">歧管介绍</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#引入随机量"><span class="nav-number">2.3.</span> <span class="nav-text">引入随机量</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#结果"><span class="nav-number">2.4.</span> <span class="nav-text">结果</span></a></li></ol></li></ol></div>
             
 
           </div>
