@@ -79,15 +79,15 @@
 
 
 
-<meta name="description" content="写在前面 用Python做项目的时候经常会遇到管理数据的需求。常见的方式是用文件保存数据，还有 pickle、csv 等模块辅助。但对于稍微复杂一点的数据，往往不够方便。成熟的解决方案就是使用数据库。 本文我将收集一下学习Python数据库所涉及到的一些基本概念和学习路径，选择一条最适合我需求的路径。 方式一：学习SQL语言，使用MySQL数据库（或Sqlite），并使用PyMySQL库用Pyth">
+<meta name="description" content="写在前面 用Python做项目的时候经常会遇到管理数据的需求。常见的方式是用文件保存数据，还有 pickle、csv 等模块辅助。但对于稍微复杂一点的数据，往往不够方便。成熟的解决方案就是使用数据库。 本文我将收集一下学习Python数据库所涉及到的一些基本概念和学习路径，选择一条最适合我需求的路径。  方式一：学习SQL语言，使用MySQL数据库（或Sqlite），并使用PyMySQL库用Py">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Python数据库学习路径总结">
 <meta property="og:url" content="http://yoursite.com/2020/05/31/Python%E6%95%B0%E6%8D%AE%E5%BA%93%E5%AD%A6%E4%B9%A0%E8%B7%AF%E5%BE%84%E6%80%BB%E7%BB%93%20/index.html">
 <meta property="og:site_name" content="Yixin&#39;s sharing">
-<meta property="og:description" content="写在前面 用Python做项目的时候经常会遇到管理数据的需求。常见的方式是用文件保存数据，还有 pickle、csv 等模块辅助。但对于稍微复杂一点的数据，往往不够方便。成熟的解决方案就是使用数据库。 本文我将收集一下学习Python数据库所涉及到的一些基本概念和学习路径，选择一条最适合我需求的路径。 方式一：学习SQL语言，使用MySQL数据库（或Sqlite），并使用PyMySQL库用Pyth">
+<meta property="og:description" content="写在前面 用Python做项目的时候经常会遇到管理数据的需求。常见的方式是用文件保存数据，还有 pickle、csv 等模块辅助。但对于稍微复杂一点的数据，往往不够方便。成熟的解决方案就是使用数据库。 本文我将收集一下学习Python数据库所涉及到的一些基本概念和学习路径，选择一条最适合我需求的路径。  方式一：学习SQL语言，使用MySQL数据库（或Sqlite），并使用PyMySQL库用Py">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2020-05-31T02:49:11.000Z">
-<meta property="article:modified_time" content="2020-05-31T09:38:00.757Z">
+<meta property="article:modified_time" content="2020-06-16T10:50:21.016Z">
 <meta property="article:author" content="Ren Yixin">
 <meta property="article:tag" content="Python">
 <meta property="article:tag" content="数据库">
@@ -306,8 +306,8 @@
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E6%88%91%E7%9A%84%E5%B0%8F%E7%A7%91%E7%A0%94/" itemprop="url" rel="index">
-                    <span itemprop="name">我的小科研</span>
+                  <a href="/categories/%E7%A7%91%E7%A0%94%E7%AC%94%E8%AE%B0/" itemprop="url" rel="index">
+                    <span itemprop="name">科研笔记</span>
                   </a>
                 </span>
 
@@ -374,12 +374,12 @@
       
 
       
-        <h3 id="写在前面">写在前面</h3>
+        <h3 id="写在前面"><a class="markdownIt-Anchor" href="#写在前面"></a> 写在前面</h3>
 <p>用Python做项目的时候经常会遇到管理数据的需求。常见的方式是用文件保存数据，还有 <strong>pickle</strong>、<strong>csv</strong> 等模块辅助。但对于稍微复杂一点的数据，往往不够方便。成熟的解决方案就是使用<strong>数据库</strong>。</p>
 <p>本文我将收集一下学习Python数据库所涉及到的一些基本概念和学习路径，选择一条最适合我需求的路径。</p>
-<h3 id="方式一学习sql语言使用mysql数据库或sqlite并使用pymysql库用python操作数据库">方式一：学习SQL语言，使用MySQL数据库（或Sqlite），并使用PyMySQL库用Python操作数据库。</h3>
+<h3 id="方式一学习sql语言使用mysql数据库或sqlite并使用pymysql库用python操作数据库"><a class="markdownIt-Anchor" href="#方式一学习sql语言使用mysql数据库或sqlite并使用pymysql库用python操作数据库"></a> 方式一：学习SQL语言，使用MySQL数据库（或Sqlite），并使用PyMySQL库用Python操作数据库。</h3>
 <p>提到数据库，首先想到的自然是大名鼎鼎的数据库SQL语句，在正经的开发中应用很多。使用数据库的 <strong>SQL 语句</strong>几乎相当于再学一种新的语言。虽然 <strong>sqlite</strong>、<strong>pymysql</strong> 等模块提供了与数据的连接，但仍然需要自己去拼接 SQL 语句。</p>
-<h4 id="sql语言">SQL语言</h4>
+<h4 id="sql语言"><a class="markdownIt-Anchor" href="#sql语言"></a> SQL语言</h4>
 <blockquote>
 <p>结构化查询语言(Structured Query Language)简称SQL，是一种特殊目的的编程语言，是一种数据库查询和设计语言，用于存取数据以及查询、更新和管理关系数据库系统.</p>
 </blockquote>
@@ -392,20 +392,20 @@
 <li>SQL 可在数据库中创建新表</li>
 <li>SQL 可在数据库中创建视图</li>
 </ul>
-<h4 id="数据库软件mysqlsqlite...">数据库软件：MySQL/Sqlite...</h4>
+<h4 id="数据库软件mysqlsqlite"><a class="markdownIt-Anchor" href="#数据库软件mysqlsqlite"></a> 数据库软件：MySQL/Sqlite…</h4>
 <p>MySQL是在90年代中期开发的数据库软件，是市场上第一个可用的开源数据库之一。MySQL是一种RDBMS，它允许保持数据库中存在的数据。MySQL适用SQL结构化查询语言用于访问，更新和操作数据库中的数据。</p>
 <p>对于数据量较小，访问量较小的需求，甚至都不需要能承受高并发访问的大内存MySQL，可以只用SQLite，它的特点是轻量级、可嵌入，但不能承受高并发访问，适合桌面和移动应用。Python就内置了SQLite3，所以，在Python中使用SQLite，不需要安装任何东西，直接使用。</p>
 <p>由于Python的准数据库接口DB-API定义都是通用的，所以，操作不同数据库的代码和方式都类似。</p>
-<h4 id="pymysql">PyMySQL</h4>
+<h4 id="pymysql"><a class="markdownIt-Anchor" href="#pymysql"></a> PyMySQL</h4>
 <p>PyMySQL是在 Python3.x 版本中用于连接 MySQL 服务器的一个库。</p>
-<h4 id="与python自带库pandas对比">与Python自带库Pandas对比</h4>
-<p>Pandas是Python领域强大的数据处理与分析的类库，与SQL类似，两者都是对“表格型”数据的操作和查询，所以很多语法都能对应起来，例如<strong>SELECT数据查询，WHERE按条件查询，in和not in的条件查询，groupby分组统计，JOIN数据关联，UNION数据合并，Order Limit先排序后分页，取每个分组group的top n，UPDATE数据更新，DELETE删除数据</strong> ...</p>
-<h3 id="方式二用orm方法操作轻量级数据库学习peewee库">方式二：用ORM方法操作轻量级数据库，学习peewee库</h3>
-<p>学习SQL语句的时间成本通常很高，原生 SQL 的过程非常繁琐，代码重复，没有面向对象思维，在实际开发中，如无特殊需求，一般不会直接写 SQL，而是用更为方便的 <strong>ORM（对象关系映射，Object Relational Mapping）</strong>框架。ORM是将<strong>关系型数据库</strong>与 Python 中的<strong>对象</strong>关联起来，提供了一种操作数据的简便方式，相当于对数据库加了一层更友好的接口，有了 ORM 不再需要写 SQL 语句。同时兼容多种数据库系统，如sqlite, mysql、postgresql，付出的代价可能就是性能上的一些损失。</p>
+<h4 id="与python自带库pandas对比"><a class="markdownIt-Anchor" href="#与python自带库pandas对比"></a> 与Python自带库Pandas对比</h4>
+<p>Pandas是Python领域强大的数据处理与分析的类库，与SQL类似，两者都是对“表格型”数据的操作和查询，所以很多语法都能对应起来，例如<strong>SELECT数据查询，WHERE按条件查询，in和not in的条件查询，groupby分组统计，JOIN数据关联，UNION数据合并，Order Limit先排序后分页，取每个分组group的top n，UPDATE数据更新，DELETE删除数据</strong> …</p>
+<h3 id="方式二用orm方法操作轻量级数据库学习peewee库"><a class="markdownIt-Anchor" href="#方式二用orm方法操作轻量级数据库学习peewee库"></a> 方式二：用ORM方法操作轻量级数据库，学习peewee库</h3>
+<p>学习SQL语句的时间成本通常很高，原生 SQL 的过程非常繁琐，代码重复，没有面向对象思维，在实际开发中，如无特殊需求，一般不会直接写 SQL，而是用更为方便的 <strong>ORM（对象关系映射，Object Relational Mapping）<strong>框架。ORM是将</strong>关系型数据库</strong>与 Python 中的<strong>对象</strong>关联起来，提供了一种操作数据的简便方式，相当于对数据库加了一层更友好的接口，有了 ORM 不再需要写 SQL 语句。同时兼容多种数据库系统，如sqlite, mysql、postgresql，付出的代价可能就是性能上的一些损失。</p>
 <p>目前 Python 中比较流行的 ORM 解决方案有三种：<strong>Django ORM</strong>（使用方便，但很难脱离 Django 单独使用。）<strong>SQLAlchemy</strong>（功能强大，成熟可扩展，但学习门槛较高。）<strong>peewee</strong>（轻量，可扩展，易学习，但功能有限。）对于偏初级的小型项目，通常用不到很复杂的功能，就可以选择peewee库。</p>
-<h4 id="peewee">peewee</h4>
-<p>学习peewee的官方文档：http://docs.peewee-orm.com/en/latest/index.html</p>
-<h3 id="方式三使用非关系型数据库">方式三：使用非关系型数据库</h3>
+<h4 id="peewee"><a class="markdownIt-Anchor" href="#peewee"></a> peewee</h4>
+<p>学习peewee的官方文档：<a href="http://docs.peewee-orm.com/en/latest/index.html" target="_blank" rel="noopener">http://docs.peewee-orm.com/en/latest/index.html</a></p>
+<h3 id="方式三使用非关系型数据库"><a class="markdownIt-Anchor" href="#方式三使用非关系型数据库"></a> 方式三：使用非关系型数据库</h3>
 <p>对于数据存储还有一种解决方案，就是使用非关系型数据库。</p>
 <p>以上提到的都是关系型数据库，虽然很好，但是随着互联网大规模的爆发，弱点也越来越明显，比如事务的一致性，多表联查，高并发等等瓶颈很明显。于是<strong>NoSQL</strong>一词横空出世，数据结构由键值(key=&gt;value)对组成，结构不固定，每一个元组可以有不一样的字段，每个元组可以根据需要增加一些自己的键值对，这样就不会局限于固定的结构，可以减少一些时间和空间的开销。</p>
 <p>比如<strong>MongoDb</strong>就是典型的NoSQL型数据库。MongoD是非关系型数据库，也叫<strong>文档型数据库</strong>（即可以存放xml、json、bson类型的数据），是一种NoSQL的数据库。对于简单的数据存储来说，它有个巨大的优势就是<strong>同 Python 内置的 dict、list 等类型兼容良好</strong>，可以直接存取，让你甚至感觉不到有数据库的存在，也根本无需关心 SQL 语句。</p>
@@ -441,8 +441,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2020/05/18/%E7%AE%A1%E9%81%93%E5%8F%AF%E9%9D%A0%E6%80%A7%E5%88%86%E6%9E%90/" rel="next" title="管道可靠性分析">
-                <i class="fa fa-chevron-left"></i> 管道可靠性分析
+              <a href="/2020/05/18/%E7%AE%A1%E9%81%93%E5%8F%AF%E9%9D%A0%E6%80%A7%E5%88%86%E6%9E%90/" rel="next" title="文献：管道可靠性分析">
+                <i class="fa fa-chevron-left"></i> 文献：管道可靠性分析
               </a>
             
           </div>
@@ -451,8 +451,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2020/06/16/%E6%95%B0%E6%8D%AE%E5%BA%93peewee/" rel="prev" title="数据库之peewee+sqlite入门级练手">
-                数据库之peewee+sqlite入门级练手 <i class="fa fa-chevron-right"></i>
+              <a href="/2020/06/03/%E6%9C%80%E6%83%A8%E5%88%9B%E4%B8%9A%E8%80%85/" rel="prev" title="如何避免自己成为“最惨创业者”">
+                如何避免自己成为“最惨创业者” <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -530,7 +530,7 @@
               
                 <a href="/archives">
               
-                  <span class="site-state-item-count">15</span>
+                  <span class="site-state-item-count">17</span>
                   <span class="site-state-item-name">posts</span>
                 </a>
               </div>
@@ -541,7 +541,7 @@
               
               <div class="site-state-item site-state-categories">
                 <a href="/categories/index.html">
-                  <span class="site-state-item-count">5</span>
+                  <span class="site-state-item-count">4</span>
                   <span class="site-state-item-name">categories</span>
                 </a>
               </div>
@@ -552,7 +552,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">18</span>
+                  <span class="site-state-item-count">19</span>
                   <span class="site-state-item-name">tags</span>
                 </a>
               </div>
@@ -585,7 +585,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#写在前面"><span class="nav-number">1.</span> <span class="nav-text">写在前面</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#方式一学习sql语言使用mysql数据库或sqlite并使用pymysql库用python操作数据库"><span class="nav-number">2.</span> <span class="nav-text">方式一：学习SQL语言，使用MySQL数据库（或Sqlite），并使用PyMySQL库用Python操作数据库。</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#sql语言"><span class="nav-number">2.1.</span> <span class="nav-text">SQL语言</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#数据库软件mysqlsqlite..."><span class="nav-number">2.2.</span> <span class="nav-text">数据库软件：MySQL&#x2F;Sqlite...</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#pymysql"><span class="nav-number">2.3.</span> <span class="nav-text">PyMySQL</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#与python自带库pandas对比"><span class="nav-number">2.4.</span> <span class="nav-text">与Python自带库Pandas对比</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#方式二用orm方法操作轻量级数据库学习peewee库"><span class="nav-number">3.</span> <span class="nav-text">方式二：用ORM方法操作轻量级数据库，学习peewee库</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#peewee"><span class="nav-number">3.1.</span> <span class="nav-text">peewee</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#方式三使用非关系型数据库"><span class="nav-number">4.</span> <span class="nav-text">方式三：使用非关系型数据库</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#写在前面"><span class="nav-number">1.</span> <span class="nav-text"> 写在前面</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#方式一学习sql语言使用mysql数据库或sqlite并使用pymysql库用python操作数据库"><span class="nav-number">2.</span> <span class="nav-text"> 方式一：学习SQL语言，使用MySQL数据库（或Sqlite），并使用PyMySQL库用Python操作数据库。</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#sql语言"><span class="nav-number">2.1.</span> <span class="nav-text"> SQL语言</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#数据库软件mysqlsqlite"><span class="nav-number">2.2.</span> <span class="nav-text"> 数据库软件：MySQL&#x2F;Sqlite…</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#pymysql"><span class="nav-number">2.3.</span> <span class="nav-text"> PyMySQL</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#与python自带库pandas对比"><span class="nav-number">2.4.</span> <span class="nav-text"> 与Python自带库Pandas对比</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#方式二用orm方法操作轻量级数据库学习peewee库"><span class="nav-number">3.</span> <span class="nav-text"> 方式二：用ORM方法操作轻量级数据库，学习peewee库</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#peewee"><span class="nav-number">3.1.</span> <span class="nav-text"> peewee</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#方式三使用非关系型数据库"><span class="nav-number">4.</span> <span class="nav-text"> 方式三：使用非关系型数据库</span></a></li></ol></div>
             
 
           </div>
@@ -619,7 +619,7 @@
     
       <span class="post-meta-item-text">Site words total count&#58;</span>
     
-    <span title="Site words total count">26.6k</span>
+    <span title="Site words total count">38.2k</span>
   
 </div>
 
@@ -638,7 +638,7 @@
 
 <div class="theme-info">
   <div class="powered-by"></div>
-  <span class="post-count">博客全站共26.6k字</span>
+  <span class="post-count">博客全站共38.2k字</span>
 </div>
 
         

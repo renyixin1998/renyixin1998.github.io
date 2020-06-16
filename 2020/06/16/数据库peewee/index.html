@@ -79,19 +79,22 @@
 
 
 
-<meta name="description" content="Peewee_quickstart Peewee中Model类、fields和model实例与数据库的映射关系如下： Model class—Database table Field instance—Column on a table Model instance—Row in a database table 一个Model类代表一个数据库的表,一个Field字段代表数据库中的一个字段而一个">
+<meta name="description" content="期末论文什么的告一段落，今天开始接触搭建数据库。 在试验中我使用了DB Browser for SQLite来可视化本地数据库，选择Peewee为ORM框架。选择的原因在上一篇文章中有所描述。 首先，作为一种ORM框架，Peewee中Model类、fields和model实例与数据库的映射关系如下： Model class—Database table Field instance—Column">
 <meta property="og:type" content="article">
 <meta property="og:title" content="数据库之peewee+sqlite入门级练手">
 <meta property="og:url" content="http://yoursite.com/2020/06/16/%E6%95%B0%E6%8D%AE%E5%BA%93peewee/index.html">
 <meta property="og:site_name" content="Yixin&#39;s sharing">
-<meta property="og:description" content="Peewee_quickstart Peewee中Model类、fields和model实例与数据库的映射关系如下： Model class—Database table Field instance—Column on a table Model instance—Row in a database table 一个Model类代表一个数据库的表,一个Field字段代表数据库中的一个字段而一个">
+<meta property="og:description" content="期末论文什么的告一段落，今天开始接触搭建数据库。 在试验中我使用了DB Browser for SQLite来可视化本地数据库，选择Peewee为ORM框架。选择的原因在上一篇文章中有所描述。 首先，作为一种ORM框架，Peewee中Model类、fields和model实例与数据库的映射关系如下： Model class—Database table Field instance—Column">
 <meta property="og:locale" content="en_US">
+<meta property="og:image" content="http://yoursite.com/2020/06/16/%E6%95%B0%E6%8D%AE%E5%BA%93peewee/%E6%9F%A5%E8%AF%A2%E7%AC%A6%E5%8F%B7.png">
+<meta property="og:image" content="http://yoursite.com/2020/06/16/%E6%95%B0%E6%8D%AE%E5%BA%93peewee/%E6%9D%A1%E4%BB%B6%E8%AF%AD%E5%8F%A5.png">
 <meta property="article:published_time" content="2020-06-16T10:32:01.000Z">
-<meta property="article:modified_time" content="2020-06-16T10:34:18.010Z">
+<meta property="article:modified_time" content="2020-06-16T10:50:51.113Z">
 <meta property="article:author" content="Ren Yixin">
 <meta property="article:tag" content="数据库">
 <meta property="article:tag" content="python">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://yoursite.com/2020/06/16/%E6%95%B0%E6%8D%AE%E5%BA%93peewee/%E6%9F%A5%E8%AF%A2%E7%AC%A6%E5%8F%B7.png">
 
 
 
@@ -306,8 +309,8 @@
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E6%88%91%E7%9A%84%E5%B0%8F%E7%A7%91%E7%A0%94/" itemprop="url" rel="index">
-                    <span itemprop="name">我的小科研</span>
+                  <a href="/categories/%E7%A7%91%E7%A0%94%E7%AC%94%E8%AE%B0/" itemprop="url" rel="index">
+                    <span itemprop="name">科研笔记</span>
                   </a>
                 </span>
 
@@ -337,7 +340,7 @@
                   <span class="post-meta-item-text">Words count in article&#58;</span>
                 
                 <span title="Words count in article">
-                  860
+                  1.1k
                 </span>
               
 
@@ -353,7 +356,7 @@
                   <span class="post-meta-item-text">Reading time &asymp;</span>
                 
                 <span title="Reading time">
-                  3
+                  4
                 </span>
               
             </div>
@@ -374,12 +377,14 @@
       
 
       
-        <h2 id="peewee_quickstart"><a class="markdownIt-Anchor" href="#peewee_quickstart"></a> Peewee_quickstart</h2>
-<p>Peewee中<code>Model</code>类、<code>fields</code>和<code>model实例</code>与数据库的映射关系如下：</p>
-<p>Model class—Database table</p>
-<p>Field instance—Column on a table</p>
-<p>Model instance—Row in a database table</p>
-<p>一个Model类代表一个数据库的表,一个Field字段代表数据库中的一个字段而一个model类实例化对象则代表数据库中的一行;</p>
+        <p>期末论文什么的告一段落，今天开始接触搭建数据库。</p>
+<p>在试验中我使用了DB Browser for SQLite来可视化本地数据库，选择Peewee为ORM框架。选择的原因在上一篇文章中有所描述。</p>
+<p>首先，作为一种ORM框架，Peewee中<code>Model</code>类、<code>fields</code>和<code>model实例</code>与数据库的映射关系如下：</p>
+<p><strong>Model class—Database table</strong></p>
+<p><strong>Field instance—Column on a table</strong></p>
+<p><strong>Model instance—Row in a database table</strong></p>
+<p>即一个Model类代表一个数据库的表，一个Field字段代表数据库中的一个字段，一个model类实例化对象则代表数据库中的一行</p>
+<p>接下来进行一些简单语句的介绍。</p>
 <h3 id="定义model-建立数据库"><a class="markdownIt-Anchor" href="#定义model-建立数据库"></a> 定义Model 建立数据库</h3>
 <p>在使用的时候，根据需求先定义好Model，然后可以通过<code>create_tables()</code>创建表，若是已经创建好数据库表了，可以通过<code>python -m pwiz</code>脚本工具直接创建Model。</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> peewee <span class="keyword">import</span> *</span><br><span class="line">db = SqliteDatabase(<span class="string">'quickstart.db'</span>)</span><br><span class="line">db.connect()</span><br><span class="line"><span class="comment">#连接数据库</span></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Material</span><span class="params">(Model)</span>:</span></span><br><span class="line">  name = CharField()</span><br><span class="line">  P1 = CharField()</span><br><span class="line">  P2 = BooleanField()</span><br><span class="line">  P3 = IntegerField()</span><br><span class="line">  </span><br><span class="line">  <span class="class"><span class="keyword">class</span> <span class="title">Meta</span>:</span></span><br><span class="line">    database = db</span><br></pre></td></tr></table></figure>
@@ -398,9 +403,14 @@
 <h4 id="统计-排序-limit"><a class="markdownIt-Anchor" href="#统计-排序-limit"></a> 统计、排序、limit</h4>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 查询整张表的数据条数</span></span><br><span class="line">total_num = Material.select().count()</span><br><span class="line"></span><br><span class="line"><span class="comment"># 查询name为liuchungui的Person数量, 返回数量为1</span></span><br><span class="line">num = Person.select().where(Person.name == <span class="string">'liuchungui'</span>).count()</span><br><span class="line"></span><br><span class="line"><span class="comment"># 按照P3大小排序</span></span><br><span class="line">Materials = Material.select().order_by(Material.P3.desc())</span><br><span class="line"></span><br><span class="line"><span class="comment"># 按照创建时间升序排序</span></span><br><span class="line">persons = Person.select().order_by(Person.create_time.asc())</span><br></pre></td></tr></table></figure>
 <h4 id="查询符"><a class="markdownIt-Anchor" href="#查询符"></a> 查询符</h4>
+<p><img src="/2020/06/16/%E6%95%B0%E6%8D%AE%E5%BA%93peewee/%E6%9F%A5%E8%AF%A2%E7%AC%A6%E5%8F%B7.png" alt="查询符号"></p>
+<p><img src="/2020/06/16/%E6%95%B0%E6%8D%AE%E5%BA%93peewee/%E6%9D%A1%E4%BB%B6%E8%AF%AD%E5%8F%A5.png" alt="条件语句"></p>
 <p>其中，==、&lt;、&lt;=、&gt;、&gt;=、!=是很容易理解的，重点提下<code>&lt;&lt;</code>、<code>&gt;&gt;</code>和<code>%</code>。用示例说明：</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># &lt;&lt;使用，查询省份属于湖北和湖南的，对应sql语句：select * from person where province in ('湖南', '湖北')</span></span><br><span class="line">persons = Person.select().where(Person.province &lt;&lt; [<span class="string">'湖南'</span>, <span class="string">'湖北'</span>])</span><br><span class="line"></span><br><span class="line"><span class="comment"># &gt;&gt;使用，查询省份为空的，sql语句: select * from person where province is Null</span></span><br><span class="line">persons = Person.select().where(Person.province &gt;&gt; <span class="literal">None</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># %使用，查询省份中含有 湖 字，sql语句：select * from person where province like '%湖%'</span></span><br><span class="line">persons = Person.select().where(Person.province % <span class="string">'%湖%'</span>)</span><br></pre></td></tr></table></figure>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 查询湖南和湖北的, 注意需要用()将Person.province == '湖南'包一层</span></span><br><span class="line">persons = Person.select().where((Person.province == <span class="string">'湖南'</span>) | (Person.province == <span class="string">'湖北'</span>))</span><br><span class="line"></span><br><span class="line"><span class="comment"># 查询湖南和身高1.75</span></span><br><span class="line">persons = Person.select().where((Person.province == <span class="string">'湖南'</span>) &amp; (Person.height == <span class="number">1.75</span>))</span><br></pre></td></tr></table></figure>
+<p>最后，在我之前接到的需求中，我主要需要录入100+的对象（行），超过10+的属性（列），最终实现他们的网站上线等。</p>
+<p>录入倒是不困难，需要再学习一下csv怎么直接通过 peewee导入到sqlite里面去。目前的想法是把csv转化成字典，再通过playground的字典-模型转换，导入到sqlite里面去。</p>
+<p>上线的话，应该是需要一些前端知识。</p>
 
       
     </div>
@@ -433,8 +443,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2020/05/31/Python%E6%95%B0%E6%8D%AE%E5%BA%93%E5%AD%A6%E4%B9%A0%E8%B7%AF%E5%BE%84%E6%80%BB%E7%BB%93%20/" rel="next" title="Python数据库学习路径总结">
-                <i class="fa fa-chevron-left"></i> Python数据库学习路径总结
+              <a href="/2020/06/03/%E6%9C%80%E6%83%A8%E5%88%9B%E4%B8%9A%E8%80%85/" rel="next" title="如何避免自己成为“最惨创业者”">
+                <i class="fa fa-chevron-left"></i> 如何避免自己成为“最惨创业者”
               </a>
             
           </div>
@@ -442,6 +452,10 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2020/06/16/pdd/" rel="prev" title="pdd">
+                pdd <i class="fa fa-chevron-right"></i>
+              </a>
             
           </div>
         </div>
@@ -518,7 +532,7 @@
               
                 <a href="/archives">
               
-                  <span class="site-state-item-count">15</span>
+                  <span class="site-state-item-count">17</span>
                   <span class="site-state-item-name">posts</span>
                 </a>
               </div>
@@ -529,7 +543,7 @@
               
               <div class="site-state-item site-state-categories">
                 <a href="/categories/index.html">
-                  <span class="site-state-item-count">5</span>
+                  <span class="site-state-item-count">4</span>
                   <span class="site-state-item-name">categories</span>
                 </a>
               </div>
@@ -540,7 +554,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">18</span>
+                  <span class="site-state-item-count">19</span>
                   <span class="site-state-item-name">tags</span>
                 </a>
               </div>
@@ -573,7 +587,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#peewee_quickstart"><span class="nav-number">1.</span> <span class="nav-text"> Peewee_quickstart</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#定义model-建立数据库"><span class="nav-number">1.1.</span> <span class="nav-text"> 定义Model 建立数据库</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#对数据的操作"><span class="nav-number">1.2.</span> <span class="nav-text"> 对数据的操作</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#增加"><span class="nav-number">1.2.1.</span> <span class="nav-text"> 增加</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#删除"><span class="nav-number">1.2.2.</span> <span class="nav-text"> 删除：</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#修改"><span class="nav-number">1.2.3.</span> <span class="nav-text"> 修改</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#查询"><span class="nav-number">1.2.4.</span> <span class="nav-text"> 查询</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#统计-排序-limit"><span class="nav-number">1.2.5.</span> <span class="nav-text"> 统计、排序、limit</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#查询符"><span class="nav-number">1.2.6.</span> <span class="nav-text"> 查询符</span></a></li></ol></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#定义model-建立数据库"><span class="nav-number">1.</span> <span class="nav-text"> 定义Model 建立数据库</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#对数据的操作"><span class="nav-number">2.</span> <span class="nav-text"> 对数据的操作</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#增加"><span class="nav-number">2.1.</span> <span class="nav-text"> 增加</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#删除"><span class="nav-number">2.2.</span> <span class="nav-text"> 删除：</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#修改"><span class="nav-number">2.3.</span> <span class="nav-text"> 修改</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#查询"><span class="nav-number">2.4.</span> <span class="nav-text"> 查询</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#统计-排序-limit"><span class="nav-number">2.5.</span> <span class="nav-text"> 统计、排序、limit</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#查询符"><span class="nav-number">2.6.</span> <span class="nav-text"> 查询符</span></a></li></ol></li></ol></div>
             
 
           </div>
@@ -607,7 +621,7 @@
     
       <span class="post-meta-item-text">Site words total count&#58;</span>
     
-    <span title="Site words total count">26.6k</span>
+    <span title="Site words total count">38.2k</span>
   
 </div>
 
@@ -626,7 +640,7 @@
 
 <div class="theme-info">
   <div class="powered-by"></div>
-  <span class="post-count">博客全站共26.6k字</span>
+  <span class="post-count">博客全站共38.2k字</span>
 </div>
 
         
