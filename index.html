@@ -384,6 +384,14 @@
 <h3 id="定义model-建立数据库"><a class="markdownIt-Anchor" href="#定义model-建立数据库"></a> 定义Model 建立数据库</h3>
 <p>在使用的时候，根据需求先定义好Model，然后可以通过<code>create_tables()</code>创建表，若是已经创建好数据库表了，可以通过<code>python -m pwiz</code>脚本工具直接创建Model。</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> peewee <span class="keyword">import</span> *</span><br><span class="line">db = SqliteDatabase(<span class="string">'quickstart.db'</span>)</span><br><span class="line">db.connect()</span><br><span class="line"><span class="comment">#连接数据库</span></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Material</span><span class="params">(Model)</span>:</span></span><br><span class="line">  name = CharField()</span><br><span class="line">  P1 = CharField()</span><br><span class="line">  P2 = BooleanField()</span><br><span class="line">  P3 = IntegerField()</span><br><span class="line">  </span><br><span class="line">  <span class="class"><span class="keyword">class</span> <span class="title">Meta</span>:</span></span><br><span class="line">    database = db</span><br></pre></td></tr></table></figure>
+<p>peewee将数据库中对应的各种类别，转化为了模块中的各种Filed，比如</p>
+<p><img src="/2020/06/16/%E6%95%B0%E6%8D%AE%E5%BA%93peewee/1.png" alt="1"></p>
+<p>每个Filed都有一些参数可以设置：（写在括号里）</p>
+<ul>
+<li>null = False，当前这个Field是否可以为null值</li>
+<li>unique = False， 当前这个Field中的值是否唯一，比如id</li>
+<li>default = None，指定一个默认值</li>
+</ul>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 创建表</span></span><br><span class="line">Material.create_table()</span><br><span class="line"></span><br><span class="line"><span class="comment"># 创建表也可以这样, 可以创建多个</span></span><br><span class="line"><span class="comment"># database.create_tables([Person])</span></span><br></pre></td></tr></table></figure>
 <p>如果建完之后，发现缺少了一列，可以使用playhouse 里migrate模块进行修改（增删更名）</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> playhouse.migrate <span class="keyword">import</span> *</span><br><span class="line"></span><br><span class="line"><span class="comment"># 这是postgresql的，实例化出一个migrator对象</span></span><br><span class="line">db = SqliteDatabase(<span class="string">'quickstart.db'</span>)</span><br><span class="line">migrator = SqliteMigrator(db)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 使用migrate()执行一个或多个操作</span></span><br><span class="line"><span class="comment"># 添加了两个列，删除一个列</span></span><br><span class="line">title_field = CharField(default=<span class="string">''</span>)</span><br><span class="line">status_field = IntegerField(null=<span class="literal">True</span>)</span><br><span class="line">migrate(</span><br><span class="line">    migrator.add_column(<span class="string">'Material'</span>, <span class="string">'title1'</span>,title_field),<span class="comment">#‘Material表’‘新增title属性’ </span></span><br><span class="line">    migrator.drop_column(<span class="string">'Material'</span>, <span class="string">'title1'</span>,title_field),<span class="comment">#‘Material表’‘新增title属性’</span></span><br><span class="line">)</span><br></pre></td></tr></table></figure>
@@ -1439,7 +1447,7 @@
                   <span class="post-meta-item-text">Words count in article&#58;</span>
                 
                 <span title="Words count in article">
-                  33
+                  0
                 </span>
               
 
@@ -1478,37 +1486,17 @@
       
         
           
-            <figure>
-<img src="/2020/05/16/pdd2/创业估值第第七组报告.2的副本.jpg" alt="创业估值第第七组报告.2的副本"><figcaption>创业估值第第七组报告.2的副本</figcaption>
-</figure>
-<figure>
-<img src="/2020/05/16/pdd2/创业估值第第七组报告.3.jpg" alt="创业估值第第七组报告.2"><figcaption>创业估值第第七组报告.2</figcaption>
-</figure>
-<figure>
-<img src="/2020/05/16/pdd2/4.jpg" alt="4"><figcaption>4</figcaption>
-</figure>
-<figure>
-<img src="/2020/05/16/pdd2/5.jpg" alt="5"><figcaption>5</figcaption>
-</figure>
-<figure>
-<img src="/2020/05/16/pdd2/6.jpg" alt="6"><figcaption>6</figcaption>
-</figure>
-<figure>
-<img src="/2020/05/16/pdd2/7.jpg" alt="7"><figcaption>7</figcaption>
-</figure>
-<figure>
-<img src="/2020/05/16/pdd2/8.jpg" alt="8"><figcaption>8</figcaption>
-</figure>
-<figure>
-<img src="/2020/05/16/pdd2/9.jpg" alt="9"><figcaption>9</figcaption>
-</figure>
-<figure>
-<img src="/2020/05/16/pdd2/10.jpg" alt="10"><figcaption>10</figcaption>
-</figure>
-<figure>
-<img src="/2020/05/16/pdd2/11.jpg" alt="11"><figcaption>11</figcaption>
-</figure>
-<p><img src="/2020/05/16/pdd2/12.jpg" alt="12"><img src="/2020/05/16/pdd2/13.jpg" alt="13"></p>
+            <p><img src="/2020/05/16/pdd2/%E5%88%9B%E4%B8%9A%E4%BC%B0%E5%80%BC%E7%AC%AC%E7%AC%AC%E4%B8%83%E7%BB%84%E6%8A%A5%E5%91%8A.2%E7%9A%84%E5%89%AF%E6%9C%AC.jpg" alt></p>
+<p><img src="/2020/05/16/pdd2/%E5%88%9B%E4%B8%9A%E4%BC%B0%E5%80%BC%E7%AC%AC%E7%AC%AC%E4%B8%83%E7%BB%84%E6%8A%A5%E5%91%8A.3.jpg" alt></p>
+<p><img src="/2020/05/16/pdd2/4.jpg" alt></p>
+<p><img src="/2020/05/16/pdd2/5.jpg" alt></p>
+<p><img src="/2020/05/16/pdd2/6.jpg" alt></p>
+<p><img src="/2020/05/16/pdd2/7.jpg" alt></p>
+<p><img src="/2020/05/16/pdd2/8.jpg" alt></p>
+<p><img src="/2020/05/16/pdd2/9.jpg" alt></p>
+<p><img src="/2020/05/16/pdd2/10.jpg" alt></p>
+<p><img src="/2020/05/16/pdd2/11.jpg" alt></p>
+<p><img src="/2020/05/16/pdd2/12.jpg" alt><img src="/2020/05/16/pdd2/13.jpg" alt></p>
 
           
         
