@@ -1,0 +1,813 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="en">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="辐射制冷,论文综述," />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="这篇文章是Cov-19在家蹲期间写的一篇英文综述，总共有2万字。当时是觉得这些个光子结构真是非常奇妙，随随便便能调制吸收波长，进而来改变宏观世界。出于好奇，了解和记录辐射制冷这个领域近几年的发展，顺便归纳了几个流派和他们的技术限制等等。 由于领域实在是太小众，身边没什么人可以分享，就将这篇小论文放在这个小天地吧 Abstract Radiative cooling is a natural phe">
+<meta property="og:type" content="article">
+<meta property="og:title" content="【原创】你听说过完全不耗能的制冷方式吗？[上] A review of advanced materials for daytime radiative cooling">
+<meta property="og:url" content="http://yoursite.com/2020/07/26/radiative%20cooling/index.html">
+<meta property="og:site_name" content="Yixin&#39;s sharing">
+<meta property="og:description" content="这篇文章是Cov-19在家蹲期间写的一篇英文综述，总共有2万字。当时是觉得这些个光子结构真是非常奇妙，随随便便能调制吸收波长，进而来改变宏观世界。出于好奇，了解和记录辐射制冷这个领域近几年的发展，顺便归纳了几个流派和他们的技术限制等等。 由于领域实在是太小众，身边没什么人可以分享，就将这篇小论文放在这个小天地吧 Abstract Radiative cooling is a natural phe">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="http://yoursite.com/2020/07/26/radiative%20cooling/xiaoxin1216/blog/source/_posts/radiative%20cooling/1.png">
+<meta property="article:published_time" content="2020-07-26T08:42:32.000Z">
+<meta property="article:modified_time" content="2020-07-28T14:52:50.614Z">
+<meta property="article:author" content="Ren Yixin">
+<meta property="article:tag" content="辐射制冷">
+<meta property="article:tag" content="论文综述">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://yoursite.com/2020/07/26/radiative%20cooling/xiaoxin1216/blog/source/_posts/radiative%20cooling/1.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: 'Author'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2020/07/26/radiative cooling/"/>
+
+
+
+
+
+  <title>【原创】你听说过完全不耗能的制冷方式吗？[上] A review of advanced materials for daytime radiative cooling | Yixin's sharing</title>
+  
+
+
+
+
+
+
+
+
+<meta name="generator" content="Hexo 4.2.0"></head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="en">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Yixin's sharing</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            Home
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            About
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            Tags
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            Categories
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/07/26/radiative%20cooling/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Ren Yixin">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Yixin's sharing">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">【原创】你听说过完全不耗能的制冷方式吗？[上] A review of advanced materials for daytime radiative cooling</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2020-07-26T16:42:32+08:00">
+                2020-07-26
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Words count in article&#58;</span>
+                
+                <span title="Words count in article">
+                  1.5k
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Reading time &asymp;</span>
+                
+                <span title="Reading time">
+                  8
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>这篇文章是Cov-19在家蹲期间写的一篇英文综述，总共有2万字。当时是觉得这些个光子结构真是非常奇妙，随随便便能调制吸收波长，进而来改变宏观世界。出于好奇，了解和记录辐射制冷这个领域近几年的发展，顺便归纳了几个流派和他们的技术限制等等。</p>
+<p>由于领域实在是太小众，身边没什么人可以分享，就将这篇小论文放在这个小天地吧</p>
+<h2 id="abstract">Abstract</h2>
+<p>Radiative cooling is a natural phenomenon by which a device exposing to the sky can cool itself by emitting radiation to the universe through transparent atmospheric windows. Due to its energy-free nature, it is regarded as a promising cooling technology. Recent years, daytime radiative sky cooling has been experimentally demonstrated by various novel materials. However, there are notable problems that hindering radiative cooling from real-life applications such as the high cost, complex fabrication method, low energy density and the control problems. This work introduces the fundamental principles of radiative cooling, reviews advanced materials for daytime radiative cooling by outlining their benefit and technical constraints. Furthermore, challenges and the associated solutions in related publications are reviewed.</p>
+<h2 id="introduction">1. Introduction</h2>
+<p>Refrigeration is an indispensable part of modern society nowadays. People use it to make their homes comfortable, to preserve food, to provide suitable conditions for industrial production. The demand of refrigeration is still growing exponentially. Current refrigeration technology requires the use of polluting refrigerants, such as hydrofluorocarbon products, and consume significant amounts of energy. With the growing concern about environmental issues, there is an increasing interest in pursuing new alternative refrigeration technologies.</p>
+<p>Radiative cooling is a natural phenomenon by which a device exposing to the sky can cool itself without energy consumption by radiating heat to the outer space through transparent atmospheric windows. According to the scenario, radiative cooling is divided into nocturnal radiative cooling and daytime radiative cooling. The former one has been utilized in ancient Iran and India thousands of years ago[<a href="#_edn1">i]</a>[<a href="#_edn2">ii]</a>. While it was not until recent years, daytime radiative cooling has been successfully realized. Many application fields such as building refrigeration[<a href="#_edn3">iii]</a>, photovoltaic refrigeration[<a href="#_edn4">iv]</a>[<a href="#_edn5">v]</a>[<a href="#_edn6">vi]</a>[<a href="#_edn7">vii]</a> and even clothing refrigeration[<a href="#_edn8">viii]</a>[<a href="#_edn9">ix]</a> have been investigated with daytime radiative cooling, showing the enormous potential of which in playing an essential role as the next generation of refrigeration.</p>
+<p>The basic component to achieve nighttime radiative cooling is merely a broadband emitter. For instance, an ideal emitter like carbon black can complete a certain degree of cooling at night. But for daytime radiative cooling, the requirement on the material is much more stringent due to the intensive sunlight (around 1000 ). To avoid solar absorption, one should design a powerful reflector, being entirely transparent to the mid-IR spectrum at the same time. In addition, the broad emitter needs to be strictly tailored for the atmospheric window to decrease the unnecessary absorption from the surroundings.</p>
+<p>With the development of nanophotonics, qualified and novel materials have been demonstrated. Specifically, one can tailor different spectral resonances by interference to design the favorable emitter, including 2D multilayer structures, 3D surface structures, etc. High solar reflectivity has been realized by exploiting high reflective metal, surface structures, porous materials etc. The innovative method of combining the two made it more efficient.</p>
+<p>However, there are notable problems that may hinder radiative cooling from real applications such as the high cost, complex fabrication method, low energy density and the control problems. Recent researches have actively involved in addressing these problems by upgrading the material systems and applying multidisciplinary techniques. But the notable gap still exists. It can be foreseen that commercializing daytime radiative cooling will be a significant achievement in both materials science and system engineering.</p>
+<p>In this paper, a brief review of advanced materials for daytime radiative cooling will be presented. We begin our discussion by introducing the basic principle, related mechanisms formula and the initial attempts to achieve daytime radiative cooling. In section III, we divide advanced daytime radiative cooling materials into three categories and comb through the newest progress in daytime radiative cooling by discussing the detailed technical constraints and prospects. Finally, we end up this review by outlining challenges and the associated solutions when it comes to real-life applications.</p>
+<h2 id="principle-of-daytime-radiative-cooling">2. Principle of Daytime Radiative Cooling</h2>
+<p>To better understand the theory of radiative cooling, we start with some basic knowledge. First, any objects will radiate electromagnetic waves outward once its temperature is above 0 K. Heat as well as energy will spontaneously be dissipated from a hot object to a cold object in the form of thermal radiation. The universe is an ultimate heat sink with a temperature of around 3 K. Radiative thermal contact can be made by transferring energy in the form of electromagnetic with it. Second, as a consequence of combined effect from atmospheric components, the atmosphere has mainly three spectrum band of high transmittance under clear sky conditions, as shown in Figure 1(b). The wavelength range between 8-13 um is being particularly interested and is termed as the first atmospheric window. Coincidently, this wavelength range matches well with the peak wavelength of thermal radiation from terrestrial objects at an ambient temperature of 300K. Based on these two facts, energy-free cooling could be possibly made if energy, in the form of radiation at specific wavelength, was dissipated to the universe through the atmospheric window without hindrance[<a href="#_edn10">x]</a>.</p>
+<p>Here is the related formula. Consider a radiative cooler with surface area <span class="math inline">\(A\)</span> , surface temperature <span class="math inline">\(T\)</span> , is exposed to the direct sunlight at a temperature of <span class="math inline">\(T_ {amb}\)</span> . For this system, <span class="math inline">\(P_{rad}\)</span> is the main source of the energy transferred out from the object. Income energy includes the energy from solar irradiation <span class="math inline">\(P_{sun}\)</span> , the energy from the surroundings through radiation <span class="math inline">\(P_{atm}\)</span> and non-radiation <span class="math inline">\(P_{cond+conv}\)</span> .</p>
+<p><strong>$P_{net} = $<span class="math inline">\(P_{rad}-P_{sun}-P_{atm}-P_{cond+conv}\)</span></strong></p>
+<p><em>由于markdown打公式太费时间啦而且相信大家也不想看公式///此处省略细节共识</em></p>
+<p>when the value of net radiative cooling power <span class="math inline">\(P_{net}\)</span> is above 0, the sum of energy that the object radiated to the outer space exceeded what it absorbed from the ambient and the sun, in other words, the object can <strong>realize radiative cooling.</strong></p>
+<figure>
+<img src="/2020/07/26/radiative%20cooling/xiaoxin1216/blog/source/_posts/radiative%20cooling/1.png" alt="1"><figcaption>1</figcaption>
+</figure>
+<p><strong>Figure 1.</strong> Principle of radiative cooling. (a) The spectral radiance of human, light bulb and sun at 310 K, 3000 K and 6000 K, respectively. (b) The spectral irradiation of a blackbody surface at ~300 K (black curve) and the atmospheric transmittance in the mid- and far-IR regions (blue curve). The atmospheric transmission windows include the first atmospheric window (8-13 um) and secondary transmission window (16-25 um). (c) Daytime radiative cooling is achieved when <span class="math inline">\(P_{net}&gt;0\)</span> .</p>
+<hr>
+<p>[<a href="#_ednref1">i]</a> C.G. Granqvist, A. Hjortsberg Surfaces for radiative cooling: silicon monoxide films on aluminum Appl. Phys. Lett., 36 (1980), pp. 139-141</p>
+<p>[<a href="#_ednref2">ii]</a> T.M.J. Nilsson, G.A. Niklasson Radiative cooling during the day: simulations and experiments on pigmented polyethylene cover foils Sol. Energy Mater. Sol. Cells, 37 (1995), pp. 93-118</p>
+<p>[<a href="#_ednref3">iii]</a> Gentle, Angus R., and Geoff B. Smith. &quot;A subambient open roof surface under the Mid‐Summer sun.&quot; <em>Advanced Science</em> 2.9 (2015): 1500119.</p>
+<p>[<a href="#_ednref4">iv]</a> Nishioka, Kensuke, et al. &quot;Heat reduction of concentrator photovoltaic module using high radiation coating.&quot; <em>Surface and Coatings Technology</em> 215 (2013): 472-475.</p>
+<p>[<a href="#_ednref5">v]</a> Lee, Eungkyu, and Tengfei Luo. &quot;Black body-like radiative cooling for flexible thin-film solar cells.&quot; <em>Solar Energy Materials and Solar Cells</em> 194 (2019): 222-228.</p>
+<p>[<a href="#_ednref6">vi]</a> Long, Linshuang, Yue Yang, and Liping Wang. &quot;Simultaneously enhanced solar absorption and radiative cooling with thin silica micro-grating coatings for silicon solar cells.&quot; <em>Solar Energy Materials and Solar Cells</em> 197 (2019): 19-24.</p>
+<p>[<a href="#_ednref7">vii]</a> Zhao, Bin, et al. &quot;Performance analysis of enhanced radiative cooling of solar cells based on a commercial silicon photovoltaic module.&quot; <em>Solar Energy</em> 176 (2018): 248-255.</p>
+<p>[<a href="#_ednref8">viii]</a> Hsu, Po-Chun, et al. &quot;Radiative human body cooling by nanoporous polyethylene textile.&quot; <em>Science</em> 353.6303 (2016): 1019-1023.</p>
+<p>[<a href="#_ednref9">ix]</a> Cai, Lili, et al. &quot;Spectrally selective nanocomposite textile for outdoor personal cooling.&quot; <em>Advanced Materials</em> 30.35 (2018): 1802152.</p>
+<p>[<a href="#_ednref10">x]</a> C.G. Granqvist, Solar energy materials, Adv. Mater. 15 (2003) 1789–1803.</p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/%E8%BE%90%E5%B0%84%E5%88%B6%E5%86%B7/" rel="tag"># 辐射制冷</a>
+          
+            <a href="/tags/%E8%AE%BA%E6%96%87%E7%BB%BC%E8%BF%B0/" rel="tag"># 论文综述</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2020/06/16/%E6%95%B0%E6%8D%AE%E5%BA%93peewee/" rel="next" title="数据库之peewee+sqlite入门级练手">
+                <i class="fa fa-chevron-left"></i> 数据库之peewee+sqlite入门级练手
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2020/07/29/%E8%A7%86%E8%A7%89%E4%BC%BA%E6%9C%8D%E6%A6%82%E5%BF%B5/" rel="prev" title="视觉伺服的概念学习">
+                视觉伺服的概念学习 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">Ren Yixin</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives">
+              
+                  <span class="site-state-item-count">17</span>
+                  <span class="site-state-item-name">posts</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">5</span>
+                  <span class="site-state-item-name">categories</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">22</span>
+                  <span class="site-state-item-name">tags</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#abstract"><span class="nav-number">1.</span> <span class="nav-text">Abstract</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#introduction"><span class="nav-number">2.</span> <span class="nav-text">1. Introduction</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#principle-of-daytime-radiative-cooling"><span class="nav-number">3.</span> <span class="nav-text">2. Principle of Daytime Radiative Cooling</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Ren Yixin</span>
+
+  
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-area-chart"></i>
+    </span>
+    
+      <span class="post-meta-item-text">Site words total count&#58;</span>
+    
+    <span title="Site words total count">31.4k</span>
+  
+</div>
+
+
+  <div class="powered-by">Powered by <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a></div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">Theme &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Muse</a> v5.1.4</div>
+
+
+
+<div class="theme-info">
+  <div class="powered-by"></div>
+  <span class="post-count">博客全站共31.4k字</span>
+</div>
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/canvas-nest/canvas-nest.min.js"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+  
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        tex2jax: {
+          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+          processEscapes: true,
+          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+        }
+      });
+    </script>
+
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for (i=0; i < all.length; i += 1) {
+          all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+      });
+    </script>
+    <script type="text/javascript" src="//cdn.bootcss.com/mathjax/2.7.1/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+  
+
+
+  
+
+  
+
+</body>
+</html>
