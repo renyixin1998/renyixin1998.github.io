@@ -249,208 +249,6 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/07/29/%E8%A7%86%E8%A7%89%E4%BC%BA%E6%9C%8D%E6%A6%82%E5%BF%B5/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Ren Yixin">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Yixin's sharing">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2020/07/29/%E8%A7%86%E8%A7%89%E4%BC%BA%E6%9C%8D%E6%A6%82%E5%BF%B5/" itemprop="url">视觉伺服的概念学习</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2020-07-29T16:41:41+08:00">
-                2020-07-29
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">In</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E7%A7%91%E7%A0%94%E7%AC%94%E8%AE%B0/" itemprop="url" rel="index">
-                    <span itemprop="name">科研笔记</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-            <div class="post-wordcount">
-              
-                
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-file-word-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">Words count in article&#58;</span>
-                
-                <span title="Words count in article">
-                  604
-                </span>
-              
-
-              
-                <span class="post-meta-divider">|</span>
-              
-
-              
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-clock-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">Reading time &asymp;</span>
-                
-                <span title="Reading time">
-                  2
-                </span>
-              
-            </div>
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h2 id="机械臂系统">机械臂系统</h2>
-<ul>
-<li>以电机模仿人类的关节，连接杆模仿手臂结构。机械臂的自由度数量由电机的数量决定，自由度多月的机械臂末端实现的姿态越全面。</li>
-<li>刚体在空间中的位置可以用6个量来表述（x,y,z,a,b,r）,(x,y,z)对应刚体质心在空间中的位置，(a,b,r)与欧拉角中的进动角，章动角以及自旋角相对应。</li>
-<li>关节空间：6自由度机械臂6个关节角的角度值组成向量长成的空间。</li>
-<li>关节空间--&gt;世界空间：正解</li>
-<li>世界空间--&gt;关节空间：反解</li>
-<li>正反解方式：机械臂的数学建模。用的最多的：机械臂DH建模方法——矩阵T来表述相邻关节坐标系之间的转换</li>
-</ul>
-<h2 id="视觉伺服">视觉伺服</h2>
-<p>视觉伺服系统最重要的组成部分：图像处理、特征提取、摄像机标定、控制器设计。</p>
-<p>视觉伺服分类方式：</p>
-<ul>
-<li>按照摄像机的位置：
-<ul>
-<li>固定系统：视角大，可能出现机械臂遮挡阻碍识别的现象</li>
-<li>手眼系统：视角有限，能观测到的空间场景较小，容易造成目标丢失的现象。</li>
-</ul></li>
-<li>根据是否用视觉信息直接控制机械臂：
-<ul>
-<li>动态系统：双闭环系统结构。</li>
-<li>直接视觉伺服系统</li>
-</ul></li>
-<li>视觉伺服最重要的分类方式在于根据误差信号的类别
-<ul>
-<li>基于位置PBVS。误差信号为三维位姿信息，隐含了对物体进行识别的过程。优点在于考虑了对操作空间变量直接进行作用的可能性。在控制器设计方面将机械臂控制部分与视觉部分分离开来，因为相对较为简单。缺点在于对相机标定的误差和机械臂模型非常敏感。</li>
-<li>基于图像IBVS。误差信号为二维图像内的特征信号。基于图像特征的视觉反馈。常用：特征点、光流场、图像矩。优点在于对摄像机标定和机械臂模型的误差有较强的适应性，缺点在于控制器的设计较困难，在线对图像雅可比矩阵进行计算，容易出现奇异值和不稳定点的现象。</li>
-<li>混合视觉伺服</li>
-</ul></li>
-</ul>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/07/28/radiativecooling3/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -2394,6 +2192,256 @@
 
 
     
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/05/07/5-7diary/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Ren Yixin">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Yixin's sharing">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2020/05/07/5-7diary/" itemprop="url">5.7diary</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2020-05-07T14:20:58+08:00">
+                2020-05-07
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E4%BB%8A%E5%A4%A9%E6%88%91%E5%AD%A6%E4%BA%86%E5%95%A5/" itemprop="url" rel="index">
+                    <span itemprop="name">今天我学了啥</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Words count in article&#58;</span>
+                
+                <span title="Words count in article">
+                  1.5k
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Reading time &asymp;</span>
+                
+                <span title="Reading time">
+                  7
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <ul>
+<li><p>修改辐射制冷Review的Introduction部分，熟悉科技论文写作。</p>
+<p><strong><em>It’s one of those “forest and tree” situations: in a research report, the scientists are examining a tree; in a review paper, the scientist is looking at the forest.</em></strong></p>
+</li>
+<li><p>这篇review写作从开始下笔到只剩下Introduction和Outlook其实只花了我大概三个礼拜时间，中途还有四天时间去参加了美赛（但那些天真的是对着电脑从早上八点到晚上十一点，剩下一个支离破碎的腰椎。）主体部分完工之后写Introduction和Ourlook却憋了我快半个月，一直到三月中旬才写出一个样子来，并且现在仍然对自己的英文表述和看法非常不自信。这也不得不让我承认事情：<strong>简介和展望</strong>确实是论文撰写中最最最困难的部分，尤其是对于本身在这个领域没有经历过长期摸爬滚打的小白……</p>
+</li>
+</ul>
+<p><img src="/2020/05/07/5-7diary/1.png" alt></p>
+<ul>
+<li><p>搜集了一些关于Introduction/discussion怎么写的指导，摘录在这里，小朋友，理论基础要打牢，避免想当然走弯路，前人的经验还是可以看一看的。</p>
+</li>
+<li><p>摘自科罗拉多州立大学写作指南</p>
+<blockquote>
+<h4 id="Introduction"><a href="#Introduction" class="headerlink" title="Introduction"></a>Introduction</h4><p>The introduction of your review should accomplish three things:</p>
+<ul>
+<li>Introduce your topic 介绍你的主题（它可能是个陌生的概念）<ul>
+<li>It may sound redundant to “introduce” your topic in the introduction, but often times writer’s fail to do so. Let the reader in on background information specific to the topic, define terms that may be unfamiliar to them, explain the scope of the discussion, and your purpose for writing the review.</li>
+</ul>
+</li>
+<li>State your topic’s relevance 介绍跟这个主题相关的背景（目前发展的情况，要有对话感，让没有接触过这个领域的人能建立起思想框架）<ul>
+<li>Think of your review paper as a statement in the larger conversation of your academic community. Your review is your way of entering into that conversation and it is important to briefly address why your review is relevant to the discussion. You may feel the relevance is obvious because you are so familiar with the topic, but your readers have not yet established that familiarity.</li>
+</ul>
+</li>
+<li>Reveal your thesis to the reader 将接下来的几个部分陈述一遍<ul>
+<li>The thesis is the main idea that you want to get across to your reader. your thesis should be a clear statement of what you intend to prove or illustrate by your review. By revealing your thesis in the introduction the reader knows what to expect in the rest of the paper.</li>
+</ul>
+</li>
+</ul>
+<h4 id="Discussion"><a href="#Discussion" class="headerlink" title="Discussion"></a>Discussion</h4><p>The discussion section is the body of your paper. The discussion section contains information that develops and supports your thesis. While there is no particular form that a discussion section must take there are several considerations that a writer must follow when building a discussion.</p>
+<ul>
+<li><p>Don’t summarize! 不能总结，总结在conclusion里面</p>
+<ul>
+<li>A review paper is not simply a summary of literature you have reviewed. Be careful not to leave out your own analysis of the ideas presented in the literature. Synthesize the material from all the works—what are the connections you see, or the connections you are trying to illustrate, among your readings.</li>
+</ul>
+</li>
+<li><p>Analyze, Synthesize, Interpret.要分析……（最困难的部分），拒绝单纯的将事实和研究拼凑在一起。</p>
+<p>简单的分析方法比如找关联：按照时间线找关联，按照逻辑关系找关联；</p>
+<p>找对比：两种方法论有什么区别，好处和坏处、适用的范围；等</p>
+<p>找意义：这件事对后来该领域的转变又多大的启发，对未来有什么启发；</p>
+<ul>
+<li>A review paper is not a pure summary of the information you read for your review. You are required to analyze, synthesize, and interpret the information you read in some meaningful way. It is not enough to simply present the material you have found, you must go beyond that and explain its relevance and significance to the topic at hand. Establish a clear thesis from the onset of your writing and examine which pieces of your reading help you in developing and supporting the ideas in your thesis.</li>
+</ul>
+</li>
+<li><p>Stay focused.</p>
+<ul>
+<li>Keep your discussion focused on your topic and more importantly your thesis. Don’t let tangents or extraneous material get in the way of a concise, coherent discussion. A well focused paper is crucial in getting your message across to your reader.</li>
+</ul>
+</li>
+<li><p>Organize your points.</p>
+<ul>
+<li>Keeping your points organized makes it easier for the reader to follow along and make sense of your review. Start each paragraph with a topic sentence that relates back to your thesis. The headings used for this guide give you some idea of how to organize the overall paper, but as far as the discussion section goes use meaningful subheadings that relate to your content to organize your points.</li>
+</ul>
+</li>
+<li><p>Relate the discussion to your thesis.</p>
+<ul>
+<li>Your thesis should illustrate your objectives in writing the review and your discussion should serve to accomplish your objectives. Make sure your keep your discussion related to the thesis in order to meet your objectives. If you find that your discussion does not relate so much to your thesis, don’t panic, you might want to revise your thesis instead of reworking the discussion.</li>
+</ul>
+</li>
+</ul>
+<h4 id="Conclusions"><a href="#Conclusions" class="headerlink" title="Conclusions"></a>Conclusions</h4><p>Because the conclusions section often gets left for last it is often the weakest part of a student review paper. It is as crucial a part of the paper as any and should be treated as such.</p>
+<p>A good conclusion should illustrate the key connections between your major points and your thesis as well as they key connections between your thesis and the broader discussion—what is the significance of your paper in a larger context? Make some <em>conclusions</em>—where have you arrived as a result of writing this paper?</p>
+<p>Be careful not to present any new information in the conclusion section.</p>
+</blockquote>
+</li>
+<li><p>另一个版本来自弗罗里达州立大学的Thesis Writing in the Sciences</p>
+<blockquote>
+<p>首先它给出了Review和Paper的不同</p>
+<p>In contrast to research papers, conference presentations, and proposals, a review paper is a journal article that <strong>synthesizes</strong> work by many independent researchers on a particular subject or scientific problem. By bringing together the most pertinent findings of a large number of studies, a review paper serves as a <strong>valuable summary</strong> of research. Although it does not present the writer’s new discoveries, it does reflect his or her painstaking review of the literature in a defined field. Moreover, a good review not only summarizes information but also provides <strong>interpretative analysis</strong> and sometimes a <strong>historical perspective</strong>. Reviews may vary in aims, scope, length, and format, but they all include a relatively lengthy reference section. Journal editors sometimes invite prominent experts to write reviews of their particular fields, since the ability to give an audience an authoritative overview of a subject usually develops with experience. Whether solicited or unsolicited, review papers still must conform to journal specifications, and their author receive feedback from editors and reviewers before final publication.</p>
+<p>接着展示了一个简介写作的典范</p>
+<p>The images below this one show a typical Review Introduction in medicine. It is brief and leads the reader quickly to where the information in the paper happens: the body.</p>
+<p><img src="/2020/05/07/5-7diary/review_intro_example.bmp" alt></p>
+<p><img src="/2020/05/07/5-7diary/reivew_intro_example_overview.bmp" alt></p>
+<p>很容易遗忘的是Gap部分。要时刻记住，你是对这个领域有洞察，那么就要有批判性的眼光，从历史的角度去衡量哪些部分是做的远远不够的，是限制这个领域发展的。然后给致力于研究的同仁提出一些建议。</p>
+</blockquote>
+</li>
+<li><p>在吃饭时观看3Blue1Brown关于线性代数本质的视频，并且大喊“卧槽”。</p>
+</li>
+</ul>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
   </section>
 
   
@@ -2444,7 +2492,7 @@
               
                 <a href="/archives">
               
-                  <span class="site-state-item-count">19</span>
+                  <span class="site-state-item-count">18</span>
                   <span class="site-state-item-name">posts</span>
                 </a>
               </div>
@@ -2466,7 +2514,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">21</span>
+                  <span class="site-state-item-count">20</span>
                   <span class="site-state-item-name">tags</span>
                 </a>
               </div>
@@ -2517,7 +2565,7 @@
     
       <span class="post-meta-item-text">Site words total count&#58;</span>
     
-    <span title="Site words total count">36.8k</span>
+    <span title="Site words total count">36.2k</span>
   
 </div>
 
@@ -2536,7 +2584,7 @@
 
 <div class="theme-info">
   <div class="powered-by"></div>
-  <span class="post-count">博客全站共36.8k字</span>
+  <span class="post-count">博客全站共36.2k字</span>
 </div>
 
         
