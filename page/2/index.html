@@ -373,48 +373,42 @@
       
         
           
-            <h3 id="项目背景及意义"><strong>项目背景及意义</strong></h3>
+            <h3 id="项目背景及意义"><a class="markdownIt-Anchor" href="#项目背景及意义"></a> <strong>项目背景及意义</strong></h3>
 <p>“智能+工业”不仅是我国的一个发展战略需求，也是人工智能的热门应用方向之一。智能汽车是一种新型高科技汽车，借助人工智能实现用车保养和零件检测的自动化将会极高地提升车辆的安全程度。除了自动驾驶等智能汽车技术外，特斯拉、宝马等企业正还准备使用人工智能升级以往的车辆故障检测系统，希望实现自动寻找检测汽车某些部件的损坏情况，以便在潜在故障发生之前就对车辆进行检测和维修，甚至在发现问题之后，配合自动驾驶系统让车辆自行驾驶至服务中心。</p>
 <p>本文中我们将采用使用人工智能的方法构建一套模型，通过智能汽车内零部件传感器的数据，运用机器学习进行建模分析，构建一套汽车智能故障诊断系统，从而帮助车厂判断汽车的健康状况。</p>
-<h3 id="相关概念"><strong>相关概念</strong></h3>
-<h4 id="汽车传感器智能汽车的感知和计算">汽车传感器：智能汽车的感知和计算</h4>
+<h3 id="相关概念"><a class="markdownIt-Anchor" href="#相关概念"></a> <strong>相关概念</strong></h3>
+<h4 id="汽车传感器智能汽车的感知和计算"><a class="markdownIt-Anchor" href="#汽车传感器智能汽车的感知和计算"></a> 汽车传感器：智能汽车的感知和计算</h4>
 <p>传感器是一种检测装置，能够感受到被测量的信息，并能将感受到的信息按照一定规律转变为电信号或其他所需形式的信息输出，满足信息的传输、处理、存储、显示、记录和控制等要求。汽车传感器可分为车辆感知、环境感知两大类。动力、底盘、车身及电子电气系统中的传感器属于车辆感知范畴，ADAS 以及无人驾驶系统中引入的车载摄像头、毫米波雷达、激光雷达等属于环境感知范畴。传感器作为智能汽车感知环境的硬件基础，在智能驾驶发展过程中起着重要作用[<a href="#_edn1">i]</a>。</p>
-<figure>
-<img src="/2020/05/16/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E6%99%BA%E8%83%BD%E6%B1%BD%E8%BD%A6/图片%201.png" alt="智能汽车传感系统"><figcaption>智能汽车传感系统</figcaption>
-</figure>
+<p>![智能汽车传感系统](机器学习智能汽车/图片 1.png)</p>
 <p>本项目中，我们可以借助车辆感知大类的传感器收集汽车运行中的各种工况信息，如车速、各种介质的温度、发动机运转工况、各部位压力等。将他们转化成电讯号输给计算机，远程分析车辆的健康状况。</p>
-<h4 id="机器学习"><strong>机器学习</strong></h4>
+<h4 id="机器学习"><a class="markdownIt-Anchor" href="#机器学习"></a> <strong>机器学习</strong></h4>
 <p>机器学习是一门涉及多领域的交叉学科，其研究内容涉及概率论，统计学，算法复杂度，线性代数，微积分等众多领域。机器学习研究的是计算机如何模拟人类的学习行为，从相应的数据中学习到一定的规律，并能够对新的数据进行分析。目前十分火热的深度学习就是机器学习的一个分支，机器学习在众多现代计算机 领域有着十分重要的作用，比如图像处理，语音识别，自然语言处理等等。机器学习分监督学习，无监督学习，半监督学习。使用机器学习可以对数据进行分类，回归等等分析。常用的机器学习算法有:线性回归，逻辑斯蒂回归，cart 决策树，随机森林，Adaboosting，bagging，SVM，k-means，PCA等等算法。本文将通过集成学习的方法，同时根据实际业务问题调整阈值，对车辆传感器的数据进行分析，确保将健康状况不良好的汽车即使召回。</p>
-<h3 id="汽车传感器数据分析"><strong>汽车传感器数据分析</strong></h3>
-<h4 id="数据探索和方法选择">数据探索和方法选择</h4>
+<h3 id="汽车传感器数据分析"><a class="markdownIt-Anchor" href="#汽车传感器数据分析"></a> <strong>汽车传感器数据分析</strong></h3>
+<h4 id="数据探索和方法选择"><a class="markdownIt-Anchor" href="#数据探索和方法选择"></a> 数据探索和方法选择</h4>
 <p>我手上的训练集共有60000条训练样本，测试集共有16000条训练样本。每个数据一共有171个特征，由于数据提供方的原因，数据的特征是匿名的。其中有的特征是数值连续特征，有的特征是对数据特征进行了histograms处理。缺失数据表示为NaN。</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"># 导入依赖库</span><br><span class="line">from matplotlib import pyplot as plt</span><br><span class="line">%matplotlib inline</span><br><span class="line">import pandas as pd</span><br><span class="line">import numpy as np</span><br><span class="line">import warnings</span><br><span class="line">warnings.filterwarnings(&quot;ignore&quot;)</span><br><span class="line">#加载数据</span><br><span class="line">train &#x3D; pd.read_csv(&#39;train_set.csv&#39;,na_values&#x3D;&#39;na&#39;)</span><br><span class="line">test &#x3D; pd.read_csv(&#39;test_set.csv&#39;,na_values&#x3D;&#39;na&#39;)</span><br><span class="line">#查看数据的shape</span><br><span class="line">print(&#39;训练集的形状：&#123;&#125;&#39;.format(train.shape))</span><br><span class="line">print(&#39;测试集的形状：&#123;&#125;&#39;.format(test.shape))</span><br><span class="line"></span><br><span class="line"># TODO：打印train前五行数据</span><br><span class="line">train.head()</span><br><span class="line"># TODO：打印test前五行数据</span><br><span class="line">test.head()</span><br></pre></td></tr></table></figure>
-<figure>
-<img src="/2020/05/16/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E6%99%BA%E8%83%BD%E6%B1%BD%E8%BD%A6/2.png" alt="前5行数据的部分特征"><figcaption>前5行数据的部分特征</figcaption>
-</figure>
+<p><img src="/2020/05/16/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E6%99%BA%E8%83%BD%E6%B1%BD%E8%BD%A6/2.png" alt="前5行数据的部分特征"></p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"># TODO：查看train数据中class这列的类别比例</span><br><span class="line">pd.value_counts(train[&#39;class&#39;])</span><br></pre></td></tr></table></figure>
 <p>通过查看数据类别，我发现训练集共60000个样本中，有59000条是正常样本，只有1000条是故障车辆样本。此问题是一个典型的样本不均衡问题，对于这种非常不均衡的问题一般有两种解决思路：</p>
 <p>（1）使用异常值检测的方法：将少类的样本看作异常值</p>
 <p>（2）使用监督学习的方法，看作分类问题。</p>
 <p>本文中我将使用监督学习的方法来对他们进行建模。</p>
-<h4 id="数据预处理">数据预处理</h4>
+<h4 id="数据预处理"><a class="markdownIt-Anchor" href="#数据预处理"></a> 数据预处理</h4>
 <p>对于传感器的原始数据数据，我按顺序进行以下预处理:</p>
-<h5 id="区分特征值和标签">区分特征值和标签</h5>
+<h5 id="区分特征值和标签"><a class="markdownIt-Anchor" href="#区分特征值和标签"></a> 区分特征值和标签</h5>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"># 将特征和标签划分开</span><br><span class="line"># 在这一步中我们将把feature和label分开</span><br><span class="line">train_feature  &#x3D; train[train.columns.difference([&#39;class&#39;])]</span><br><span class="line">train_label &#x3D; train[&#39;class&#39;]</span><br><span class="line"></span><br><span class="line">test_feature  &#x3D; test[test.columns.difference([&#39;class&#39;])]</span><br><span class="line">test_label &#x3D; test[&#39;class&#39;]</span><br></pre></td></tr></table></figure>
-<h5 id="区分数据特征类型">区分数据特征类型：</h5>
+<h5 id="区分数据特征类型"><a class="markdownIt-Anchor" href="#区分数据特征类型"></a> 区分数据特征类型：</h5>
 <p>如前文所述，传感器数据分为两类，一类是数值特征，一类是通过直方图得到的分布特征。由于直方图类数据在特征选择时要进行特殊的处理，因此第一步是通过通过正则表达式，自动匹配这类分布特征的字段类型，进行查找和筛选。</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">import re</span><br><span class="line">pattern &#x3D; re.compile(&#39;[a-z]*_001&#39;)</span><br><span class="line">col_bin_name &#x3D; [re.findall(pattern,char) for char in train_feature.columns.tolist() if len(re.findall(pattern,char))!&#x3D;0]</span><br><span class="line">bin_name_lst &#x3D; []</span><br><span class="line">for col in col_bin_name:</span><br><span class="line">    pattern &#x3D; re.compile(col[0][:2]+&#39;_[0-9]*&#39;)</span><br><span class="line">    find_name &#x3D; [re.findall(pattern,char) for char in train_feature.columns.tolist() if len(re.findall(pattern,char))!&#x3D;0]</span><br><span class="line">    bin_name_lst.append(np.concatenate(find_name,axis&#x3D;0))</span><br><span class="line">    print(find_name)</span><br></pre></td></tr></table></figure>
-<figure>
-<img src="/2020/05/16/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E6%99%BA%E8%83%BD%E6%B1%BD%E8%BD%A6/3.png" alt="打印出所有直方图类的特征"><figcaption>打印出所有直方图类的特征</figcaption>
-</figure>
-<h5 id="标签数据转换">标签数据转换：</h5>
+<p><img src="/2020/05/16/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E6%99%BA%E8%83%BD%E6%B1%BD%E8%BD%A6/3.png" alt="打印出所有直方图类的特征"></p>
+<h5 id="标签数据转换"><a class="markdownIt-Anchor" href="#标签数据转换"></a> 标签数据转换：</h5>
 <p>neg意味着汽车的健康状况为良好，不需要检修；pos为状况不良，需要检修。为了便于计算，我将neg标签转换为0，pos标签转换为1。</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">train_label &#x3D; train_label.map(&#123;&#39;pos&#39;:1,&#39;neg&#39;:0&#125;)</span><br><span class="line">test_label &#x3D; test_label.map(&#123;&#39;pos&#39;:1,&#39;neg&#39;:0&#125;)</span><br></pre></td></tr></table></figure>
-<h5 id="数据缺失值填充">数据缺失值填充：</h5>
+<h5 id="数据缺失值填充"><a class="markdownIt-Anchor" href="#数据缺失值填充"></a> 数据缺失值填充：</h5>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"># TODO：统计训练集和测试集分别有多少行有缺失</span><br><span class="line">print(&#39;训练集缺失&#39;,(train.isnull().sum(axis&#x3D;1)&gt;0).sum(),&#39;行&#39;)</span><br><span class="line">print(&#39;训练集缺失&#39;,(train.isnull().sum(axis&#x3D;0)&gt;0).sum(),&#39;列&#39;)</span><br><span class="line"># TODO：统计训练集和测试集分别有多少列有缺失</span><br><span class="line">print(&#39;测试集缺失&#39;,(test.isna().sum(axis&#x3D;1)&gt;0).sum(),&#39;行&#39;)</span><br><span class="line">print(&#39;测试集缺失&#39;,(test.isnull().sum(axis&#x3D;0)&gt;0).sum(),&#39;列&#39;)</span><br></pre></td></tr></table></figure>
 <p>对数据进行缺失值的分析，发现训练集共缺失 59409 行，169 列；测试集缺失 15835 行，169 列。可以判断有大量的缺失值，因此不能进行简单地丢弃，而是需要进行填充。填充的方法有均值填充和模型填充。在计算效果上，模型填充更优，但计算量较大。此处我们使用均值填充。</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"># 使用训练集的均值进行填充</span><br><span class="line">for col in train_feature.columns:</span><br><span class="line">    train_feature[col] &#x3D; train_feature[col].fillna(train_feature[col].mean())</span><br><span class="line"></span><br><span class="line">for col in test_feature.columns:</span><br><span class="line">    test_feature[col] &#x3D; test_feature[col].fillna(train_feature[col].mean())</span><br></pre></td></tr></table></figure>
-<h5 id="特征工程">特征工程：</h5>
+<h5 id="特征工程"><a class="markdownIt-Anchor" href="#特征工程"></a> 特征工程：</h5>
 <p>虽然大部分的数据都只有匿名的特征，但仍然可以对直方图特征做一些特征的抽取工作。对于直方图特征，可以想象，每个直方图的bins的和表示了这个车辆检查这个特征的次数，那么显然这个数字的和越大就代表这个车子检查这个特征的次数越多，也间接的表明了这个车子到目前为止的使用寿命；直方图表示了这个特征的分布，可以通过JS散度和推土机距离来度量分布之间的距离来成为一个新的特征。因此本项目中，我选择以下几种基准分布：</p>
 <p>（1）正样本的每个直方图特征的均值分布。</p>
 <p>（2）负样本的每个直方图特征的均值分布。</p>
@@ -422,7 +416,7 @@
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">## 特征抽取一：</span><br><span class="line">train_feature_extract &#x3D; pd.DataFrame(index&#x3D;train_feature.index)</span><br><span class="line">for index,col in enumerate(col_bin_name):</span><br><span class="line">    pattern &#x3D; re.compile(col[0][:2]+&#39;_[0-9]*&#39;)</span><br><span class="line">    find_name &#x3D; [re.findall(pattern,char) for char in train_feature.columns.tolist() if len(re.findall(pattern,char))!&#x3D;0]</span><br><span class="line">    name &#x3D; &#39;sum_bins_&#39;+str(index)</span><br><span class="line">    train_feature_extract[name] &#x3D; train_feature[np.concatenate(find_name,axis&#x3D;0)].sum(axis&#x3D;1)</span><br><span class="line">train_feature_extract[&#39;bins_max&#39;] &#x3D; train_feature_extract.max(axis&#x3D;1)</span><br><span class="line"></span><br><span class="line">test_feature_extract &#x3D; pd.DataFrame(index&#x3D;test_feature.index)</span><br><span class="line">for index,col in enumerate(col_bin_name):</span><br><span class="line">    pattern &#x3D; re.compile(col[0][:2]+&#39;_[0-9]*&#39;)</span><br><span class="line">    find_name &#x3D; [re.findall(pattern,char) for char in test_feature.columns.tolist() if len(re.findall(pattern,char))!&#x3D;0]</span><br><span class="line">    name &#x3D; &#39;sum_bins_&#39;+str(index)</span><br><span class="line">    test_feature_extract[name] &#x3D; test_feature[np.concatenate(find_name,axis&#x3D;0)].sum(axis&#x3D;1)</span><br><span class="line">test_feature_extract[&#39;bins_max&#39;] &#x3D; test_feature_extract.max(axis&#x3D;1)</span><br><span class="line"></span><br><span class="line">## 把特征分为数值特征和直方图特征两部分</span><br><span class="line">train_num_feature &#x3D; train_feature[train_feature.columns.difference(np.concatenate(bin_name_lst,axis&#x3D;0))];</span><br><span class="line">train_bin_feature &#x3D; train_feature[np.concatenate(bin_name_lst,axis&#x3D;0)];</span><br><span class="line"></span><br><span class="line">test_num_feature &#x3D; test_feature[test_feature.columns.difference(np.concatenate(bin_name_lst,axis&#x3D;0))];</span><br><span class="line">test_bin_feature &#x3D; test_feature[np.concatenate(bin_name_lst,axis&#x3D;0)];</span><br></pre></td></tr></table></figure>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br></pre></td><td class="code"><pre><span class="line">## 特征抽取二：</span><br><span class="line">## 生成基准分布</span><br><span class="line">from matplotlib import pyplot as plt</span><br><span class="line"># pos均匀分布</span><br><span class="line"># neg均匀分布</span><br><span class="line">pos_distribution_mean &#x3D; []</span><br><span class="line">neg_distribution_mean &#x3D; []</span><br><span class="line">for index,col in enumerate(col_bin_name):</span><br><span class="line">    pattern &#x3D; re.compile(col[0][:2]+&#39;_[0-9]*&#39;)</span><br><span class="line">    find_name &#x3D; [re.findall(pattern,char) for char in train_feature.columns.tolist() if len(re.findall(pattern,char))!&#x3D;0]</span><br><span class="line">    pos &#x3D; train_bin_feature.iloc[train_label[train_label&#x3D;&#x3D;1].index.tolist()][np.concatenate(find_name,axis&#x3D;0)]</span><br><span class="line">    neg &#x3D; train_bin_feature.iloc[train_label[train_label&#x3D;&#x3D;0].index.tolist()][np.concatenate(find_name,axis&#x3D;0)]</span><br><span class="line">    pos_distribution_mean.append(pos.sum(axis&#x3D;0))</span><br><span class="line">    neg_distribution_mean.append(neg.sum(axis&#x3D;0))</span><br><span class="line"></span><br><span class="line"># 高斯分布</span><br><span class="line">gs_distribution_sample &#x3D; np.random.normal(loc&#x3D;5.0, scale&#x3D;1.5,size&#x3D;500000)</span><br><span class="line">gs_distribution &#x3D; plt.hist(gs_distribution_sample,bins&#x3D;10)[0]</span><br><span class="line"></span><br><span class="line"># 分布归一化</span><br><span class="line">pos_dis &#x3D; [pos&#x2F;pos.sum() for pos in pos_distribution_mean];</span><br><span class="line">neg_dis &#x3D; [neg&#x2F;neg.sum() for neg in neg_distribution_mean];</span><br><span class="line">gs_distribution &#x3D; gs_distribution&#x2F;gs_distribution.sum()</span><br><span class="line"></span><br><span class="line">## 定义wasserstein距离(推土机距离)和JS散度</span><br><span class="line">from scipy.stats import entropy</span><br><span class="line">from scipy.stats import wasserstein_distance</span><br><span class="line">def js_dis(x,q):</span><br><span class="line">    M&#x3D;(x+q)&#x2F;2</span><br><span class="line">    js2&#x3D;0.5*entropy(x, M)+0.5*entropy(q, M)</span><br><span class="line">    return js2</span><br><span class="line">def ws_dis(x,q):</span><br><span class="line">    return wasserstein_distance(x,q)</span><br><span class="line">    </span><br><span class="line">## 特征抽取二：</span><br><span class="line">## 没有tqdm的需要先安装tqdm这个包。</span><br><span class="line">## 这个步骤的计算时间非常长，请耐心等待。</span><br><span class="line">## 训练集的特征抽取</span><br><span class="line">from tqdm import tqdm</span><br><span class="line">name_number &#x3D; 1</span><br><span class="line">for index,col in tqdm(enumerate(col_bin_name)):</span><br><span class="line">    pattern &#x3D; re.compile(col[0][:2]+&#39;_[0-9]*&#39;)</span><br><span class="line">    find_name &#x3D; [re.findall(pattern,char) for char in train_feature.columns.tolist() if len(re.findall(pattern,char))!&#x3D;0]</span><br><span class="line">    temp &#x3D; train_bin_feature[np.concatenate(find_name,axis&#x3D;0)]</span><br><span class="line">    temp &#x3D; temp.apply(lambda x:x&#x2F;x.sum(),axis&#x3D;1)</span><br><span class="line">    for pos in pos_dis:</span><br><span class="line">        train_feature_extract[name_number] &#x3D; temp.apply(js_dis,axis&#x3D;1,args&#x3D;(pos.values,))</span><br><span class="line">        name_number+&#x3D;1</span><br><span class="line">        train_feature_extract[name_number] &#x3D; temp.apply(ws_dis,axis&#x3D;1,args&#x3D;(pos.values,))</span><br><span class="line">        name_number+&#x3D;1</span><br><span class="line">    for neg in neg_dis:</span><br><span class="line">        train_feature_extract[name_number] &#x3D; temp.apply(js_dis,axis&#x3D;1,args&#x3D;(neg.values,))</span><br><span class="line">        name_number+&#x3D;1</span><br><span class="line">        train_feature_extract[name_number] &#x3D; temp.apply(ws_dis,axis&#x3D;1,args&#x3D;(neg.values,))</span><br><span class="line">        name_number+&#x3D;1</span><br><span class="line">    train_feature_extract[name_number] &#x3D; temp.apply(js_dis,axis&#x3D;1,args&#x3D;(gs_distribution,))</span><br><span class="line">    name_number+&#x3D;1</span><br><span class="line">    train_feature_extract[name_number] &#x3D; temp.apply(ws_dis,axis&#x3D;1,args&#x3D;(gs_distribution,))</span><br><span class="line">    name_number+&#x3D;1    </span><br><span class="line">## 测试集的特征抽取</span><br><span class="line">name_number &#x3D; 1</span><br><span class="line">for index,col in tqdm(enumerate(col_bin_name)):</span><br><span class="line">    pattern &#x3D; re.compile(col[0][:2]+&#39;_[0-9]*&#39;)</span><br><span class="line">    find_name &#x3D; [re.findall(pattern,char) for char in test_feature.columns.tolist() if len(re.findall(pattern,char))!&#x3D;0]</span><br><span class="line">    temp &#x3D; test_bin_feature[np.concatenate(find_name,axis&#x3D;0)]</span><br><span class="line">    temp &#x3D; temp.apply(lambda x:x&#x2F;x.sum(),axis&#x3D;1)</span><br><span class="line">    for pos in pos_dis:</span><br><span class="line">        test_feature_extract[name_number] &#x3D; temp.apply(js_dis,axis&#x3D;1,args&#x3D;(pos.values,))</span><br><span class="line">        name_number+&#x3D;1</span><br><span class="line">        test_feature_extract[name_number] &#x3D; temp.apply(ws_dis,axis&#x3D;1,args&#x3D;(pos.values,))</span><br><span class="line">        name_number+&#x3D;1</span><br><span class="line">    for neg in neg_dis:</span><br><span class="line">        test_feature_extract[name_number] &#x3D; temp.apply(js_dis,axis&#x3D;1,args&#x3D;(neg.values,))</span><br><span class="line">        name_number+&#x3D;1</span><br><span class="line">        test_feature_extract[name_number] &#x3D; temp.apply(ws_dis,axis&#x3D;1,args&#x3D;(neg.values,))</span><br><span class="line">        name_number+&#x3D;1</span><br><span class="line">    test_feature_extract[name_number] &#x3D; temp.apply(js_dis,axis&#x3D;1,args&#x3D;(gs_distribution,))</span><br><span class="line">    name_number+&#x3D;1</span><br><span class="line">    test_feature_extract[name_number] &#x3D; temp.apply(ws_dis,axis&#x3D;1,args&#x3D;(gs_distribution,))</span><br><span class="line">    name_number+&#x3D;1</span><br></pre></td></tr></table></figure>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">print(train_feature_extract.shape)</span><br><span class="line">print(test_feature_extract.shape)</span><br><span class="line">## 抽取完特征后，会发现部分特征是nan或者inf，这是由于在计算分布距离的时候有的分布是0导致的</span><br><span class="line">## 所以我们需要对抽取后的nan、inf这部分数据进行变换</span><br><span class="line"></span><br><span class="line">train_feature_extract &#x3D; train_feature_extract.fillna(-1)</span><br><span class="line">test_feature_extract &#x3D; test_feature_extract.fillna(-1)</span><br><span class="line"></span><br><span class="line">def f_inf(x):</span><br><span class="line">    if x&#x3D;&#x3D;np.inf:</span><br><span class="line">        return -2</span><br><span class="line">    else:</span><br><span class="line">        return x</span><br><span class="line">train_feature_extract &#x3D; train_feature_extract.applymap(f_inf)</span><br><span class="line">test_feature_extract &#x3D; test_feature_extract.applymap(f_inf)</span><br></pre></td></tr></table></figure>
-<h4 id="模型设计和集成">模型设计和集成</h4>
+<h4 id="模型设计和集成"><a class="markdownIt-Anchor" href="#模型设计和集成"></a> 模型设计和集成</h4>
 <p>处理好数据之后使用数据对模型进行训练模型，此处我选择了Logistic 回归、决策树和随机森林三个基础模型，并根据使用交叉验证和网格搜索选择合适的参数。</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">## 模型选择、交叉验证、网格搜索</span><br><span class="line">from sklearn.model_selection import GridSearchCV</span><br><span class="line">from sklearn.metrics import roc_auc_score, make_scorer</span><br><span class="line">from sklearn.linear_model import LogisticRegression</span><br><span class="line">#网格搜索：逻辑斯特回归</span><br><span class="line">param&#x3D;&#123; &#39;C&#39;:[0.0001,0.001,0.01,0.1,0.5,1.0]&#125;</span><br><span class="line">Grid2&#x3D;GridSearchCV(estimator&#x3D;LogisticRegression(),param_grid&#x3D;param,scoring&#x3D;make_scorer(roc_auc_score))</span><br><span class="line">Grid2.fit(train_feature_extract, train_label)</span><br><span class="line">print(f&quot;逻辑斯特回归交叉验证中测试的最优参数：&#123;Grid2.best_params_&#125;&quot;)</span><br><span class="line">print(f&quot;逻辑斯特回归交叉验证中AUC最高得分：&#123;Grid2.best_score_&#125;&quot;)</span><br><span class="line">best_model_lgr &#x3D; Grid2.best_estimator_</span><br></pre></td></tr></table></figure>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">#网格搜索：决策树</span><br><span class="line">from sklearn.tree import DecisionTreeClassifier</span><br><span class="line">parameters &#x3D; &#123;&#39;max_depth&#39;:[3, 5, 7, 9],&#39;min_samples_leaf&#39;: [1, 2, 3, 4]&#125;# 选择两个超参数 树的深度max_depth和叶子的最小值min_samples_leaf</span><br><span class="line">Grid1 &#x3D; GridSearchCV(estimator&#x3D;DecisionTreeClassifier(random_state&#x3D;0), param_grid&#x3D;parameters,scoring &#x3D; make_scorer(roc_auc_score),cv&#x3D;3)# 进行网格搜索得到最优参数组合</span><br><span class="line">Grid1.fit(train_feature_extract, train_label) #通过有最优参数组合的最优模型进行训练</span><br><span class="line">print(f&quot;决策树交叉验证中测试的最优参数：&#123;Grid1.best_params_&#125;&quot;)</span><br><span class="line">print(f&quot;决策树交叉验证中AUC最高得分：&#123;Grid1.best_score_&#125;&quot;)</span><br><span class="line">best_model_dtc &#x3D; Grid1.best_estimator_</span><br></pre></td></tr></table></figure>
@@ -432,26 +426,22 @@
 <p>验证集上的结果分别为：决策树AUC 0.744，逻辑斯特回归测试集上的AUC是:0.762，随机森林回归测试集上的AUC是:0.660。随机森林在训练集和测试集上差异大的原因可能是出现了过拟合。</p>
 <p>除了直接查看AUC，还可以通过用AUC=0.5作为阈值看结果的混淆矩阵，同时设计一个随机猜测函数作为baseline来进一步查看模型相对于随机猜测时候的优势。</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">#查看以0.5作为阈值的混淆矩阵</span><br><span class="line">import matplotlib.pyplot as plt</span><br><span class="line">import seaborn as sns</span><br><span class="line">true&#x3D;test_label</span><br><span class="line">pred1&#x3D;Grid1.predict(test_feature_extract)</span><br><span class="line">pred2&#x3D;Grid2.predict(test_feature_extract)</span><br><span class="line">pred3&#x3D;best_model_rfc.predict(test_feature_extract)</span><br><span class="line">#导入混淆矩阵函数</span><br><span class="line">cm1&#x3D;confusion_matrix(true,pred1)</span><br><span class="line">cm2&#x3D;confusion_matrix(true,pred2)</span><br><span class="line">cm3&#x3D;confusion_matrix(true,pred3)</span><br><span class="line">#导入作图函数</span><br><span class="line">plt.matshow(cm1,cmap&#x3D;plt.cm.Greens)</span><br><span class="line">sns.heatmap(cm1,annot&#x3D;True)</span><br><span class="line">plt.matshow(cm2,cmap&#x3D;plt.cm.Greens)</span><br><span class="line">sns.heatmap(cm2,annot&#x3D;True)</span><br><span class="line">plt.matshow(cm3,cmap&#x3D;plt.cm.Greens)</span><br><span class="line">sns.heatmap(cm3,annot&#x3D;True)</span><br><span class="line">#输出为混淆矩阵</span><br><span class="line">#TODO：随机猜测函数</span><br><span class="line">random&#x3D; np.random.randint(0,2,16000)</span><br><span class="line">cm0&#x3D;confusion_matrix(true,random)</span><br><span class="line">plt.matshow(cm0,cmap&#x3D;plt.cm.Greens)</span><br><span class="line">sns.heatmap(cm0,annot&#x3D;True)</span><br></pre></td></tr></table></figure>
-<figure>
-<img src="/2020/05/16/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E6%99%BA%E8%83%BD%E6%B1%BD%E8%BD%A6/屏幕快照%202020-05-16%20下午11.45.35.png" alt="混淆矩阵:左上（决策树）右上（Logistic）左下（随机森林）右下（随机猜测）"><figcaption>混淆矩阵:左上（决策树）右上（Logistic）左下（随机森林）右下（随机猜测）</figcaption>
-</figure>
+<p>![混淆矩阵:左上（决策树）右上（Logistic）左下（随机森林）右下（随机猜测）](机器学习智能汽车/屏幕快照 2020-05-16 下午11.45.35.png)</p>
 <p>在训练完单个模型之后，我们将进行模型的集成。集成技术是将多个分类器的结果或性能结合起来，以提高单个分类器的性能。该方法通过装配不同的分类器来修改单个分类器的归纳能力[<a href="#_edn2">ii]</a>，也能更好地解决样本不均衡的问题。此处，我们使用stacking的方法对步骤四生成的不同学习器进行集成，同时画出集成后模型的ROC曲线。</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line">## TODO:模型集成</span><br><span class="line">from mlxtend.classifier import EnsembleVoteClassifier</span><br><span class="line">from mlxtend.data import iris_data</span><br><span class="line">clf1&#x3D;best_model_dtc</span><br><span class="line">clf2&#x3D;best_model_lgr</span><br><span class="line">clf3&#x3D;best_model_rfc</span><br><span class="line">eclf&#x3D;EnsembleVoteClassifier(clfs&#x3D;[clf1, clf2,clf3],</span><br><span class="line">                              weights&#x3D;[2,1,1], voting&#x3D;&#39;soft&#39;)</span><br><span class="line">eclf.fit(train_feature_extract,train_label)</span><br><span class="line">## TODO：ROC曲线</span><br><span class="line"></span><br><span class="line">from sklearn.metrics import roc_curve, auc</span><br><span class="line">import matplotlib.pyplot as plt</span><br><span class="line">from sklearn.model_selection import StratifiedKFold</span><br><span class="line"></span><br><span class="line">probas_ &#x3D; eclf.predict_proba(test_feature_extract) # 训练模型后预测每条样本得到两种结果的概率</span><br><span class="line">fpr, tpr, thresholds &#x3D; roc_curve(test_label, probas_[:, 1])    # 该函数得到伪正例、真正例、阈值，这里只使用前两个</span><br><span class="line">roc_auc &#x3D; auc(fpr, tpr)  # 求auc面积</span><br><span class="line">plt.plot(fpr, tpr, lw&#x3D;1, label&#x3D;&#39;ROC (area &#x3D; &#123;1:.2f&#125;)&#39;.format(i, roc_auc))    # 画出当前分割数据的ROC曲线</span><br><span class="line"> </span><br><span class="line">plt.plot([0, 1], [0, 1], &#39;--&#39;, color&#x3D;(0.6, 0.6, 0.6), label&#x3D;&#39;Luck&#39;) # 画对角线</span><br><span class="line">plt.xlim([-0.05, 1.05])     # 设置x、y轴的上下限，设置宽一点，以免和边缘重合，可以更好的观察图像的整体</span><br><span class="line">plt.ylim([-0.05, 1.05])</span><br><span class="line">plt.xlabel(&#39;False Positive Rate&#39;)</span><br><span class="line">plt.ylabel(&#39;True Positive Rate&#39;)    # 可以使用中文，但需要导入一些库即字体</span><br><span class="line">plt.title(&#39;ROC curve&#39;)</span><br><span class="line">plt.legend(loc&#x3D;&quot;lower right&quot;)</span><br><span class="line">plt.show()</span><br></pre></td></tr></table></figure>
-<figure>
-<img src="/2020/05/16/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E6%99%BA%E8%83%BD%E6%B1%BD%E8%BD%A6/4.png" alt="集成后模型的ROC曲线"><figcaption>集成后模型的ROC曲线</figcaption>
-</figure>
-<h3 id="结果分析"><strong>结果分析</strong></h3>
+<p><img src="/2020/05/16/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E6%99%BA%E8%83%BD%E6%B1%BD%E8%BD%A6/4.png" alt="集成后模型的ROC曲线"></p>
+<h3 id="结果分析"><a class="markdownIt-Anchor" href="#结果分析"></a> <strong>结果分析</strong></h3>
 <p>在实际的业务问题中，不能简单的通过准确率，召回率或者精确率来评估阈值。换言之，对于口碑至上的名车厂而言，对miss fault（把健康状况不良的车辆看成好的）的容忍度对falsely predict（把健康状况良好的汽车错误当成不好的）的容忍度要低很多。前者意味着安全和品牌的声誉，后者只是需要额外付出财力。这两者之间的代价关系和权重需要有专门的研究。</p>
-<p>在这个问题中，我们简单地把$ miss fault <span class="math inline">\(代价是500，\)</span>falsely$ <span class="math inline">\(predict\)</span>代价是10，那么我们需要找到一个阈值，使得总代价$ cost $最小。 <span class="math display">\[
-cost=1000*num_mf+10*num_fp
-\]</span></p>
+<p>在这个问题中，我们简单地把$ miss fault <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi mathvariant="normal">代</mi><mi mathvariant="normal">价</mi><mi mathvariant="normal">是</mi><mn>500</mn><mi mathvariant="normal">，</mi></mrow><annotation encoding="application/x-tex">代价是500，</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord cjk_fallback">代</span><span class="mord cjk_fallback">价</span><span class="mord cjk_fallback">是</span><span class="mord">5</span><span class="mord">0</span><span class="mord">0</span><span class="mord cjk_fallback">，</span></span></span></span>falsely$ <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>p</mi><mi>r</mi><mi>e</mi><mi>d</mi><mi>i</mi><mi>c</mi><mi>t</mi></mrow><annotation encoding="application/x-tex">predict</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8888799999999999em;vertical-align:-0.19444em;"></span><span class="mord mathdefault">p</span><span class="mord mathdefault" style="margin-right:0.02778em;">r</span><span class="mord mathdefault">e</span><span class="mord mathdefault">d</span><span class="mord mathdefault">i</span><span class="mord mathdefault">c</span><span class="mord mathdefault">t</span></span></span></span>代价是10，那么我们需要找到一个阈值，使得总代价$ cost $最小。</p>
+<p class="katex-block"><span class="katex-display"><span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>c</mi><mi>o</mi><mi>s</mi><mi>t</mi><mo>=</mo><mn>1000</mn><mo>∗</mo><mi>n</mi><mi>u</mi><msub><mi>m</mi><mi>m</mi></msub><mi>f</mi><mo>+</mo><mn>10</mn><mo>∗</mo><mi>n</mi><mi>u</mi><msub><mi>m</mi><mi>f</mi></msub><mi>p</mi></mrow><annotation encoding="application/x-tex">cost=1000*num_mf+10*num_fp
+</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.61508em;vertical-align:0em;"></span><span class="mord mathdefault">c</span><span class="mord mathdefault">o</span><span class="mord mathdefault">s</span><span class="mord mathdefault">t</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">1</span><span class="mord">0</span><span class="mord">0</span><span class="mord">0</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">∗</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:0.8888799999999999em;vertical-align:-0.19444em;"></span><span class="mord mathdefault">n</span><span class="mord mathdefault">u</span><span class="mord"><span class="mord mathdefault">m</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.151392em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathdefault mtight">m</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mord mathdefault" style="margin-right:0.10764em;">f</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">1</span><span class="mord">0</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">∗</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:0.716668em;vertical-align:-0.286108em;"></span><span class="mord mathdefault">n</span><span class="mord mathdefault">u</span><span class="mord"><span class="mord mathdefault">m</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3361079999999999em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathdefault mtight" style="margin-right:0.10764em;">f</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.286108em;"><span></span></span></span></span></span></span><span class="mord mathdefault">p</span></span></span></span></span></p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">## TODO：找阈值使得cost最小</span><br><span class="line">thresholds&#x3D;[0.8,0.81,0.812,0.813,0.814,0.815,0.816,0.817,0.818,0.819,0.82]</span><br><span class="line">cost&#x3D;500*16000</span><br><span class="line">for i in thresholds:</span><br><span class="line">    probas_ &#x3D; eclf.predict_proba(test_feature_extract) # 训练模型后预测每条样本得到两种结果的概率</span><br><span class="line">    arr&#x3D;probas_[:,1]</span><br><span class="line">    arr[arr &gt; i] &#x3D; 1</span><br><span class="line">    arr[arr &lt;&#x3D; i] &#x3D; 0</span><br><span class="line">    y_predict&#x3D;arr</span><br><span class="line">    def TN(y_true, y_predict):</span><br><span class="line">        assert len(y_true) &#x3D;&#x3D; len(y_predict)  </span><br><span class="line">        return np.sum((y_true&#x3D;&#x3D;0)&amp;(y_predict&#x3D;&#x3D;0))</span><br><span class="line">    def FP(y_true, y_predict):</span><br><span class="line">        assert len(y_true) &#x3D;&#x3D; len(y_predict)</span><br><span class="line">        return np.sum((y_true&#x3D;&#x3D;0)&amp;(y_predict&#x3D;&#x3D;1))</span><br><span class="line">    cost_temp&#x3D;500*FP(test_label,arr)+10*TN(test_label,arr)</span><br><span class="line">    if cost_temp&lt;cost:</span><br><span class="line">        cost&#x3D;cost_temp </span><br><span class="line">        thresholds_best&#x3D;i</span><br><span class="line">print(cost,thresholds_best)      </span><br><span class="line">#阈值在0.814左右cost最小，最佳。即当概率小于0.814时，车即被判为性能不正常进行检修</span><br></pre></td></tr></table></figure>
 <p>最后得出的结果显示，阈值为0.814时，总代价$ cost $最小。也就是，当阈值大于0.814时，车被判为健康状况不良进行检修，对车厂的效率是最高的。</p>
 <p>对于这类不同的分类错误会导致不同的惩罚力度时如何训练分类器的问题，除了阈值的筛选，还有一些前沿的解决方法，称为代价敏感的学习方法[<a href="#_edn3">iii]</a>。代价敏感学习的算法研究又可以分成三类：</p>
 <p>（1）直接构造一个代价敏感的学习模型；</p>
 <p>（2）基于对分类结果的后处理，即按照传统的学习方法学习一个分类模型，然后对其分类结果按照贝叶斯风险理论对结果进行调整，以达到最小的损失。</p>
 <p>（3）基于传统的学习模型，通过改变原始训练数据的分布来训练得到代价敏感的模型。</p>
-<h3 id="总结"><strong>总结</strong></h3>
+<h3 id="总结"><a class="markdownIt-Anchor" href="#总结"></a> <strong>总结</strong></h3>
 <p>在本项目中，我们对智能汽车传感器的数据应用了机器学习的方法来判断汽车的健康状况，通过数据清洗、特征选择、模型集成等方法，测试集上的分类的准确率达到94%。同时，在最后一部分，我们根据实际情况对阈值进行重新考量，建立车厂召回汽车的代价函数，让车厂在选择召回汽车的决策中效率最佳。</p>
 <hr>
 <p>[<a href="#_ednref1">i]</a> 汽车传感器：智能汽车的感知与计算</p>
@@ -629,17 +619,17 @@ cost=1000*num_mf+10*num_fp
       
         
           
-            <p><img src="/2020/05/16/pdd2/创业估值第第七组报告.2的副本.jpg"></p>
-<p><img src="/2020/05/16/pdd2/创业估值第第七组报告.3.jpg"></p>
-<p><img src="/2020/05/16/pdd2/4.jpg"></p>
-<p><img src="/2020/05/16/pdd2/5.jpg"></p>
-<p><img src="/2020/05/16/pdd2/6.jpg"></p>
-<p><img src="/2020/05/16/pdd2/7.jpg"></p>
-<p><img src="/2020/05/16/pdd2/8.jpg"></p>
-<p><img src="/2020/05/16/pdd2/9.jpg"></p>
-<p><img src="/2020/05/16/pdd2/10.jpg"></p>
-<p><img src="/2020/05/16/pdd2/11.jpg"></p>
-<p><img src="/2020/05/16/pdd2/12.jpg"><img src="/2020/05/16/pdd2/13.jpg"></p>
+            <p><img src="/2020/05/16/pdd2/%E5%88%9B%E4%B8%9A%E4%BC%B0%E5%80%BC%E7%AC%AC%E7%AC%AC%E4%B8%83%E7%BB%84%E6%8A%A5%E5%91%8A.2%E7%9A%84%E5%89%AF%E6%9C%AC.jpg" alt></p>
+<p><img src="/2020/05/16/pdd2/%E5%88%9B%E4%B8%9A%E4%BC%B0%E5%80%BC%E7%AC%AC%E7%AC%AC%E4%B8%83%E7%BB%84%E6%8A%A5%E5%91%8A.3.jpg" alt></p>
+<p><img src="/2020/05/16/pdd2/4.jpg" alt></p>
+<p><img src="/2020/05/16/pdd2/5.jpg" alt></p>
+<p><img src="/2020/05/16/pdd2/6.jpg" alt></p>
+<p><img src="/2020/05/16/pdd2/7.jpg" alt></p>
+<p><img src="/2020/05/16/pdd2/8.jpg" alt></p>
+<p><img src="/2020/05/16/pdd2/9.jpg" alt></p>
+<p><img src="/2020/05/16/pdd2/10.jpg" alt></p>
+<p><img src="/2020/05/16/pdd2/11.jpg" alt></p>
+<p><img src="/2020/05/16/pdd2/12.jpg" alt><img src="/2020/05/16/pdd2/13.jpg" alt></p>
 
           
         
@@ -813,74 +803,99 @@ cost=1000*num_mf+10*num_fp
         
           
             <ul>
-<li><p>修改辐射制冷Review的Introduction部分，熟悉科技论文写作。</p>
-<p><strong><em>It’s one of those “forest and tree” situations: in a research report, the scientists are examining a tree; in a review paper, the scientist is looking at the forest.</em></strong></p></li>
-<li><p>这篇review写作从开始下笔到只剩下Introduction和Outlook其实只花了我大概三个礼拜时间，中途还有四天时间去参加了美赛（但那些天真的是对着电脑从早上八点到晚上十一点，剩下一个支离破碎的腰椎。）主体部分完工之后写Introduction和Ourlook却憋了我快半个月，一直到三月中旬才写出一个样子来，并且现在仍然对自己的英文表述和看法非常不自信。这也不得不让我承认事情：<strong>简介和展望</strong>确实是论文撰写中最最最困难的部分，尤其是对于本身在这个领域没有经历过长期摸爬滚打的小白……</p></li>
+<li>
+<p>修改辐射制冷Review的Introduction部分，熟悉科技论文写作。</p>
+<p><em><strong>It’s one of those “forest and tree” situations: in a research report, the scientists are examining a tree; in a review paper, the scientist is looking at the forest.</strong></em></p>
+</li>
+<li>
+<p>这篇review写作从开始下笔到只剩下Introduction和Outlook其实只花了我大概三个礼拜时间，中途还有四天时间去参加了美赛（但那些天真的是对着电脑从早上八点到晚上十一点，剩下一个支离破碎的腰椎。）主体部分完工之后写Introduction和Ourlook却憋了我快半个月，一直到三月中旬才写出一个样子来，并且现在仍然对自己的英文表述和看法非常不自信。这也不得不让我承认事情：<strong>简介和展望</strong>确实是论文撰写中最最最困难的部分，尤其是对于本身在这个领域没有经历过长期摸爬滚打的小白……</p>
+</li>
 </ul>
-<p><img src="/2020/05/07/5-7diary/1.png"></p>
+<p><img src="/2020/05/07/5-7diary/1.png" alt></p>
 <ul>
-<li><p>搜集了一些关于Introduction/discussion怎么写的指导，摘录在这里，小朋友，理论基础要打牢，避免想当然走弯路，前人的经验还是可以看一看的。</p></li>
-<li><p>摘自科罗拉多州立大学写作指南</p>
+<li>
+<p>搜集了一些关于Introduction/discussion怎么写的指导，摘录在这里，小朋友，理论基础要打牢，避免想当然走弯路，前人的经验还是可以看一看的。</p>
+</li>
+<li>
+<p>摘自科罗拉多州立大学写作指南</p>
 <blockquote>
-<h4 id="introduction">Introduction</h4>
+<h4 id="introduction"><a class="markdownIt-Anchor" href="#introduction"></a> Introduction</h4>
 <p>The introduction of your review should accomplish three things:</p>
 <ul>
 <li>Introduce your topic 介绍你的主题（它可能是个陌生的概念）
 <ul>
-<li>It may sound redundant to &quot;introduce&quot; your topic in the introduction, but often times writer's fail to do so. Let the reader in on background information specific to the topic, define terms that may be unfamiliar to them, explain the scope of the discussion, and your purpose for writing the review.</li>
-</ul></li>
-<li>State your topic's relevance 介绍跟这个主题相关的背景（目前发展的情况，要有对话感，让没有接触过这个领域的人能建立起思想框架）
+<li>It may sound redundant to “introduce” your topic in the introduction, but often times writer’s fail to do so. Let the reader in on background information specific to the topic, define terms that may be unfamiliar to them, explain the scope of the discussion, and your purpose for writing the review.</li>
+</ul>
+</li>
+<li>State your topic’s relevance 介绍跟这个主题相关的背景（目前发展的情况，要有对话感，让没有接触过这个领域的人能建立起思想框架）
 <ul>
 <li>Think of your review paper as a statement in the larger conversation of your academic community. Your review is your way of entering into that conversation and it is important to briefly address why your review is relevant to the discussion. You may feel the relevance is obvious because you are so familiar with the topic, but your readers have not yet established that familiarity.</li>
-</ul></li>
+</ul>
+</li>
 <li>Reveal your thesis to the reader 将接下来的几个部分陈述一遍
 <ul>
 <li>The thesis is the main idea that you want to get across to your reader. your thesis should be a clear statement of what you intend to prove or illustrate by your review. By revealing your thesis in the introduction the reader knows what to expect in the rest of the paper.</li>
-</ul></li>
 </ul>
-<h4 id="discussion">Discussion</h4>
+</li>
+</ul>
+<h4 id="discussion"><a class="markdownIt-Anchor" href="#discussion"></a> Discussion</h4>
 <p>The discussion section is the body of your paper. The discussion section contains information that develops and supports your thesis. While there is no particular form that a discussion section must take there are several considerations that a writer must follow when building a discussion.</p>
 <ul>
-<li><p>Don't summarize! 不能总结，总结在conclusion里面</p>
+<li>
+<p>Don’t summarize! 不能总结，总结在conclusion里面</p>
 <ul>
 <li>A review paper is not simply a summary of literature you have reviewed. Be careful not to leave out your own analysis of the ideas presented in the literature. Synthesize the material from all the works—what are the connections you see, or the connections you are trying to illustrate, among your readings.</li>
-</ul></li>
-<li><p>Analyze, Synthesize, Interpret.要分析……（最困难的部分），拒绝单纯的将事实和研究拼凑在一起。</p>
+</ul>
+</li>
+<li>
+<p>Analyze, Synthesize, Interpret.要分析……（最困难的部分），拒绝单纯的将事实和研究拼凑在一起。</p>
 <p>简单的分析方法比如找关联：按照时间线找关联，按照逻辑关系找关联；</p>
 <p>找对比：两种方法论有什么区别，好处和坏处、适用的范围；等</p>
 <p>找意义：这件事对后来该领域的转变又多大的启发，对未来有什么启发；</p>
 <ul>
 <li>A review paper is not a pure summary of the information you read for your review. You are required to analyze, synthesize, and interpret the information you read in some meaningful way. It is not enough to simply present the material you have found, you must go beyond that and explain its relevance and significance to the topic at hand. Establish a clear thesis from the onset of your writing and examine which pieces of your reading help you in developing and supporting the ideas in your thesis.</li>
-</ul></li>
-<li><p>Stay focused.</p>
+</ul>
+</li>
+<li>
+<p>Stay focused.</p>
 <ul>
-<li>Keep your discussion focused on your topic and more importantly your thesis. Don't let tangents or extraneous material get in the way of a concise, coherent discussion. A well focused paper is crucial in getting your message across to your reader.</li>
-</ul></li>
-<li><p>Organize your points.</p>
+<li>Keep your discussion focused on your topic and more importantly your thesis. Don’t let tangents or extraneous material get in the way of a concise, coherent discussion. A well focused paper is crucial in getting your message across to your reader.</li>
+</ul>
+</li>
+<li>
+<p>Organize your points.</p>
 <ul>
 <li>Keeping your points organized makes it easier for the reader to follow along and make sense of your review. Start each paragraph with a topic sentence that relates back to your thesis. The headings used for this guide give you some idea of how to organize the overall paper, but as far as the discussion section goes use meaningful subheadings that relate to your content to organize your points.</li>
-</ul></li>
-<li><p>Relate the discussion to your thesis.</p>
-<ul>
-<li>Your thesis should illustrate your objectives in writing the review and your discussion should serve to accomplish your objectives. Make sure your keep your discussion related to the thesis in order to meet your objectives. If you find that your discussion does not relate so much to your thesis, don't panic, you might want to revise your thesis instead of reworking the discussion.</li>
-</ul></li>
 </ul>
-<h4 id="conclusions">Conclusions</h4>
+</li>
+<li>
+<p>Relate the discussion to your thesis.</p>
+<ul>
+<li>Your thesis should illustrate your objectives in writing the review and your discussion should serve to accomplish your objectives. Make sure your keep your discussion related to the thesis in order to meet your objectives. If you find that your discussion does not relate so much to your thesis, don’t panic, you might want to revise your thesis instead of reworking the discussion.</li>
+</ul>
+</li>
+</ul>
+<h4 id="conclusions"><a class="markdownIt-Anchor" href="#conclusions"></a> Conclusions</h4>
 <p>Because the conclusions section often gets left for last it is often the weakest part of a student review paper. It is as crucial a part of the paper as any and should be treated as such.</p>
 <p>A good conclusion should illustrate the key connections between your major points and your thesis as well as they key connections between your thesis and the broader discussion—what is the significance of your paper in a larger context? Make some <em>conclusions</em>—where have you arrived as a result of writing this paper?</p>
 <p>Be careful not to present any new information in the conclusion section.</p>
-</blockquote></li>
-<li><p>另一个版本来自弗罗里达州立大学的Thesis Writing in the Sciences</p>
+</blockquote>
+</li>
+<li>
+<p>另一个版本来自弗罗里达州立大学的Thesis Writing in the Sciences</p>
 <blockquote>
 <p>首先它给出了Review和Paper的不同</p>
 <p>In contrast to research papers, conference presentations, and proposals, a review paper is a journal article that <strong>synthesizes</strong> work by many independent researchers on a particular subject or scientific problem. By bringing together the most pertinent findings of a large number of studies, a review paper serves as a <strong>valuable summary</strong> of research. Although it does not present the writer’s new discoveries, it does reflect his or her painstaking review of the literature in a defined field. Moreover, a good review not only summarizes information but also provides <strong>interpretative analysis</strong> and sometimes a <strong>historical perspective</strong>. Reviews may vary in aims, scope, length, and format, but they all include a relatively lengthy reference section. Journal editors sometimes invite prominent experts to write reviews of their particular fields, since the ability to give an audience an authoritative overview of a subject usually develops with experience. Whether solicited or unsolicited, review papers still must conform to journal specifications, and their author receive feedback from editors and reviewers before final publication.</p>
 <p>接着展示了一个简介写作的典范</p>
 <p>The images below this one show a typical Review Introduction in medicine. It is brief and leads the reader quickly to where the information in the paper happens: the body.</p>
-<p><img src="/2020/05/07/5-7diary/review_intro_example.bmp"></p>
-<p><img src="/2020/05/07/5-7diary/reivew_intro_example_overview.bmp"></p>
+<p><img src="/2020/05/07/5-7diary/review_intro_example.bmp" alt></p>
+<p><img src="/2020/05/07/5-7diary/reivew_intro_example_overview.bmp" alt></p>
 <p>很容易遗忘的是Gap部分。要时刻记住，你是对这个领域有洞察，那么就要有批判性的眼光，从历史的角度去衡量哪些部分是做的远远不够的，是限制这个领域发展的。然后给致力于研究的同仁提出一些建议。</p>
-</blockquote></li>
-<li><p>在吃饭时观看3Blue1Brown关于线性代数本质的视频，并且大喊“卧槽”。</p></li>
+</blockquote>
+</li>
+<li>
+<p>在吃饭时观看3Blue1Brown关于线性代数本质的视频，并且大喊“卧槽”。</p>
+</li>
 </ul>
 
           
@@ -1015,7 +1030,7 @@ cost=1000*num_mf+10*num_fp
                   <span class="post-meta-item-text">Words count in article&#58;</span>
                 
                 <span title="Words count in article">
-                  648
+                  841
                 </span>
               
 
@@ -1031,7 +1046,7 @@ cost=1000*num_mf+10*num_fp
                   <span class="post-meta-item-text">Reading time &asymp;</span>
                 
                 <span title="Reading time">
-                  2
+                  3
                 </span>
               
             </div>
@@ -1054,37 +1069,49 @@ cost=1000*num_mf+10*num_fp
       
         
           
-            <h4 id="前言"><a href="#前言" class="headerlink" title="前言"></a><strong>前言</strong></h4><p>一直以来对算法和控制的认识都比较割裂，对两者之间如何搭建起桥梁也云里雾里。今天我在MATHWORKS上听了一节关于如何在计算资源有限的树莓派（Raspberry Pi）ARM CPU上运行复杂深度神经网络的讲座，MATLAB在其中起到了重要作用。我将讲座中进行的重要步骤和提要记在下面。形成一个框架，细节可以用到了慢慢填。</p>
-<p><img src="/2020/05/04/MATLAB%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E5%B5%8C%E5%85%A5/ 7 7.png" alt></p>
+            <h4 id="前言"><a class="markdownIt-Anchor" href="#前言"></a> <strong>前言</strong></h4>
+<p>一直以来对算法和控制的认识都比较割裂，对两者之间如何搭建起桥梁也云里雾里。今天我在MATHWORKS上听了一节关于如何在计算资源有限的树莓派（Raspberry Pi）ARM CPU上运行复杂深度神经网络的讲座，MATLAB在其中起到了重要作用。我将讲座中进行的重要步骤和提要记在下面。形成一个框架，细节可以用到了慢慢填。</p>
+<p>![](MATLAB深度学习嵌入/ 7 7.png)</p>
 <p>Demo 1:训练网络。该步骤使用了迁移学习的思想，用了SqueezeNet模型</p>
 <p>Demo 2:将神经网络部署到树莓派的CPU中，其中涉及到将预训练网络自动生成C++代码</p>
 <p>Demo 3:将神经网络部署到NVIDIA GPU上，其中涉及到将预训练网络自动生成CUDA代码</p>
-<h4 id="连接准备"><a href="#连接准备" class="headerlink" title="连接准备"></a><strong>连接准备</strong></h4><h5 id="安装树莓派和网络摄像头，同时配置"><a href="#安装树莓派和网络摄像头，同时配置" class="headerlink" title="安装树莓派和网络摄像头，同时配置"></a>安装树莓派和网络摄像头，同时配置</h5><h5 id="确认和测试：命令行输入webcam，确认已经连接，获取硬件信息"><a href="#确认和测试：命令行输入webcam，确认已经连接，获取硬件信息" class="headerlink" title="确认和测试：命令行输入webcam，确认已经连接，获取硬件信息"></a>确认和测试：命令行输入webcam，确认已经连接，获取硬件信息</h5><p><img src="/2020/05/04/MATLAB%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E5%B5%8C%E5%85%A5/ 3 3.png" alt="配置外部硬件"></p>
-<p><img src="/2020/05/04/MATLAB%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E5%B5%8C%E5%85%A5/ 4 4.png" alt="硬件支持包界面"></p>
-<h5 id="NVIDIA-GPU配置："><a href="#NVIDIA-GPU配置：" class="headerlink" title="NVIDIA GPU配置："></a>NVIDIA GPU配置：</h5><p><img src="/2020/05/04/MATLAB%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E5%B5%8C%E5%85%A5/ 5 5.png" alt></p>
-<h5 id="确认：输入coder-checkGpuInstall，确认硬件已经连接，检查环境"><a href="#确认：输入coder-checkGpuInstall，确认硬件已经连接，检查环境" class="headerlink" title="确认：输入coder.checkGpuInstall，确认硬件已经连接，检查环境"></a>确认：输入coder.checkGpuInstall，确认硬件已经连接，检查环境</h5><h4 id="预训练Squeezenet神经网络，在GPU上实现"><a href="#预训练Squeezenet神经网络，在GPU上实现" class="headerlink" title="预训练Squeezenet神经网络，在GPU上实现"></a><strong>预训练Squeezenet神经网络，在GPU上实现</strong></h4><p>此处用迁移学习实现图像识别，一般在应用时只需要优化最后几层的参数，前面特征提取的参数都做的挺好的了。</p>
-<p><img src="/2020/05/04/MATLAB%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E5%B5%8C%E5%85%A5/ 9 9.png" alt></p>
-<p><img src="/2020/05/04/MATLAB%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E5%B5%8C%E5%85%A5/ 8 8.png" alt></p>
-<h5 id="收集和分类数据"><a href="#收集和分类数据" class="headerlink" title="收集和分类数据"></a>收集和分类数据</h5><h5 id="准备训练及测试图片集"><a href="#准备训练及测试图片集" class="headerlink" title="准备训练及测试图片集"></a>准备训练及测试图片集</h5><p>载入图库——&gt;加载Squeezenet模型并且修改——&gt;调整图库———&gt;进行模型训练——&gt;测试——&gt;导出模型到.mat文件</p>
+<h4 id="连接准备"><a class="markdownIt-Anchor" href="#连接准备"></a> <strong>连接准备</strong></h4>
+<h5 id="安装树莓派和网络摄像头同时配置"><a class="markdownIt-Anchor" href="#安装树莓派和网络摄像头同时配置"></a> 安装树莓派和网络摄像头，同时配置</h5>
+<h5 id="确认和测试命令行输入webcam确认已经连接获取硬件信息"><a class="markdownIt-Anchor" href="#确认和测试命令行输入webcam确认已经连接获取硬件信息"></a> 确认和测试：命令行输入webcam，确认已经连接，获取硬件信息</h5>
+<p>![配置外部硬件](MATLAB深度学习嵌入/ 3 3.png)</p>
+<p>![硬件支持包界面](MATLAB深度学习嵌入/ 4 4.png)</p>
+<h5 id="nvidia-gpu配置"><a class="markdownIt-Anchor" href="#nvidia-gpu配置"></a> NVIDIA GPU配置：</h5>
+<p>![](MATLAB深度学习嵌入/ 5 5.png)</p>
+<h5 id="确认输入codercheckgpuinstall确认硬件已经连接检查环境"><a class="markdownIt-Anchor" href="#确认输入codercheckgpuinstall确认硬件已经连接检查环境"></a> 确认：输入coder.checkGpuInstall，确认硬件已经连接，检查环境</h5>
+<h4 id="预训练squeezenet神经网络在gpu上实现"><a class="markdownIt-Anchor" href="#预训练squeezenet神经网络在gpu上实现"></a> <strong>预训练Squeezenet神经网络，在GPU上实现</strong></h4>
+<p>此处用迁移学习实现图像识别，一般在应用时只需要优化最后几层的参数，前面特征提取的参数都做的挺好的了。</p>
+<p>![](MATLAB深度学习嵌入/ 9 9.png)</p>
+<p>![](MATLAB深度学习嵌入/ 8 8.png)</p>
+<h5 id="收集和分类数据"><a class="markdownIt-Anchor" href="#收集和分类数据"></a> 收集和分类数据</h5>
+<h5 id="准备训练及测试图片集"><a class="markdownIt-Anchor" href="#准备训练及测试图片集"></a> 准备训练及测试图片集</h5>
+<p>载入图库----&gt;加载Squeezenet模型并且修改----&gt;调整图库------&gt;进行模型训练----&gt;测试----&gt;导出模型到.mat文件</p>
 <p>注：模型训练中的代码段…,‘ExecutionEnvironment’选项为’gpu’，适用GPU加速</p>
-<p><img src="/2020/05/04/MATLAB%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E5%B5%8C%E5%85%A5/屏幕快照 2020-05-13 下午9.38.14.png" alt></p>
-<h4 id="自动生成C-代码"><a href="#自动生成C-代码" class="headerlink" title="自动生成C++代码"></a><strong>自动生成C++代码</strong></h4><p>通过cnncodegen转化成C++代码集：</p>
+<p>![](MATLAB深度学习嵌入/屏幕快照 2020-05-13 下午9.38.14.png)</p>
+<h4 id="自动生成c代码"><a class="markdownIt-Anchor" href="#自动生成c代码"></a> <strong>自动生成C++代码</strong></h4>
+<p>通过cnncodegen转化成C++代码集：</p>
 <ul>
 <li>本机环境预设置</li>
-<li>cnncodegen（net,’targetlab’,’libraryname’）;树莓派选择’arm-computer’</li>
+<li>cnncodegen（net,‘targetlab’,‘libraryname’）;树莓派选择’arm-computer’</li>
 <li>提供主函数，手写main</li>
 </ul>
-<p><img src="/2020/05/04/MATLAB%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E5%B5%8C%E5%85%A5/屏幕快照 2020-05-13 下午9.30.11.png" alt="目标器件为ARM的cnncongegen流程"></p>
-<h4 id="在树莓派上进行部署和推断"><a href="#在树莓派上进行部署和推断" class="headerlink" title="在树莓派上进行部署和推断"></a><strong>在树莓派上进行部署和推断</strong></h4><p>以下是在树莓派上进行推断的结构图，net.predict(in)处需要放入训练过的模型生成好的C++程序</p>
+<p>![目标器件为ARM的cnncongegen流程](MATLAB深度学习嵌入/屏幕快照 2020-05-13 下午9.30.11.png)</p>
+<h4 id="在树莓派上进行部署和推断"><a class="markdownIt-Anchor" href="#在树莓派上进行部署和推断"></a> <strong>在树莓派上进行部署和推断</strong></h4>
+<p>以下是在树莓派上进行推断的结构图，net.predict(in)处需要放入训练过的模型生成好的C++程序</p>
 <p>在树莓派中构建基于ARM Compute Library的可执行程序</p>
-<p><img src="/2020/05/04/MATLAB%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E5%B5%8C%E5%85%A5/屏幕快照 2020-05-13 下午9.32.07.png" alt></p>
-<p><img src="/2020/05/04/MATLAB%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E5%B5%8C%E5%85%A5/ 12 12.png" alt></p>
+<p>![](MATLAB深度学习嵌入/屏幕快照 2020-05-13 下午9.32.07.png)</p>
+<p>![](MATLAB深度学习嵌入/ 12 12.png)</p>
 <p>运行结果</p>
-<p><img src="/2020/05/04/MATLAB%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E5%B5%8C%E5%85%A5/屏幕快照 2020-05-13 下午9.45.11.png" alt="99.4%正确率，374ms的腿短时间"></p>
-<h4 id="总结"><a href="#总结" class="headerlink" title="总结"></a><strong>总结</strong></h4><p>回答一下最初的疑惑，算法如何在控制器上体现可以总结为如下框图：</p>
-<p>算法设计——应用设计——独立部署</p>
+<p>![99.4%正确率，374ms的腿短时间](MATLAB深度学习嵌入/屏幕快照 2020-05-13 下午9.45.11.png)</p>
+<h4 id="总结"><a class="markdownIt-Anchor" href="#总结"></a> <strong>总结</strong></h4>
+<p>回答一下最初的疑惑，算法如何在控制器上体现可以总结为如下框图：</p>
+<p>算法设计----应用设计----独立部署</p>
 <p>其中MATLAB起到的作用有，存储数据，设计神经网络（可以借助大牛们搭好的），借用GPU进行训练，将过程可视化。打包模型之后也能在MATLAB中可以生成C++代码和CUDA代码，独立部署到需要的树莓派/GPU/CPU中去。</p>
-<p><img src="/2020/05/04/MATLAB%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E5%B5%8C%E5%85%A5/ 13 13.png" alt></p>
+<p>![](MATLAB深度学习嵌入/ 13 13.png)</p>
 
           
         
@@ -1218,7 +1245,7 @@ cost=1000*num_mf+10*num_fp
                   <span class="post-meta-item-text">Words count in article&#58;</span>
                 
                 <span title="Words count in article">
-                  268
+                  274
                 </span>
               
 
@@ -1257,9 +1284,9 @@ cost=1000*num_mf+10*num_fp
       
         
           
-            <p>上周日（5月3日）晚，我在Zoom上参加了梅尔顿基金会（Melton Foundation）举行的<strong># Quarantine with me</strong>的活动。这个系列的活动由基金会在Covid-19全球隔离期间举办。活动的初衷是通过搭建基金会成员间直接、真诚、开放的讨论，越过充斥政治和偏见的媒介来分享观察、了解世界，加强并表达了我们共同致力于解决当今相互联系的世界中紧迫问题的承诺。</p>
+            <p>上周日（5月3日）晚，我在Zoom上参加了梅尔顿基金会（Melton Foundation）举行的**# Quarantine with me**的活动。这个系列的活动由基金会在Covid-19全球隔离期间举办。活动的初衷是通过搭建基金会成员间直接、真诚、开放的讨论，越过充斥政治和偏见的媒介来分享观察、了解世界，加强并表达了我们共同致力于解决当今相互联系的世界中紧迫问题的承诺。</p>
 <p>周日的活动同时也作为一年一度的Melton Day的特别分享，因此规模也很大，非常有幸在会议上见到了<strong>创始人Bill Melton</strong>以及许多如今在世界各个角落发挥影响力的Melton Family的前辈们。这次活动重点讨论<strong>Covid-19</strong>所带来的<strong>经济和社会影响</strong>。我们将讨论可能会从危机中摆脱出来的新的经济模式，并探讨持久的封锁和即将到来的经济衰退对社会的影响。</p>
-<p><img src="/2020/05/04/Never%20Waste%20A%20Crisis/1.png"></p>
+<p>![](Never Waste A Crisis/1.png)</p>
 
           
         
@@ -1393,7 +1420,7 @@ cost=1000*num_mf+10*num_fp
                   <span class="post-meta-item-text">Words count in article&#58;</span>
                 
                 <span title="Words count in article">
-                  915
+                  995
                 </span>
               
 
@@ -1441,33 +1468,44 @@ cost=1000*num_mf+10*num_fp
 <li>试车数据的记录——CAN记录仪</li>
 </ul>
 <p>对于赛车控制系统的开发和调试，数据分析的好处可谓至关重要：指导开发方向，提高开发速度，加快迭代速度等。然而直接在操作界面上进行数据分析不仅耗时，对各种类型的终端用户都不友好（例如团队中有不会MATLAB或没有Liscense的同学就比较麻烦）。之后的分享中，马家骏针对以上痛点介绍了电车队在调试中使用四个帮助提升开发效率的小技巧。</p>
-<h3 id="利用matlab-gui进行简易数据可视化软件的开发">1. 利用MATLAB GUI进行简易数据可视化软件的开发</h3>
+<h3 id="1-利用matlab-gui进行简易数据可视化软件的开发"><a class="markdownIt-Anchor" href="#1-利用matlab-gui进行简易数据可视化软件的开发"></a> 1. 利用MATLAB GUI进行简易数据可视化软件的开发</h3>
 <ul>
-<li><p>分析数据时重复输入代码</p></li>
-<li><p>有限的MATLAB License</p></li>
-<li><p>该步骤其实就是把流水化的可视化步骤打包起来，用GUI做界面，GUI的相关知识之后我会进行补充。</p>
-<p><img src="/2020/05/01/MATLAB&Simulink%20%E5%BC%80%E5%8F%91%E8%87%AA%E5%8A%A8%E5%8C%96%E4%B8%8E%E5%8F%AF%E8%A7%86%E5%8C%96%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90%E5%B7%A5%E5%85%B7/1.png"></p>
-<p><strong>基于MATLAB GUI开发的简易可视化软件：</strong></p></li>
+<li>
+<p>分析数据时重复输入代码</p>
+</li>
+<li>
+<p>有限的MATLAB License</p>
+</li>
+<li>
+<p>该步骤其实就是把流水化的可视化步骤打包起来，用GUI做界面，GUI的相关知识之后我会进行补充。</p>
+<p>![](MATLAB&amp;Simulink 开发自动化与可视化数据分析工具/1.png)</p>
+<p><strong>基于MATLAB GUI开发的简易可视化软件：</strong></p>
+</li>
 </ul>
-<p><img src="/2020/05/01/MATLAB&Simulink%20%E5%BC%80%E5%8F%91%E8%87%AA%E5%8A%A8%E5%8C%96%E4%B8%8E%E5%8F%AF%E8%A7%86%E5%8C%96%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90%E5%B7%A5%E5%85%B7/2.png"></p>
-<h3 id="自动化的数据分析算法">2. 自动化的数据分析算法</h3>
+<p>![](MATLAB&amp;Simulink 开发自动化与可视化数据分析工具/2.png)</p>
+<h3 id="2-自动化的数据分析算法"><a class="markdownIt-Anchor" href="#2-自动化的数据分析算法"></a> 2. 自动化的数据分析算法</h3>
 <ul>
-<li><p>车辆的驱动防滑算法的PID模块的参数标定过程，需要对实车试验数据进行大量的分析</p></li>
-<li><p>通过算法自动判断车辆直线加速的开始与结束，自动得到车辆在某一标定值夏的加速性能，帮助快速筛选出最优标定参数——方向盘上有可调PID的按钮，根据不同路况自动设置。</p>
-<p><img src="/2020/05/01/MATLAB&Simulink%20%E5%BC%80%E5%8F%91%E8%87%AA%E5%8A%A8%E5%8C%96%E4%B8%8E%E5%8F%AF%E8%A7%86%E5%8C%96%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90%E5%B7%A5%E5%85%B7/3.png"></p>
-<p>PID的调节是一个比较复杂的过程，有了这一步对判断参数优劣、快速筛选提供依据。这让我想起了智能焊机项目进行时，学长就系数控制中PID的参数标定做了很长时间，也许这个可视化会是一个节省时间的好方法。</p></li>
+<li>
+<p>车辆的驱动防滑算法的PID模块的参数标定过程，需要对实车试验数据进行大量的分析</p>
+</li>
+<li>
+<p>通过算法自动判断车辆直线加速的开始与结束，自动得到车辆在某一标定值夏的加速性能，帮助快速筛选出最优标定参数——方向盘上有可调PID的按钮，根据不同路况自动设置。</p>
+<p>![](MATLAB&amp;Simulink 开发自动化与可视化数据分析工具/3.png)</p>
+<p>PID的调节是一个比较复杂的过程，有了这一步对判断参数优劣、快速筛选提供依据。这让我想起了智能焊机项目进行时，学长就系数控制中PID的参数标定做了很长时间，也许这个可视化会是一个节省时间的好方法。</p>
+</li>
 </ul>
-<h3 id="用于数据分析的车辆轨迹重建">3. 用于数据分析的车辆轨迹重建</h3>
+<h3 id="3-用于数据分析的车辆轨迹重建"><a class="markdownIt-Anchor" href="#3-用于数据分析的车辆轨迹重建"></a> 3. 用于数据分析的车辆轨迹重建</h3>
 <ul>
 <li>当一个赛车手再反馈问题时，往往记得“第几个弯、什么地形”，而通常不是“几分几秒”，为了数据反馈和处理相连接，方便快速迭代，电车队利用MATLAB重建了车辆轨迹，将数据域从时间转到了赛道上。
 <ul>
 <li>更直观的分析，颜色深浅对应车速</li>
 <li>收集赛道数据——GPS（精度不够）/光学传感器</li>
 <li>方便进行调试——例如，当车手提出第三个弯发生了甩尾现象，后台工程师可以针对传感器中该场景下转弯前赛车速度、转弯后赛车速度、弯角等信息对车辆调教，设置该场景下适宜的控制参数。</li>
-</ul></li>
 </ul>
-<p><img src="/2020/05/01/MATLAB&Simulink%20%E5%BC%80%E5%8F%91%E8%87%AA%E5%8A%A8%E5%8C%96%E4%B8%8E%E5%8F%AF%E8%A7%86%E5%8C%96%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90%E5%B7%A5%E5%85%B7/4.png"></p>
-<h3 id="simulink脚本建立数据回放接口">4. Simulink脚本建立数据回放接口</h3>
+</li>
+</ul>
+<p>![](MATLAB&amp;Simulink 开发自动化与可视化数据分析工具/4.png)</p>
+<h3 id="4-simulink脚本建立数据回放接口"><a class="markdownIt-Anchor" href="#4-simulink脚本建立数据回放接口"></a> 4. Simulink脚本建立数据回放接口</h3>
 <ul>
 <li>数据分析时需要回放数据到Simulink模型</li>
 <li>传统的方法是手动创建fromworkspace模块，工作重复，输入多的话很耗时间。</li>
@@ -1606,7 +1644,7 @@ cost=1000*num_mf+10*num_fp
                   <span class="post-meta-item-text">Words count in article&#58;</span>
                 
                 <span title="Words count in article">
-                  3.2k
+                  3.3k
                 </span>
               
 
@@ -1622,7 +1660,7 @@ cost=1000*num_mf+10*num_fp
                   <span class="post-meta-item-text">Reading time &asymp;</span>
                 
                 <span title="Reading time">
-                  10
+                  11
                 </span>
               
             </div>
@@ -1645,62 +1683,71 @@ cost=1000*num_mf+10*num_fp
       
         
           
-            <p>​ 北京时间4月25日凌晨，拼多多发布了2019财年年报，拼多多创始人、董事长兼CEO黄峥随同年报发布了股东信，这是2018年以来黄峥连续发布的第三封年度致股东信。信中，黄峥多次将物理世界的客观规律与疫情之下人类社会中的种种现象相联结，从疫情与世界、人类与时间的关系角度，重新思考当下面对的现实，读来颇有趣味。</p>
+            <p>​     北京时间4月25日凌晨，拼多多发布了2019财年年报，拼多多创始人、董事长兼CEO黄峥随同年报发布了股东信，这是2018年以来黄峥连续发布的第三封年度致股东信。信中，黄峥多次将物理世界的客观规律与疫情之下人类社会中的种种现象相联结，从疫情与世界、人类与时间的关系角度，重新思考当下面对的现实，读来颇有趣味。</p>
 <blockquote>
 <p>熵（S）与信息有关，我不确定熵是否连接着精神世界，但它确实可以帮助我感受和理解时间。时间不应该只是物理世界里一个可逆的变量，或是孤立的存在于精神的想象，沉默而永不停息的它更像是在物质和精神世界表象背后的那股强大的有方向的不可逆的驱动力。</p>
 </blockquote>
-<p>​ 文中他对于熵和时间不禁让我回想起之前在学习热力学时的情形。熵这个概念，承载了非常多的内涵，直到现在我都认为自己还没有完全消化。它打破了自然规律对称、可逆、完美的模式，在某种意义上可以认为是人类对这个世界认知的一个缺口。心血来潮，突然想再回忆一下当时“熵脑筋”的一些问题。</p>
-<h3 id="what-熵的历史">1. WHAT 熵的历史</h3>
-<p>​ 认真追溯熵的起源要从萨迪·卡诺发表的论文说起。1824年，萨迪·卡诺发表了《谈谈火的动力和能发动这种动力的机器》一文，在其中阐明了著名的卡诺定理。卡诺定理说明了热机的最大效益只和其工作时高温热源和低温热源的温度有关。该定理后来成了热力学第二定律的基石。1850年，克劳修斯发表《论热的动力以及由此推出的关于热学本身的诸定律》，提出了热力学第二定律的一种表述：不可能把热从低温物体传向高温物体，而不产生其他影响。紧随其后，开尔文提出了这一定律的另一种表述：不可能从单一热源获取热，使之完全变成有用功，而不产生其他影响。1865年。克劳修斯在《关于热唯动说基本公式的种种方便应用形式》，引进了熵的概念，提出了熵增原理。其中表述道：我认为用古代语言来称呼科学上具有重要意义的量比较好，所以我建议称量S为entropy（熵）。这个词来源于希腊文，即变换。我有意把这个词称为entropy，以便与energy（能）尽可能相似。</p>
+<p>​     文中他对于熵和时间不禁让我回想起之前在学习热力学时的情形。熵这个概念，承载了非常多的内涵，直到现在我都认为自己还没有完全消化。它打破了自然规律对称、可逆、完美的模式，在某种意义上可以认为是人类对这个世界认知的一个缺口。心血来潮，突然想再回忆一下当时“熵脑筋”的一些问题。</p>
+<h3 id="1-what-熵的历史"><a class="markdownIt-Anchor" href="#1-what-熵的历史"></a> 1. WHAT 熵的历史</h3>
+<p>​     认真追溯熵的起源要从萨迪·卡诺发表的论文说起。1824年，萨迪·卡诺发表了《谈谈火的动力和能发动这种动力的机器》一文，在其中阐明了著名的卡诺定理。卡诺定理说明了热机的最大效益只和其工作时高温热源和低温热源的温度有关。该定理后来成了热力学第二定律的基石。1850年，克劳修斯发表《论热的动力以及由此推出的关于热学本身的诸定律》，提出了热力学第二定律的一种表述：不可能把热从低温物体传向高温物体，而不产生其他影响。紧随其后，开尔文提出了这一定律的另一种表述：不可能从单一热源获取热，使之完全变成有用功，而不产生其他影响。1865年。克劳修斯在《关于热唯动说基本公式的种种方便应用形式》，引进了熵的概念，提出了熵增原理。其中表述道：我认为用古代语言来称呼科学上具有重要意义的量比较好，所以我建议称量S为entropy（熵）。这个词来源于希腊文，即变换。我有意把这个词称为entropy，以便与energy（能）尽可能相似。</p>
 <p>从此，熵就正式诞生了。</p>
-<p>此时，克劳修斯提出的熵最初的定义式是： <span class="math display">\[
-dS \geq \frac{dQ}{T}
-\]</span> 其熵增原理即在此公式上认为的，对绝热过程或孤立系统，<span class="math inline">\(dQ=0\)</span>，则始终有<span class="math inline">\(dS\geq0\)</span>。由此定义的熵为克劳修斯熵，或热力学熵，此时熵是一个态函数，是热力学宏观量，对绝热过程和孤立系统中所发生的过程，由熵函数的数值可以判断过程进行的方向和限度。这么来看熵似乎是一个和过程有关的量。</p>
-<p>但是随后的理论发展走向证明这并不是一个简简单单的过程变量。1877年，玻尔兹曼提出可以用熵来表示系统无序性的大小，其中W为微观状态数，一个微观系统的状态数越多，该系统则越混乱。1896年建立了熵和系统宏观态可能的微观态数目 <span class="math display">\[
-S \ltimes ln(W)
-\]</span> 1900年，普朗克引进比例系数k(玻尔兹曼常量)，将上式改写成： <span class="math display">\[
-S=klnW
-\]</span> 此时熵被称为玻尔兹曼熵，或统计熵。</p>
+<p>此时，克劳修斯提出的熵最初的定义式是：</p>
+<p class="katex-block"><span class="katex-display"><span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>d</mi><mi>S</mi><mo>≥</mo><mfrac><mrow><mi>d</mi><mi>Q</mi></mrow><mi>T</mi></mfrac></mrow><annotation encoding="application/x-tex">dS \geq \frac{dQ}{T}
+</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.83041em;vertical-align:-0.13597em;"></span><span class="mord mathdefault">d</span><span class="mord mathdefault" style="margin-right:0.05764em;">S</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">≥</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:2.0574399999999997em;vertical-align:-0.686em;"></span><span class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.3714399999999998em;"><span style="top:-2.314em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord mathdefault" style="margin-right:0.13889em;">T</span></span></span><span style="top:-3.23em;"><span class="pstrut" style="height:3em;"></span><span class="frac-line" style="border-bottom-width:0.04em;"></span></span><span style="top:-3.677em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord mathdefault">d</span><span class="mord mathdefault">Q</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.686em;"><span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span></span></span></span></span></p>
+<p>其熵增原理即在此公式上认为的，对绝热过程或孤立系统，<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>d</mi><mi>Q</mi><mo>=</mo><mn>0</mn></mrow><annotation encoding="application/x-tex">dQ=0</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8888799999999999em;vertical-align:-0.19444em;"></span><span class="mord mathdefault">d</span><span class="mord mathdefault">Q</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">0</span></span></span></span>，则始终有<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>d</mi><mi>S</mi><mo>≥</mo><mn>0</mn></mrow><annotation encoding="application/x-tex">dS\geq0</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.83041em;vertical-align:-0.13597em;"></span><span class="mord mathdefault">d</span><span class="mord mathdefault" style="margin-right:0.05764em;">S</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">≥</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">0</span></span></span></span>。由此定义的熵为克劳修斯熵，或热力学熵，此时熵是一个态函数，是热力学宏观量，对绝热过程和孤立系统中所发生的过程，由熵函数的数值可以判断过程进行的方向和限度。这么来看熵似乎是一个和过程有关的量。</p>
+<p>但是随后的理论发展走向证明这并不是一个简简单单的过程变量。1877年，玻尔兹曼提出可以用熵来表示系统无序性的大小，其中W为微观状态数，一个微观系统的状态数越多，该系统则越混乱。1896年建立了熵和系统宏观态可能的微观态数目</p>
+<p class="katex-block"><span class="katex-display"><span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>S</mi><mo>⋉</mo><mi>l</mi><mi>n</mi><mo stretchy="false">(</mo><mi>W</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">S \ltimes ln(W)
+</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.765em;vertical-align:-0.08167em;"></span><span class="mord mathdefault" style="margin-right:0.05764em;">S</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin amsrm">⋉</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault" style="margin-right:0.01968em;">l</span><span class="mord mathdefault">n</span><span class="mopen">(</span><span class="mord mathdefault" style="margin-right:0.13889em;">W</span><span class="mclose">)</span></span></span></span></span></p>
+<p>1900年，普朗克引进比例系数k(玻尔兹曼常量)，将上式改写成：</p>
+<p class="katex-block"><span class="katex-display"><span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>S</mi><mo>=</mo><mi>k</mi><mi>l</mi><mi>n</mi><mi>W</mi></mrow><annotation encoding="application/x-tex">S=klnW
+</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord mathdefault" style="margin-right:0.05764em;">S</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.69444em;vertical-align:0em;"></span><span class="mord mathdefault" style="margin-right:0.03148em;">k</span><span class="mord mathdefault" style="margin-right:0.01968em;">l</span><span class="mord mathdefault">n</span><span class="mord mathdefault" style="margin-right:0.13889em;">W</span></span></span></span></span></p>
+<p>此时熵被称为玻尔兹曼熵，或统计熵。</p>
 <p>一个看似描述过程的量最后与描述状态的量扯上了关系，甚至还成为了衡量该时刻系统混乱程度的指标，这究竟是为什么？</p>
-<h3 id="why-从描述过程到描述混乱状态">2. WHY 从描述过程到描述混乱状态</h3>
-<p>首先让我们来标记这两个公式： <span class="math display">\[
-dS=\frac{dQ}{T}……（1）
-\]</span></p>
-<p><span class="math display">\[
-S=klnW……（2）
-\]</span></p>
-<p>首先我们从微观状态数出发。从微观角度描述系统中单个粒子的状态，我们需要指出粒子的运动特征。这个特征可以用有方向的动量去表示。我们知道空间中动量有三个指向，如果把动量也看成三个维度的话，那么状态数应该和“状态空间”的大小成正比，即视为和<span class="math inline">\(\bar{p}\)</span>的三次方成正比，即 <span class="math display">\[
-W_p\ltimes \bar{p}^3
-\]</span> 又因为 <span class="math display">\[
-\frac{\bar{m}\bar{c}^2}{2}=\frac{3}{2}KT
-\]</span> 可以得出动量的状态数和温度的3/2次方成正比： <span class="math display">\[
-W_p\ltimes T^\frac{3}{2}
-\]</span> 代回（2），得出 <span class="math display">\[
-S\ltimes lnT ……（3）
-\]</span> 这时我们假设气体开始向外界传热，它的温度变化了一个小量<span class="math inline">\(\delta T\)</span>，此时熵变化： <span class="math display">\[
-S_{T_0+\delta T}=S_{T_0}+\frac{\partial S}{\partial T_{T=T_0}}
-\]</span> 考虑表示熵的变化的第二项，带入熵的对数表达式就可以得到： <span class="math display">\[
-\delta S\ltimes \frac{\partial{lnT}}{\partial T}\delta T=\frac{\delta T}{T}
-\]</span> 又因为对理想气体而言，传热量正比于温度变化量（如对定比热容的定压过程而言<span class="math inline">\(\delta Q=c_{p_0}\delta T\)</span>)，这样就可以推导出： <span class="math display">\[
-\delta S =\frac{\delta Q}{T}
-\]</span> 即与公式（1）表达为同一个意思。这样，状态参数熵和所谓“过程熵”之间的关系就可以得到了，也就能解释热力学中所定义的熵为什么能成为一个体系混乱度的度量了。以上是建立在理想气体的基础上，给出一个加以理解玻尔兹曼熵推导出克劳修斯熵的例子，而不是严格证明。不过，不涉及具体系统也可以得出同样的结论，严谨的推导需要引入统计热力学的运算过程。</p>
-<p>总结一下，玻尔兹曼熵和还是克劳修斯熵事实上是从不同的角度来描述某一个系统。克劳修斯熵作为热力学熵，是宏观量。玻尔兹曼熵作为统计熵，是连接微观和宏观的量，是刻画微观信息和宏观信息的差值的。热力学统计力学本身就是用统计平均的方法，研究大量微观粒子的行为，从而可以从宏观状态函数上去把握系统的性质，这并不矛盾。这两者之间建立的“等效”概念就是一个非常深奥的学科了。玻尔兹曼常数<span class="math inline">\(k\)</span>的出现也是普朗克为了用统计力学计算黑体辐射时与经典热力学结果相同而进行定义的。我自己目前粗浅的理解是<strong>如果这个量满足这样的的运算规律，就可以说得到了这个量表达式</strong>。就好像集合的映射关系的同构概念，能描述这种现象的函数关系式都是等价的。</p>
+<h3 id="2-why-从描述过程到描述混乱状态"><a class="markdownIt-Anchor" href="#2-why-从描述过程到描述混乱状态"></a> 2. WHY 从描述过程到描述混乱状态</h3>
+<p>首先让我们来标记这两个公式：</p>
+<p class="katex-block"><span class="katex-display"><span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>d</mi><mi>S</mi><mo>=</mo><mfrac><mrow><mi>d</mi><mi>Q</mi></mrow><mi>T</mi></mfrac><mo>…</mo><mo>…</mo><mi mathvariant="normal">（</mi><mn>1</mn><mi mathvariant="normal">）</mi></mrow><annotation encoding="application/x-tex">dS=\frac{dQ}{T}……（1）
+</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.69444em;vertical-align:0em;"></span><span class="mord mathdefault">d</span><span class="mord mathdefault" style="margin-right:0.05764em;">S</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:2.0574399999999997em;vertical-align:-0.686em;"></span><span class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.3714399999999998em;"><span style="top:-2.314em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord mathdefault" style="margin-right:0.13889em;">T</span></span></span><span style="top:-3.23em;"><span class="pstrut" style="height:3em;"></span><span class="frac-line" style="border-bottom-width:0.04em;"></span></span><span style="top:-3.677em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord mathdefault">d</span><span class="mord mathdefault">Q</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.686em;"><span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="minner">…</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="minner">…</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord cjk_fallback">（</span><span class="mord">1</span><span class="mord cjk_fallback">）</span></span></span></span></span></p>
+<p class="katex-block"><span class="katex-display"><span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>S</mi><mo>=</mo><mi>k</mi><mi>l</mi><mi>n</mi><mi>W</mi><mo>…</mo><mo>…</mo><mi mathvariant="normal">（</mi><mn>2</mn><mi mathvariant="normal">）</mi></mrow><annotation encoding="application/x-tex">S=klnW……（2）
+</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord mathdefault" style="margin-right:0.05764em;">S</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.69444em;vertical-align:0em;"></span><span class="mord mathdefault" style="margin-right:0.03148em;">k</span><span class="mord mathdefault" style="margin-right:0.01968em;">l</span><span class="mord mathdefault">n</span><span class="mord mathdefault" style="margin-right:0.13889em;">W</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="minner">…</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="minner">…</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord cjk_fallback">（</span><span class="mord">2</span><span class="mord cjk_fallback">）</span></span></span></span></span></p>
+<p>首先我们从微观状态数出发。从微观角度描述系统中单个粒子的状态，我们需要指出粒子的运动特征。这个特征可以用有方向的动量去表示。我们知道空间中动量有三个指向，如果把动量也看成三个维度的话，那么状态数应该和“状态空间”的大小成正比，即视为和<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mover accent="true"><mi>p</mi><mo>ˉ</mo></mover></mrow><annotation encoding="application/x-tex">\bar{p}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.7622199999999999em;vertical-align:-0.19444em;"></span><span class="mord accent"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.56778em;"><span style="top:-3em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord mathdefault">p</span></span></span><span style="top:-3em;"><span class="pstrut" style="height:3em;"></span><span class="accent-body" style="left:-0.16666em;">ˉ</span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.19444em;"><span></span></span></span></span></span></span></span></span>的三次方成正比，即</p>
+<p class="katex-block"><span class="katex-display"><span class="katex"><span class="katex-mathml"><math><semantics><mrow><msub><mi>W</mi><mi>p</mi></msub><mo>⋉</mo><msup><mover accent="true"><mi>p</mi><mo>ˉ</mo></mover><mn>3</mn></msup></mrow><annotation encoding="application/x-tex">W_p\ltimes \bar{p}^3
+</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.969438em;vertical-align:-0.286108em;"></span><span class="mord"><span class="mord mathdefault" style="margin-right:0.13889em;">W</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.15139200000000003em;"><span style="top:-2.5500000000000003em;margin-left:-0.13889em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathdefault mtight">p</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.286108em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin amsrm">⋉</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:1.0585479999999998em;vertical-align:-0.19444em;"></span><span class="mord"><span class="mord accent"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.56778em;"><span style="top:-3em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord mathdefault">p</span></span></span><span style="top:-3em;"><span class="pstrut" style="height:3em;"></span><span class="accent-body" style="left:-0.16666em;">ˉ</span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.19444em;"><span></span></span></span></span></span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8641079999999999em;"><span style="top:-3.113em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">3</span></span></span></span></span></span></span></span></span></span></span></span></p>
+<p>又因为</p>
+<p class="katex-block"><span class="katex-display"><span class="katex"><span class="katex-mathml"><math><semantics><mrow><mfrac><mrow><mover accent="true"><mi>m</mi><mo>ˉ</mo></mover><msup><mover accent="true"><mi>c</mi><mo>ˉ</mo></mover><mn>2</mn></msup></mrow><mn>2</mn></mfrac><mo>=</mo><mfrac><mn>3</mn><mn>2</mn></mfrac><mi>K</mi><mi>T</mi></mrow><annotation encoding="application/x-tex">\frac{\bar{m}\bar{c}^2}{2}=\frac{3}{2}KT
+</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:2.177108em;vertical-align:-0.686em;"></span><span class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.491108em;"><span style="top:-2.314em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord">2</span></span></span><span style="top:-3.23em;"><span class="pstrut" style="height:3em;"></span><span class="frac-line" style="border-bottom-width:0.04em;"></span></span><span style="top:-3.677em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord accent"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.56778em;"><span style="top:-3em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord mathdefault">m</span></span></span><span style="top:-3em;"><span class="pstrut" style="height:3em;"></span><span class="accent-body" style="left:-0.25em;">ˉ</span></span></span></span></span></span><span class="mord"><span class="mord accent"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.56778em;"><span style="top:-3em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord mathdefault">c</span></span></span><span style="top:-3em;"><span class="pstrut" style="height:3em;"></span><span class="accent-body" style="left:-0.19444em;">ˉ</span></span></span></span></span></span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8141079999999999em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span></span></span></span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.686em;"><span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:2.00744em;vertical-align:-0.686em;"></span><span class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.32144em;"><span style="top:-2.314em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord">2</span></span></span><span style="top:-3.23em;"><span class="pstrut" style="height:3em;"></span><span class="frac-line" style="border-bottom-width:0.04em;"></span></span><span style="top:-3.677em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord">3</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.686em;"><span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span><span class="mord mathdefault" style="margin-right:0.07153em;">K</span><span class="mord mathdefault" style="margin-right:0.13889em;">T</span></span></span></span></span></p>
+<p>可以得出动量的状态数和温度的3/2次方成正比：</p>
+<p class="katex-block"><span class="katex-display"><span class="katex"><span class="katex-mathml"><math><semantics><mrow><msub><mi>W</mi><mi>p</mi></msub><mo>⋉</mo><msup><mi>T</mi><mfrac><mn>3</mn><mn>2</mn></mfrac></msup></mrow><annotation encoding="application/x-tex">W_p\ltimes T^\frac{3}{2}
+</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.969438em;vertical-align:-0.286108em;"></span><span class="mord"><span class="mord mathdefault" style="margin-right:0.13889em;">W</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.15139200000000003em;"><span style="top:-2.5500000000000003em;margin-left:-0.13889em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathdefault mtight">p</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.286108em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin amsrm">⋉</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:1.0040200000000001em;vertical-align:0em;"></span><span class="mord"><span class="mord mathdefault" style="margin-right:0.13889em;">T</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:1.0040200000000001em;"><span style="top:-3.4130000000000003em;margin-right:0.05em;"><span class="pstrut" style="height:3em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mopen nulldelimiter sizing reset-size3 size6"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.8443142857142858em;"><span style="top:-2.656em;"><span class="pstrut" style="height:3em;"></span><span class="sizing reset-size3 size1 mtight"><span class="mord mtight"><span class="mord mtight">2</span></span></span></span><span style="top:-3.2255000000000003em;"><span class="pstrut" style="height:3em;"></span><span class="frac-line mtight" style="border-bottom-width:0.049em;"></span></span><span style="top:-3.384em;"><span class="pstrut" style="height:3em;"></span><span class="sizing reset-size3 size1 mtight"><span class="mord mtight"><span class="mord mtight">3</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.344em;"><span></span></span></span></span></span><span class="mclose nulldelimiter sizing reset-size3 size6"></span></span></span></span></span></span></span></span></span></span></span></span></span></p>
+<p>代回（2），得出</p>
+<p class="katex-block"><span class="katex-display"><span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>S</mi><mo>⋉</mo><mi>l</mi><mi>n</mi><mi>T</mi><mo>…</mo><mo>…</mo><mi mathvariant="normal">（</mi><mn>3</mn><mi mathvariant="normal">）</mi></mrow><annotation encoding="application/x-tex">S\ltimes lnT ……（3）
+</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.765em;vertical-align:-0.08167em;"></span><span class="mord mathdefault" style="margin-right:0.05764em;">S</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin amsrm">⋉</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:0.69444em;vertical-align:0em;"></span><span class="mord mathdefault" style="margin-right:0.01968em;">l</span><span class="mord mathdefault">n</span><span class="mord mathdefault" style="margin-right:0.13889em;">T</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="minner">…</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="minner">…</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord cjk_fallback">（</span><span class="mord">3</span><span class="mord cjk_fallback">）</span></span></span></span></span></p>
+<p>这时我们假设气体开始向外界传热，它的温度变化了一个小量<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>δ</mi><mi>T</mi></mrow><annotation encoding="application/x-tex">\delta T</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.69444em;vertical-align:0em;"></span><span class="mord mathdefault" style="margin-right:0.03785em;">δ</span><span class="mord mathdefault" style="margin-right:0.13889em;">T</span></span></span></span>，此时熵变化：</p>
+<p class="katex-block"><span class="katex-display"><span class="katex"><span class="katex-mathml"><math><semantics><mrow><msub><mi>S</mi><mrow><msub><mi>T</mi><mn>0</mn></msub><mo>+</mo><mi>δ</mi><mi>T</mi></mrow></msub><mo>=</mo><msub><mi>S</mi><msub><mi>T</mi><mn>0</mn></msub></msub><mo>+</mo><mfrac><mrow><mi mathvariant="normal">∂</mi><mi>S</mi></mrow><mrow><mi mathvariant="normal">∂</mi><msub><mi>T</mi><mrow><mi>T</mi><mo>=</mo><msub><mi>T</mi><mn>0</mn></msub></mrow></msub></mrow></mfrac></mrow><annotation encoding="application/x-tex">S_{T_0+\delta T}=S_{T_0}+\frac{\partial S}{\partial T_{T=T_0}}
+</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.93343em;vertical-align:-0.2501em;"></span><span class="mord"><span class="mord mathdefault" style="margin-right:0.05764em;">S</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.33610799999999996em;"><span style="top:-2.5500000000000003em;margin-left:-0.05764em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight"><span class="mord mathdefault mtight" style="margin-right:0.13889em;">T</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.31731428571428577em;"><span style="top:-2.357em;margin-left:-0.13889em;margin-right:0.07142857142857144em;"><span class="pstrut" style="height:2.5em;"></span><span class="sizing reset-size3 size1 mtight"><span class="mord mtight">0</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.143em;"><span></span></span></span></span></span></span><span class="mbin mtight">+</span><span class="mord mathdefault mtight" style="margin-right:0.03785em;">δ</span><span class="mord mathdefault mtight" style="margin-right:0.13889em;">T</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.2501em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.93343em;vertical-align:-0.2501em;"></span><span class="mord"><span class="mord mathdefault" style="margin-right:0.05764em;">S</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.32833099999999993em;"><span style="top:-2.5500000000000003em;margin-left:-0.05764em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight"><span class="mord mathdefault mtight" style="margin-right:0.13889em;">T</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.31731428571428577em;"><span style="top:-2.357em;margin-left:-0.13889em;margin-right:0.07142857142857144em;"><span class="pstrut" style="height:2.5em;"></span><span class="sizing reset-size3 size1 mtight"><span class="mord mtight">0</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.143em;"><span></span></span></span></span></span></span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.2501em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:2.30754em;vertical-align:-0.9361em;"></span><span class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.37144em;"><span style="top:-2.314em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord" style="margin-right:0.05556em;">∂</span><span class="mord"><span class="mord mathdefault" style="margin-right:0.13889em;">T</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.32833099999999993em;"><span style="top:-2.5500000000000003em;margin-left:-0.13889em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathdefault mtight" style="margin-right:0.13889em;">T</span><span class="mrel mtight">=</span><span class="mord mtight"><span class="mord mathdefault mtight" style="margin-right:0.13889em;">T</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.31731428571428577em;"><span style="top:-2.357em;margin-left:-0.13889em;margin-right:0.07142857142857144em;"><span class="pstrut" style="height:2.5em;"></span><span class="sizing reset-size3 size1 mtight"><span class="mord mtight">0</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.143em;"><span></span></span></span></span></span></span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.2501em;"><span></span></span></span></span></span></span></span></span><span style="top:-3.23em;"><span class="pstrut" style="height:3em;"></span><span class="frac-line" style="border-bottom-width:0.04em;"></span></span><span style="top:-3.677em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord" style="margin-right:0.05556em;">∂</span><span class="mord mathdefault" style="margin-right:0.05764em;">S</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.9361em;"><span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span></span></span></span></span></p>
+<p>考虑表示熵的变化的第二项，带入熵的对数表达式就可以得到：</p>
+<p class="katex-block"><span class="katex-display"><span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>δ</mi><mi>S</mi><mo>⋉</mo><mfrac><mrow><mi mathvariant="normal">∂</mi><mrow><mi>l</mi><mi>n</mi><mi>T</mi></mrow></mrow><mrow><mi mathvariant="normal">∂</mi><mi>T</mi></mrow></mfrac><mi>δ</mi><mi>T</mi><mo>=</mo><mfrac><mrow><mi>δ</mi><mi>T</mi></mrow><mi>T</mi></mfrac></mrow><annotation encoding="application/x-tex">\delta S\ltimes \frac{\partial{lnT}}{\partial T}\delta T=\frac{\delta T}{T}
+</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.77611em;vertical-align:-0.08167em;"></span><span class="mord mathdefault" style="margin-right:0.03785em;">δ</span><span class="mord mathdefault" style="margin-right:0.05764em;">S</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin amsrm">⋉</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:2.05744em;vertical-align:-0.686em;"></span><span class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.37144em;"><span style="top:-2.314em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord" style="margin-right:0.05556em;">∂</span><span class="mord mathdefault" style="margin-right:0.13889em;">T</span></span></span><span style="top:-3.23em;"><span class="pstrut" style="height:3em;"></span><span class="frac-line" style="border-bottom-width:0.04em;"></span></span><span style="top:-3.677em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord" style="margin-right:0.05556em;">∂</span><span class="mord"><span class="mord mathdefault" style="margin-right:0.01968em;">l</span><span class="mord mathdefault">n</span><span class="mord mathdefault" style="margin-right:0.13889em;">T</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.686em;"><span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span><span class="mord mathdefault" style="margin-right:0.03785em;">δ</span><span class="mord mathdefault" style="margin-right:0.13889em;">T</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:2.05744em;vertical-align:-0.686em;"></span><span class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.37144em;"><span style="top:-2.314em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord mathdefault" style="margin-right:0.13889em;">T</span></span></span><span style="top:-3.23em;"><span class="pstrut" style="height:3em;"></span><span class="frac-line" style="border-bottom-width:0.04em;"></span></span><span style="top:-3.677em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord mathdefault" style="margin-right:0.03785em;">δ</span><span class="mord mathdefault" style="margin-right:0.13889em;">T</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.686em;"><span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span></span></span></span></span></p>
+<p>又因为对理想气体而言，传热量正比于温度变化量（如对定比热容的定压过程而言<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>δ</mi><mi>Q</mi><mo>=</mo><msub><mi>c</mi><msub><mi>p</mi><mn>0</mn></msub></msub><mi>δ</mi><mi>T</mi></mrow><annotation encoding="application/x-tex">\delta Q=c_{p_0}\delta T</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8888799999999999em;vertical-align:-0.19444em;"></span><span class="mord mathdefault" style="margin-right:0.03785em;">δ</span><span class="mord mathdefault">Q</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.980548em;vertical-align:-0.286108em;"></span><span class="mord"><span class="mord mathdefault">c</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.15139200000000003em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight"><span class="mord mathdefault mtight">p</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.31731428571428577em;"><span style="top:-2.357em;margin-left:0em;margin-right:0.07142857142857144em;"><span class="pstrut" style="height:2.5em;"></span><span class="sizing reset-size3 size1 mtight"><span class="mord mtight">0</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.143em;"><span></span></span></span></span></span></span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.286108em;"><span></span></span></span></span></span></span><span class="mord mathdefault" style="margin-right:0.03785em;">δ</span><span class="mord mathdefault" style="margin-right:0.13889em;">T</span></span></span></span>)，这样就可以推导出：</p>
+<p class="katex-block"><span class="katex-display"><span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>δ</mi><mi>S</mi><mo>=</mo><mfrac><mrow><mi>δ</mi><mi>Q</mi></mrow><mi>T</mi></mfrac></mrow><annotation encoding="application/x-tex">\delta S =\frac{\delta Q}{T}
+</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.69444em;vertical-align:0em;"></span><span class="mord mathdefault" style="margin-right:0.03785em;">δ</span><span class="mord mathdefault" style="margin-right:0.05764em;">S</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:2.0574399999999997em;vertical-align:-0.686em;"></span><span class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.3714399999999998em;"><span style="top:-2.314em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord mathdefault" style="margin-right:0.13889em;">T</span></span></span><span style="top:-3.23em;"><span class="pstrut" style="height:3em;"></span><span class="frac-line" style="border-bottom-width:0.04em;"></span></span><span style="top:-3.677em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord mathdefault" style="margin-right:0.03785em;">δ</span><span class="mord mathdefault">Q</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.686em;"><span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span></span></span></span></span></p>
+<p>即与公式（1）表达为同一个意思。这样，状态参数熵和所谓“过程熵”之间的关系就可以得到了，也就能解释热力学中所定义的熵为什么能成为一个体系混乱度的度量了。以上是建立在理想气体的基础上，给出一个加以理解玻尔兹曼熵推导出克劳修斯熵的例子，而不是严格证明。不过，不涉及具体系统也可以得出同样的结论，严谨的推导需要引入统计热力学的运算过程。</p>
+<p>总结一下，玻尔兹曼熵和还是克劳修斯熵事实上是从不同的角度来描述某一个系统。克劳修斯熵作为热力学熵，是宏观量。玻尔兹曼熵作为统计熵，是连接微观和宏观的量，是刻画微观信息和宏观信息的差值的。热力学统计力学本身就是用统计平均的方法，研究大量微观粒子的行为，从而可以从宏观状态函数上去把握系统的性质，这并不矛盾。这两者之间建立的“等效”概念就是一个非常深奥的学科了。玻尔兹曼常数<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>k</mi></mrow><annotation encoding="application/x-tex">k</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.69444em;vertical-align:0em;"></span><span class="mord mathdefault" style="margin-right:0.03148em;">k</span></span></span></span>的出现也是普朗克为了用统计力学计算黑体辐射时与经典热力学结果相同而进行定义的。我自己目前粗浅的理解是<strong>如果这个量满足这样的的运算规律，就可以说得到了这个量表达式</strong>。就好像集合的映射关系的同构概念，能描述这种现象的函数关系式都是等价的。</p>
 <p>没有唯一的“真理公式”，只有一种对现象的描述。</p>
-<h3 id="how-时间之矢">3.HOW 时间之矢</h3>
-<p>​ 回到黄峥的信。</p>
-<p>​ 他提到了是熵这个概念帮助他理解了真实的时间，不是一个物理关系式中可以加+-号的可以操控的量，而是无法反演、无法逆转的一股神秘力量，此处的神秘力量，也就是时间的方向性，我们可以称它为<strong>时间之矢</strong>。</p>
-<p>​ 在经典物理中，我们几乎看不到“时间之矢”的影子。如天体运动中，当地球绕着太阳公转时，如果使地球以相反的方向绕行，其运动仍然满足牛顿定律。经典物理中，时间的正向和反向是等价的，其具有时间反演的对称性。</p>
-<p>​ 但是一旦涉及热现象，时间的对称性就不复存在了，比如球在地上的反复弹跳过程中，由于非弹性碰撞，使得球的机械能越来越少，所能达到的高度越来越低，最终停止；制动后的车子会因为摩擦而停止。在这些不可逆过程中，我们能清楚的看到“时间之矢”的影子，正是这些不可逆过程显示了时间的不可逆性，一旦逆了时间之矢，静止的球会在地面上越跳越高，静止的车轮会越滚越快，这显然是不可能的。</p>
-<p>​ 那么这个神器的时间之矢与熵有什么关系？如何可以从熵这个概念来理解时间的箭头呢？</p>
-<p>​ 热力学第二定律表明孤立系统的熵只会增加不会减少。由玻尔兹曼熵的公式可知，只有当<span class="math inline">\(W=1\)</span>时熵的值才可能为0。但这种情况只有完美晶体且绝对温度等于零的情况才满足（即一个毫无生机、绝对秩序的系统）。不存在这样理想状态的情况下，熵只能是一个大于等于0的正值。</p>
-<p>​ 初始值为正，且只会增加不会减少，还有一个物理量具有此性质，那就是时间。正因为具有相同的永恒的物理学性质，所以熵又被称为“时间之箭”。再具体说，热力学第二定律也指明了实际过程的不可逆性，也指明了时间的方向。前面的例子的中，符合自然界的发展的过程是遵循热力学第二定律的，其熵是增加的，或者说，它的熵是随时间增大的；而与常理相悖的过程其熵是随时间减小的，违背热力学第二定律。所以我们说熵指明了时间的方向，也就说熵是时间的箭头。</p>
-<h3 id="结语">4. 结语</h3>
-<p>​ 在理解了熵的概念以及它和时间互相比照的关系后，返回来看黄峥的文章会觉得自然很多。</p>
+<h3 id="3how-时间之矢"><a class="markdownIt-Anchor" href="#3how-时间之矢"></a> 3.HOW 时间之矢</h3>
+<p>​     回到黄峥的信。</p>
+<p>​     他提到了是熵这个概念帮助他理解了真实的时间，不是一个物理关系式中可以加±号的可以操控的量，而是无法反演、无法逆转的一股神秘力量，此处的神秘力量，也就是时间的方向性，我们可以称它为<strong>时间之矢</strong>。</p>
+<p>​     在经典物理中，我们几乎看不到“时间之矢”的影子。如天体运动中，当地球绕着太阳公转时，如果使地球以相反的方向绕行，其运动仍然满足牛顿定律。经典物理中，时间的正向和反向是等价的，其具有时间反演的对称性。</p>
+<p>​     但是一旦涉及热现象，时间的对称性就不复存在了，比如球在地上的反复弹跳过程中，由于非弹性碰撞，使得球的机械能越来越少，所能达到的高度越来越低，最终停止；制动后的车子会因为摩擦而停止。在这些不可逆过程中，我们能清楚的看到“时间之矢”的影子，正是这些不可逆过程显示了时间的不可逆性，一旦逆了时间之矢，静止的球会在地面上越跳越高，静止的车轮会越滚越快，这显然是不可能的。</p>
+<p>​     那么这个神器的时间之矢与熵有什么关系？如何可以从熵这个概念来理解时间的箭头呢？</p>
+<p>​     热力学第二定律表明孤立系统的熵只会增加不会减少。由玻尔兹曼熵的公式可知，只有当<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>W</mi><mo>=</mo><mn>1</mn></mrow><annotation encoding="application/x-tex">W=1</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord mathdefault" style="margin-right:0.13889em;">W</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">1</span></span></span></span>时熵的值才可能为0。但这种情况只有完美晶体且绝对温度等于零的情况才满足（即一个毫无生机、绝对秩序的系统）。不存在这样理想状态的情况下，熵只能是一个大于等于0的正值。</p>
+<p>​      初始值为正，且只会增加不会减少，还有一个物理量具有此性质，那就是时间。正因为具有相同的永恒的物理学性质，所以熵又被称为“时间之箭”。再具体说，热力学第二定律也指明了实际过程的不可逆性，也指明了时间的方向。前面的例子的中，符合自然界的发展的过程是遵循热力学第二定律的，其熵是增加的，或者说，它的熵是随时间增大的；而与常理相悖的过程其熵是随时间减小的，违背热力学第二定律。所以我们说熵指明了时间的方向，也就说熵是时间的箭头。</p>
+<h3 id="4-结语"><a class="markdownIt-Anchor" href="#4-结语"></a> 4. 结语</h3>
+<p>​      在理解了熵的概念以及它和时间互相比照的关系后，返回来看黄峥的文章会觉得自然很多。</p>
 <blockquote>
 <p>相对年轻的人或许心存一些侥幸与慰藉。这并不是说我们要在「危」中讨巧得利。任何妄图趁人之危或利用漏洞使自身受益的想法，在时间面前显得异常愚蠢，无异于一个狂妄的赌徒试图在赌场上赢过时间。</p>
 <p>相反，我们感受到了需要更加努力工作的冲动和动力。这是因为我们比以往任何时候都更理解和珍惜宝贵的青春。我们越发意识到我们应尽的责任。我们需要证明我们这一代人的与时俱进和与以往不同。在这个新世界中，新物种和新生物必将诞生并茁壮成长。</p>
 </blockquote>
-<p>​ 拼多多出现在大众视野仅仅五年，却能在阿里和京东等电商巨头的世界里分得一杯羹。2019年拼多多的财报显示其用户数量及消费额度大幅上涨，让无数曾经质疑、贬低、嘲笑它的人震惊。年轻的势力总是不容小觑，但一个年轻人、一家新公司也不能把年轻当成挥霍的资本，毕竟时不我待，把握当下，默默做，才能在不可逆的时间流转中留下一些痕迹，这也是黄峥用这样一篇文章来表达的核心观点。</p>
+<p>​      拼多多出现在大众视野仅仅五年，却能在阿里和京东等电商巨头的世界里分得一杯羹。2019年拼多多的财报显示其用户数量及消费额度大幅上涨，让无数曾经质疑、贬低、嘲笑它的人震惊。年轻的势力总是不容小觑，但一个年轻人、一家新公司也不能把年轻当成挥霍的资本，毕竟时不我待，把握当下，默默做，才能在不可逆的时间流转中留下一些痕迹，这也是黄峥用这样一篇文章来表达的核心观点。</p>
 <blockquote>
 <p>大自然的蓬勃发展和趋势不会因为任何个人意志而改变。理解这些自然规则不应该让我们感到优越，更不可能让我们有能力统治自然。相反，这使我们能够谦卑地认识和承认，我们只不过是世界自然演变过程中的沧海一粟罢了。</p>
 </blockquote>
@@ -2082,16 +2129,16 @@ S_{T_0+\delta T}=S_{T_0}+\frac{\partial S}{\partial T_{T=T_0}}
       
         
           
-            <p>​ 庄子内篇《大宗师》中有写到这么一句孔子的喟叹：“ 彼，游方之外者也；而丘，游方之内者也。外内不相及，而丘使女吊之，丘则陋矣。” 半个学期阅读庄子作品的过程中，这是我第一次感受到仿佛有一块重石砸在了心上，让我不禁眼睛发酸，对其感受之深也超过了对任何汪洋肆意、浪漫瑰丽的庄周妙语。</p>
-<p>​ 或许有些奇怪吧，读着庄子，最意外也是最大的收获居然是在庄子的作品里<strong>重新认识了一遍孔子</strong>。我想，或许我本不是庄周性格的人，从某种意义上，我和孔子更类似。因此在阅读庄子的过程中，我才时常会不自觉的站在孔子的立场，有一样的疑惑，问出一样的问题，给出相似的向往。</p>
-<p>​ 在庄子的作品，尤其是内篇中，孔子的出场甚至多过他的弟子和门人。有时是原版的为仁义“知其不可而为之”的圣贤，有时又沦为被讥讽和嘲笑的对象，有时又像被道家思想异化了成为道家的代言人。有人认为庄子只是在需要角色时借用一下名字，所以这里的孔子已与真实的历史脱节。但我却不以为然，一个人的形象不应被模式化、单一化，更何况伟人的伟大之处，恰恰在其丰富性、复杂性。我认为，庄子理解中的孔子始终是稳定且丰富的，甚至比汉代“神化”后更接近真实的他。</p>
-<p>​ 庄子眼中的孔子是自己的知己，庄子认为孔子是道家学说的精辟见解者，有着对道家学说的深刻理解和崇敬，于是多次通过孔子来讲出道家哲思。</p>
-<p>​ 在《人间世》中，孔子首次亮相是颜回将行卫国，临行前向老师辞别时。一向主张“知其不可而为之”的孔子，却一反常态地反对弟子颜回。在叶公子高出使齐国，心中忧虑的时候，孔子给出的回答是“托不得已以养中”，这是不折不扣的庄子“虚己以游世”的思想。对于在这里体现与孔子本身思想的出入，我认为并不是庄子的异化，而是合情合理的。</p>
-<p>​ 历史中的孔子虽极力主张积极入世，但同时也注重中庸之道——“毋必，毋固 ”、 “入则鸣，不入则止”，对此二人的劝说也是结合了实际给出的。次之，孔子在晚年也的确萌发过随遇而安的出世的念头。这种倾向在《论语·先进》中就有所体现，孔子在听完弟子们的志向后，说过：“莫春者，春服既成，冠者五六人，童子六七人，浴乎沂，风乎舞雩，咏而归。” 在《论语·宪问》中，孔子说“贤者辟世”也可以作证这一点。况且，我始终认为，人有追求神圣之需，但并非任何时候都处在对理想追求的状态之中。孔子心怀救世的抱负，但凡是人，就会有倦怠的时候，也会在某些时候产生回归自然本真、怡心养神的期望。这种自然的心态放在孔子身上之所以让我们觉得突兀，也实在是因为他太久太久地处于紧绷的济世和不停歇的坚守的状态之中了。</p>
-<p>​ 反过来，庄子了解孔子，也胜过同时代的任何人。</p>
-<p>​ 在庄子看来，孔子的人生选择无疑是要以悲剧告终的（事实也确实如此）。世间无道，拯救徒然，于是在《人间世》中，庄子喟叹：“凤兮凤兮，何如德之衰也！来世不可待，往世不可追也。” 庄子不愿看到孔子挣扎的悲剧，于是对他伸出了援手。这并不像是庄子会做的寻常事情。正因为尊敬，正因为惜才，这游世之人才会去这劝阻入世之人啊！《德充符》中，庄子借无趾说孔子“天刑之，安可解！”乍一听是诅咒，孔子终将劳心劳神一世，但如果联系孔子悲壮的一生，未尝不可理解为庄子的一声长长的叹息。</p>
-<p>​ 回到开头的那段文字，这一段更像是庄子替孔子向自己善意的援手作出了答复。这里的孔子以“方内之士”和“方外之士”将自己与庄子式的人物区隔开来。在孔子看来“方外之士”确实更值得崇敬，无奈自己是“天之戮民”，性格使然，他放不下的东西太多了。他放不下天下苍生，放不下心中的仁义。可悲可叹可敬可颂，孔子背负着“极地寒夜”的世道沉重的枷锁注定无法做到逍遥地游世，只有一遍遍地“游”世，唱着无人相和的心中的歌。</p>
-<p>​ 我从庄子的文章中读出这一层，仿佛是发现了什么隐秘的对话，也着实令我惊讶和欣喜。</p>
+            <p>​      庄子内篇《大宗师》中有写到这么一句孔子的喟叹：“ 彼，游方之外者也；而丘，游方之内者也。外内不相及，而丘使女吊之，丘则陋矣。” 半个学期阅读庄子作品的过程中，这是我第一次感受到仿佛有一块重石砸在了心上，让我不禁眼睛发酸，对其感受之深也超过了对任何汪洋肆意、浪漫瑰丽的庄周妙语。</p>
+<p>​    或许有些奇怪吧，读着庄子，最意外也是最大的收获居然是在庄子的作品里<strong>重新认识了一遍孔子</strong>。我想，或许我本不是庄周性格的人，从某种意义上，我和孔子更类似。因此在阅读庄子的过程中，我才时常会不自觉的站在孔子的立场，有一样的疑惑，问出一样的问题，给出相似的向往。</p>
+<p>​    在庄子的作品，尤其是内篇中，孔子的出场甚至多过他的弟子和门人。有时是原版的为仁义“知其不可而为之”的圣贤，有时又沦为被讥讽和嘲笑的对象，有时又像被道家思想异化了成为道家的代言人。有人认为庄子只是在需要角色时借用一下名字，所以这里的孔子已与真实的历史脱节。但我却不以为然，一个人的形象不应被模式化、单一化，更何况伟人的伟大之处，恰恰在其丰富性、复杂性。我认为，庄子理解中的孔子始终是稳定且丰富的，甚至比汉代“神化”后更接近真实的他。</p>
+<p>​     庄子眼中的孔子是自己的知己，庄子认为孔子是道家学说的精辟见解者，有着对道家学说的深刻理解和崇敬，于是多次通过孔子来讲出道家哲思。</p>
+<p>​    在《人间世》中，孔子首次亮相是颜回将行卫国，临行前向老师辞别时。一向主张“知其不可而为之”的孔子，却一反常态地反对弟子颜回。在叶公子高出使齐国，心中忧虑的时候，孔子给出的回答是“托不得已以养中”，这是不折不扣的庄子“虚己以游世”的思想。对于在这里体现与孔子本身思想的出入，我认为并不是庄子的异化，而是合情合理的。</p>
+<p>​    历史中的孔子虽极力主张积极入世，但同时也注重中庸之道——“毋必，毋固 ”、 “入则鸣，不入则止”，对此二人的劝说也是结合了实际给出的。次之，孔子在晚年也的确萌发过随遇而安的出世的念头。这种倾向在《论语·先进》中就有所体现，孔子在听完弟子们的志向后，说过：“莫春者，春服既成，冠者五六人，童子六七人，浴乎沂，风乎舞雩，咏而归。” 在《论语·宪问》中，孔子说“贤者辟世”也可以作证这一点。况且，我始终认为，人有追求神圣之需，但并非任何时候都处在对理想追求的状态之中。孔子心怀救世的抱负，但凡是人，就会有倦怠的时候，也会在某些时候产生回归自然本真、怡心养神的期望。这种自然的心态放在孔子身上之所以让我们觉得突兀，也实在是因为他太久太久地处于紧绷的济世和不停歇的坚守的状态之中了。</p>
+<p>​    反过来，庄子了解孔子，也胜过同时代的任何人。</p>
+<p>​    在庄子看来，孔子的人生选择无疑是要以悲剧告终的（事实也确实如此）。世间无道，拯救徒然，于是在《人间世》中，庄子喟叹：“凤兮凤兮，何如德之衰也！来世不可待，往世不可追也。” 庄子不愿看到孔子挣扎的悲剧，于是对他伸出了援手。这并不像是庄子会做的寻常事情。正因为尊敬，正因为惜才，这游世之人才会去这劝阻入世之人啊！《德充符》中，庄子借无趾说孔子“天刑之，安可解！”乍一听是诅咒，孔子终将劳心劳神一世，但如果联系孔子悲壮的一生，未尝不可理解为庄子的一声长长的叹息。</p>
+<p>​     回到开头的那段文字，这一段更像是庄子替孔子向自己善意的援手作出了答复。这里的孔子以“方内之士”和“方外之士”将自己与庄子式的人物区隔开来。在孔子看来“方外之士”确实更值得崇敬，无奈自己是“天之戮民”，性格使然，他放不下的东西太多了。他放不下天下苍生，放不下心中的仁义。可悲可叹可敬可颂，孔子背负着“极地寒夜”的世道沉重的枷锁注定无法做到逍遥地游世，只有一遍遍地“游”世，唱着无人相和的心中的歌。</p>
+<p>​    我从庄子的文章中读出这一层，仿佛是发现了什么隐秘的对话，也着实令我惊讶和欣喜。</p>
 <p>​</p>
 
           
@@ -2265,70 +2312,70 @@ S_{T_0+\delta T}=S_{T_0}+\frac{\partial S}{\partial T_{T=T_0}}
       
         
           
-            <p><strong>庄子在学说上提倡过“忘形忘情”，但并不意味着庄子本人“无情”。在本质上，庄子是肯定情的，他本人甚至可以说是深情的。这反映在他天然的性情上，体现在他的诗作和哲思上，更重要的是在内心深处，他仍像平凡人一般牵挂着亲人、朋友。他否定虚假的感情和表达形式，倡导“真”情，对后世的人在对情感认知的态度上带来了深远的影响。 </strong></p>
-<p>​ 春秋战国时期是中国历史上政情动荡、社会大乱时期，但同时也是思想最异彩纷呈的年代。儒家概括和规约了君子的一生，让千百年来多少代的人们每临而立、不惑、知天命的人生阶段都有所自省；孟子有着对人间疾苦的深切洞察和悲天悯人之心，他仁政和民本的思想让统治阶级汗颜……他们的思想与黑暗无道的时代相呼应，读来在无形中让人有了许多重担。与他们相比，庄子不关注时局民生，不思考治国齐家，晓梦蝴蝶、观鱼知乐、洒脱淡然，对事对物，心底似乎从不起一丝波澜，显得对现世格外无情。</p>
-<p>​ 但是，作为一个思想家，又或者说作为一位天真烂漫的诗人，失去什么都不能失去对世界的深刻体悟和对爱的细心感受。那么庄子，到底是不是真的忘情了呢？我对此持否定态度。</p>
-<p>​ 在本质上，庄子是肯定情的，他本人甚至可以说是深情的。这种情反映在他天然的性情上，体现在他的诗作和哲思上，更重要的是在内心深处，他仍像平凡人一般牵挂着亲人、朋友。只是他所推崇的爱该有的模样与世人不太一样罢了。庄子和他的情感就像黑夜中的星辰，一眼是漆黑而遥不可及的，细看是洒在身上的点点柔美皎洁的星光。</p>
-<h3 id="书中情作解">书中情作解</h3>
-<p>​ 在分析庄子是否有情之前，先来看看他的书中“情”字有过直接出现的几个场合：</p>
+            <p>**庄子在学说上提倡过“忘形忘情”，但并不意味着庄子本人“无情”。在本质上，庄子是肯定情的，他本人甚至可以说是深情的。这反映在他天然的性情上，体现在他的诗作和哲思上，更重要的是在内心深处，他仍像平凡人一般牵挂着亲人、朋友。他否定虚假的感情和表达形式，倡导“真”情，对后世的人在对情感认知的态度上带来了深远的影响。 **</p>
+<p>​     春秋战国时期是中国历史上政情动荡、社会大乱时期，但同时也是思想最异彩纷呈的年代。儒家概括和规约了君子的一生，让千百年来多少代的人们每临而立、不惑、知天命的人生阶段都有所自省；孟子有着对人间疾苦的深切洞察和悲天悯人之心，他仁政和民本的思想让统治阶级汗颜……他们的思想与黑暗无道的时代相呼应，读来在无形中让人有了许多重担。与他们相比，庄子不关注时局民生，不思考治国齐家，晓梦蝴蝶、观鱼知乐、洒脱淡然，对事对物，心底似乎从不起一丝波澜，显得对现世格外无情。</p>
+<p>​    但是，作为一个思想家，又或者说作为一位天真烂漫的诗人，失去什么都不能失去对世界的深刻体悟和对爱的细心感受。那么庄子，到底是不是真的忘情了呢？我对此持否定态度。</p>
+<p>​    在本质上，庄子是肯定情的，他本人甚至可以说是深情的。这种情反映在他天然的性情上，体现在他的诗作和哲思上，更重要的是在内心深处，他仍像平凡人一般牵挂着亲人、朋友。只是他所推崇的爱该有的模样与世人不太一样罢了。庄子和他的情感就像黑夜中的星辰，一眼是漆黑而遥不可及的，细看是洒在身上的点点柔美皎洁的星光。</p>
+<h3 id="书中情作解"><a class="markdownIt-Anchor" href="#书中情作解"></a> 书中情作解</h3>
+<p>​    在分析庄子是否有情之前，先来看看他的书中“情”字有过直接出现的几个场合：</p>
 <blockquote>
-<p>是遁天倍情，忘其所爱。古者谓之遁夭之刑。 （《养生主》）</p>
-<p>义明而物亲，忠也; 中纯实而反乎情，乐也; 信行容体而顺乎文，礼也。 （《缮性》）</p>
+<p>是遁天倍情，忘其所爱。古者谓之遁夭之刑。                  （《养生主》）</p>
+<p>义明而物亲，忠也; 中纯实而反乎情，乐也; 信行容体而顺乎文，礼也。    （《缮性》）</p>
 </blockquote>
-<p>​ 这里的情可以理解为人的性情，庄子认为，人们应该顺应这种天然的性情来做事。就像庄子的学说中其他的许多概念一样，性情也是伴随着道而生。“道”作为万物的本源，是推动着世界运转的神秘力量。性情，也是在这样一种道赋予的，规律性的东西。就像婴儿对母亲的爱，生于自然的人们对自然的爱，都是天然而纯粹的。庄子一书中大多数提及的“情”都可归于此类。[<a href="#_edn1">i]</a></p>
-<p>​ 还有少数的情是我们现在常说的感情，庄子和惠子有一段经典的对话。</p>
+<p>​    这里的情可以理解为人的性情，庄子认为，人们应该顺应这种天然的性情来做事。就像庄子的学说中其他的许多概念一样，性情也是伴随着道而生。“道”作为万物的本源，是推动着世界运转的神秘力量。性情，也是在这样一种道赋予的，规律性的东西。就像婴儿对母亲的爱，生于自然的人们对自然的爱，都是天然而纯粹的。庄子一书中大多数提及的“情”都可归于此类。[<a href="#_edn1">i]</a></p>
+<p>​    还有少数的情是我们现在常说的感情，庄子和惠子有一段经典的对话。</p>
 <blockquote>
-<p>​ 惠子谓庄子曰：“人故无情乎？”庄子曰：“然”。惠子曰：“人而无情，何以谓之人？”庄子曰：“道与之貌，天与之形，恶得不谓之人？”惠子曰：“既谓之人，恶得无情？”庄子曰：“是非吾所谓情也。吾所谓无情者，言人之不以好恶内伤其身，常因自然而不益生也。”惠子曰：“不益生，何以有其身？”庄子曰：“道与之貌，天与之形，无以好恶内伤其身。今子外乎子之神，劳乎子之精，倚树而吟，据槁梧而瞑，天选子之形，子以坚白鸣！” （《德充符》）</p>
+<p>​    惠子谓庄子曰：“人故无情乎？”庄子曰：“然”。惠子曰：“人而无情，何以谓之人？”庄子曰：“道与之貌，天与之形，恶得不谓之人？”惠子曰：“既谓之人，恶得无情？”庄子曰：“是非吾所谓情也。吾所谓无情者，言人之不以好恶内伤其身，常因自然而不益生也。”惠子曰：“不益生，何以有其身？”庄子曰：“道与之貌，天与之形，无以好恶内伤其身。今子外乎子之神，劳乎子之精，倚树而吟，据槁梧而瞑，天选子之形，子以坚白鸣！”  （《德充符》）</p>
 </blockquote>
 <p>这一段中，与惠子“人本身是有感情”的论调相反，在庄子看来，情不一定是人的必要条件，但凡有了天地赋予的形貌就可以称之为人。在惠子提出“既然称之为人，怎么能没有情感呢”的时候，庄子又指出“无情”指世人不要用自己的私人好恶之情，人为的感情总是有所爱便有所不爱，这种偏爱之情会伤人伤己。只有自然之情，无爱无不爱，所以才能普世且长久[<a href="#_edn2">ii]</a>。在这里，庄子对于“人为的感情”是持批判态度的。那么，庄子口中“人为的感情”指的是什么，他本人真的就没有任何俗世中的感情吗？</p>
-<h3 id="庄子的俗世感情">庄子的俗世感情</h3>
+<h3 id="庄子的俗世感情"><a class="markdownIt-Anchor" href="#庄子的俗世感情"></a> 庄子的俗世感情</h3>
 <p>《庄子》一书，33个章节，每一个都是一片汪洋。其中来来往往许多大小人物。庄子强调人为的感情需要摒弃，也倡导人需忘情。但我们也可以分明看到纯实的情感就渗透在许多出场的人物中，其中也不乏常人皆有的亲情、友情。那么普通，那么平凡。</p>
-<h4 id="亲情">亲情</h4>
+<h4 id="亲情"><a class="markdownIt-Anchor" href="#亲情"></a> 亲情</h4>
 <p>庄子直言父子相亲是人的天性，从未直接强调孝亲的概念，但很多文字中都明显有浓浓的亲情。</p>
 <blockquote>
-<p>天下有大戒二: 其一，命也......子之爱亲，命也，不可解于心。 (《庄子·人间世》)</p>
-<p>父母于子，东西南北，唯命之从 (《庄子·大宗师》)</p>
+<p>天下有大戒二: 其一，命也…子之爱亲，命也，不可解于心。     (《庄子·人间世》)</p>
+<p>父母于子，东西南北，唯命之从                    (《庄子·大宗师》)</p>
 </blockquote>
 <p>对于妻子，庄子也寄予深情的。很多人但闻“鼓盆而歌”，以为庄子对妻子感情淡漠。其实这恰恰是反映了庄子对妻子的在意。</p>
 <blockquote>
-<p>​ 庄子妻死，惠子吊之，庄子则方箕踞鼓盆而歌。惠子曰：“与人居，长子老身，死不哭亦足矣，又鼓盆而歌，不亦甚乎！”庄子曰：“不然。是其始死也，我独何能无概然！察其始而本无生，非徒无生也而本无形，非徒无形也而本无气。杂乎芒芴之间，变而有气，气变而有形，形变而有生，今又变而之死，是相与为春秋冬夏四时行也。人且偃然寝于巨室，而我嗷嗷然随而哭之，自以为不通乎命，故止也。” ( 《庄子·至乐》)</p>
+<p>​    庄子妻死，惠子吊之，庄子则方箕踞鼓盆而歌。惠子曰：“与人居，长子老身，死不哭亦足矣，又鼓盆而歌，不亦甚乎！”庄子曰：“不然。是其始死也，我独何能无概然！察其始而本无生，非徒无生也而本无形，非徒无形也而本无气。杂乎芒芴之间，变而有气，气变而有形，形变而有生，今又变而之死，是相与为春秋冬夏四时行也。人且偃然寝于巨室，而我嗷嗷然随而哭之，自以为不通乎命，故止也。”  ( 《庄子·至乐》)</p>
 </blockquote>
 <p>庄子否认了惠子对自己对妻子死亡态度的质疑，并且解释了在自己看来生死只是外在的形式，甚至死亡对于人来说只是回归了本来的样子。因此他无需为妻子哀伤，反而应该替妻子开心。喜和哀皆是出于在意，只不过庄子以道观之，看见的世界难免与我们的不同罢了。他的“鼓盆而歌”实为自己从妻子的角度出发，发现其实不过是件自然的事，于是没有放任自己悲伤。这是走出平凡悲哀而重归于平静的“ 歌 ”，是悲伤背后的歌。[<a href="#_edn3">iii]</a></p>
-<p>#### 友情</p>
+<h4 id="友情"><a class="markdownIt-Anchor" href="#友情"></a> 友情</h4>
 <p>同亲情一样，庄子对于友情也很重视。这种重视只是没有通过表层的语言表露出来而已。《庄子》书中有两类朋友尤其值得细品，一种是类似俞钟高山流水般的默契情谊，比如他和惠子。惠子死后，庄子以“无与言之”来表达对惠子的思念。和俞伯牙的“不复鸣琴”来悼念钟子期异曲同工。《淮南子·修务训》篇也将其相提并论: “钟子期死而伯牙绝弦破琴，知世莫赏也; 惠施后而庄子寝说言，见世莫可为语者也。”</p>
 <p>惠子是庄子旗鼓相当的辩友，不像公孙龙战战兢兢的样子，他堂堂正正地与庄子平等论争，不时与之发生智慧碰撞，有时甚至讥讽庄子的理论“大而无用”。尽管很多观点上有分野，逻辑结构、世界观也很不一样，但他竟然奇迹般地成为了庄子孤寂的一生中仅有的几个现实朋友……</p>
 <p>在他们的各种辩论中，“濠梁之辩”是汇聚了精妙之所在。</p>
 <blockquote>
 <p>庄子与惠子游于濠梁之上。庄子曰：“鲦鱼出游从容，是鱼乐也。”惠子曰：“子非鱼，安知鱼之乐？”庄子曰：“子非我，安知我不知鱼之乐？”惠子曰：“我非子，固不知子矣，子固非鱼也，子不知鱼之乐，全矣。”庄子曰：“请循其本。子曰汝安知鱼乐云者，既已知吾知之而问我，我知之濠上也。” (《庄子·秋水》)</p>
 </blockquote>
-<p>​ 这一段辩论无论是内容、文字还是营造的氛围都让人心醉。惠子逻辑学家的精密视角，庄子的审美和诗人才情，用来做“势均力敌的友谊”范本再好不过。</p>
+<p>​    这一段辩论无论是内容、文字还是营造的氛围都让人心醉。惠子逻辑学家的精密视角，庄子的审美和诗人才情，用来做“势均力敌的友谊”范本再好不过。</p>
 <p>《庄子》中的第二类朋友是不容易被发现的——他与庄子一生没见，却一直隐秘地在跨越时空地进行对话。他就是孔子。</p>
-<p>​ 庄子眼中的孔子是自己素未相见的知己，庄子认为孔子是道家学说的精辟见解者，有着对道家学说的深刻理解和崇敬，于是多次通过孔子来讲出道家哲思。在《人间世》中，孔子首次亮相是颜回将行卫国，临行前向老师辞别时。一向主张“知其不可而为之”的孔子，却一反常态地反对弟子颜回。在叶公子高出使齐国，心中忧虑的时候，孔子给出的回答是“托不得已以养中”，这是不折不扣的庄子“虚己以游世”的思想。庄子这样来写孔子，我认为不是随意的改变，是他看到了孔子实际上对道学是理解、尊重的只是未有选择。对于庄子而言，与同时代身边人无法取得思想上的共鸣，于是衬托得孔子如此可贵。反过来，庄子了解孔子，也胜过同时代的任何人。在庄子看来，孔子的人生选择无疑是要以悲剧告终的（事实也确实如此）。世间无道，拯救徒然，于是在《人间世》中，庄子喟叹：“凤兮凤兮，何如德之衰也！来世不可待，往世不可追也。” 庄子不愿看到孔子挣扎的悲剧，于是对他伸出了援手。这并不像是庄子会做的寻常事情。正因为惜才，正因为冥冥中的友谊，这游世之人才会去这劝阻入世之人。</p>
-<p>​ 由此来看，庄子不仅对身边志趣相投的朋友有情，甚至对看似与自己相对立的先人也有惺惺相惜的情谊。庄子非但不是无情之人，甚至能体察和给予到旁人无法及的情谊。</p>
-<h3 id="庄子的情感特点">庄子的情感特点</h3>
-<p>​ 庄子在本质上是肯定情感的，他自己也有俗世情感。可为什么初看他的思想会觉得他似乎有点“绝情”呢？他说的“忘情”又到底是忘却什么呢？</p>
-<p>​ 分析庄子所在的时代，周天子名存实亡，周朝的礼制的内核已经腐烂，只留下外壳，在许多时候就是一种规制和形式[<a href="#_edn4">iv]</a>。就当时社会的感情基础，父子夫妻君臣朋友之间的关系，都受这层“礼”的外壳束缚，而失去了本来的真诚和自然。于是，庄子对这种虚假的“礼”进行了全盘的否定，认为他们让人异化，他同时也否定了人们挂在嘴边的“孝”、“义”、“忠”这些概念名词，也否定了世人普遍的表情方式，才显得他有些另类的无情。 这些分析可以从下一篇中得到验证。</p>
+<p>​     庄子眼中的孔子是自己素未相见的知己，庄子认为孔子是道家学说的精辟见解者，有着对道家学说的深刻理解和崇敬，于是多次通过孔子来讲出道家哲思。在《人间世》中，孔子首次亮相是颜回将行卫国，临行前向老师辞别时。一向主张“知其不可而为之”的孔子，却一反常态地反对弟子颜回。在叶公子高出使齐国，心中忧虑的时候，孔子给出的回答是“托不得已以养中”，这是不折不扣的庄子“虚己以游世”的思想。庄子这样来写孔子，我认为不是随意的改变，是他看到了孔子实际上对道学是理解、尊重的只是未有选择。对于庄子而言，与同时代身边人无法取得思想上的共鸣，于是衬托得孔子如此可贵。反过来，庄子了解孔子，也胜过同时代的任何人。在庄子看来，孔子的人生选择无疑是要以悲剧告终的（事实也确实如此）。世间无道，拯救徒然，于是在《人间世》中，庄子喟叹：“凤兮凤兮，何如德之衰也！来世不可待，往世不可追也。” 庄子不愿看到孔子挣扎的悲剧，于是对他伸出了援手。这并不像是庄子会做的寻常事情。正因为惜才，正因为冥冥中的友谊，这游世之人才会去这劝阻入世之人。</p>
+<p>​     由此来看，庄子不仅对身边志趣相投的朋友有情，甚至对看似与自己相对立的先人也有惺惺相惜的情谊。庄子非但不是无情之人，甚至能体察和给予到旁人无法及的情谊。</p>
+<h3 id="庄子的情感特点"><a class="markdownIt-Anchor" href="#庄子的情感特点"></a> 庄子的情感特点</h3>
+<p>​     庄子在本质上是肯定情感的，他自己也有俗世情感。可为什么初看他的思想会觉得他似乎有点“绝情”呢？他说的“忘情”又到底是忘却什么呢？</p>
+<p>​     分析庄子所在的时代，周天子名存实亡，周朝的礼制的内核已经腐烂，只留下外壳，在许多时候就是一种规制和形式[<a href="#_edn4">iv]</a>。就当时社会的感情基础，父子夫妻君臣朋友之间的关系，都受这层“礼”的外壳束缚，而失去了本来的真诚和自然。于是，庄子对这种虚假的“礼”进行了全盘的否定，认为他们让人异化，他同时也否定了人们挂在嘴边的“孝”、“义”、“忠”这些概念名词，也否定了世人普遍的表情方式，才显得他有些另类的无情。 这些分析可以从下一篇中得到验证。</p>
 <blockquote>
-<p>老聃死，秦失吊之，三号而出。弟子曰：&quot;非夫子之友邪？&quot;曰：&quot;然。&quot;&quot;然则吊焉若此可乎？&quot;曰：&quot;然。始也吾以为其人也，而今非也。向吾入而吊焉，有老者哭之，如哭其子；少者哭之，如哭其母。彼其所以会之，必有不蕲言而言，不蕲哭而哭者。是遁天倍情，忘其所受，古者谓之遁天之刑。适来，夫子时也；适去，夫子顺也。安时而处顺，哀乐不能入也，古者谓是帝之县解。&quot; （《庄子·养生主》）</p>
+<p>老聃死，秦失吊之，三号而出。弟子曰：&quot;非夫子之友邪？&quot;曰：“然。”&quot;然则吊焉若此可乎？&quot;曰：“然。始也吾以为其人也，而今非也。向吾入而吊焉，有老者哭之，如哭其子；少者哭之，如哭其母。彼其所以会之，必有不蕲言而言，不蕲哭而哭者。是遁天倍情，忘其所受，古者谓之遁天之刑。适来，夫子时也；适去，夫子顺也。安时而处顺，哀乐不能入也，古者谓是帝之县解。”     （《庄子·养生主》）</p>
 </blockquote>
-<p>​ 秦失否定了众人的吊唁方式——“不蕲言而言，不蕲哭而哭”，认为这失之于天理，违背了真情。换言之，庄子认为真正的吊唁方式当是顺乎性情的“蕲言而言”、“蕲哭而哭”，伤可以表达，但不悲就不要故作悲声。出于对故作悲声的假态的反抗和对死亡的独特理解，秦失选择了自己的吊唁方式——“三号而出”。通过这个故事我们就可以知道，庄子否定的只是虚伪的装腔作势，对于“真情”还是十分肯定的。从下面这篇里渔父地回答中也可以看出庄子对真情流露的推崇和评价——真实即是“精诚之至”。</p>
+<p>​     秦失否定了众人的吊唁方式——“不蕲言而言，不蕲哭而哭”，认为这失之于天理，违背了真情。换言之，庄子认为真正的吊唁方式当是顺乎性情的“蕲言而言”、“蕲哭而哭”，伤可以表达，但不悲就不要故作悲声。出于对故作悲声的假态的反抗和对死亡的独特理解，秦失选择了自己的吊唁方式——“三号而出”。通过这个故事我们就可以知道，庄子否定的只是虚伪的装腔作势，对于“真情”还是十分肯定的。从下面这篇里渔父地回答中也可以看出庄子对真情流露的推崇和评价——真实即是“精诚之至”。</p>
 <blockquote>
-<p>真者，精诚之至也，不精不诚，不能动人。故强哭者虽悲不哀，强怒者虽严不 威，强亲者虽笑不和。真悲无声而哀，真怒未发而威，真亲未笑而和。真在内者，神动于外，是所以贵真也。 (《庄子·渔父》)</p>
+<p>真者，精诚之至也，不精不诚，不能动人。故强哭者虽悲不哀，强怒者虽严不 威，强亲者虽笑不和。真悲无声而哀，真怒未发而威，真亲未笑而和。真在内者，神动于外，是所以贵真也。   (《庄子·渔父》)</p>
 </blockquote>
-<p>​ 庄子虽一直提倡的忘情，并非真正的对“情”一窍不通、视而不见，而是通过忘情来更好地保护真情，就像他一直提倡的忘掉形体，剥离外物，只是为了更好地守住内心、更好地存身。</p>
-<h3 id="什么是真情">什么是“真”情</h3>
-<p>​ 庄子的思想和他的学说充满了人文关怀，追求个体的内心世界，尊重个体的多样性，虽然在同时代没有起到很大的启蒙作用，但庄子对待情感“真”的态度或多或少还是对后世也产生了很多影响，在后来的很多文人的身上都有庄子“去伪存真”的影子。</p>
-<p>​ 例如明末的李贽，他反对八股文，倡导心学。他提出了“童心”说，认为“夫童心者，绝假纯真，最初一念之本心也。若失却童心，便失却真心；失却真心，便失却真人。人而非真，全不复有初矣”[<a href="#_edn5">v]</a>。这种“童心”很近似于庄子的和道相生相随的“赤子之心”。人们保持了“童心”，也就具有了广阔的心灵生存空间，可以保持自己的个性，拥有了真情。李贽认为童心在两个方面有体现，就人格而言，拥有“童心”的人会显得率真而不虚伪，他们具有独立于世的高贵品质。就文学创作而言，有了“童心”，就可以自由地抒发真情实感，创作出有个性不从众的作品。“盖声色之来，发乎情性，由乎自然，是可以牵合矫强而致乎? 故自然发于情性，则自然止乎礼义，非情性之外复有礼义可止也。惟矫强乃失之，故以自然之为美耳，又非于情性之外复有所谓自然而然也。”他的“童心说”与庄子的真情感悟异曲同工、一脉相承。</p>
-<p>​ 袁宏道等人也提出了“性灵”说，提倡真实地表达具有个性化的思想情感，“非从自己胸臆流出，不肯下笔”，反对“粉饰蹈袭”。他在《叙小修诗》中写：“……犹是无闻无识真人所作，故多真声......大概情至之语，自能感人，是谓其诗可传 也。”这种“真人”发出的“真声”才能称得上“真诗”，才是万世可传的“天籁”之音。</p>
-<p>​ 曹雪芹也秉承了庄子的思想，将他的思想形象化。他所著的《红楼梦》刻画的贾宝玉正是一个“真人”形象，具有真性情，说话直来直去，心中所想便脱口而出，有所爱便会口随心出。他喜欢黛玉，一定程度上也是因为黛玉的纯洁率性的性情。曹雪芹肯定真人，追求真实，他将自己的情思寄予了宝玉，让他来展示自己的心声。</p>
-<h3 id="结语">结语</h3>
+<p>​     庄子虽一直提倡的忘情，并非真正的对“情”一窍不通、视而不见，而是通过忘情来更好地保护真情，就像他一直提倡的忘掉形体，剥离外物，只是为了更好地守住内心、更好地存身。</p>
+<h3 id="什么是真情"><a class="markdownIt-Anchor" href="#什么是真情"></a> 什么是“真”情</h3>
+<p>​     庄子的思想和他的学说充满了人文关怀，追求个体的内心世界，尊重个体的多样性，虽然在同时代没有起到很大的启蒙作用，但庄子对待情感“真”的态度或多或少还是对后世也产生了很多影响，在后来的很多文人的身上都有庄子“去伪存真”的影子。</p>
+<p>​      例如明末的李贽，他反对八股文，倡导心学。他提出了“童心”说，认为“夫童心者，绝假纯真，最初一念之本心也。若失却童心，便失却真心；失却真心，便失却真人。人而非真，全不复有初矣”[<a href="#_edn5">v]</a>。这种“童心”很近似于庄子的和道相生相随的“赤子之心”。人们保持了“童心”，也就具有了广阔的心灵生存空间，可以保持自己的个性，拥有了真情。李贽认为童心在两个方面有体现，就人格而言，拥有“童心”的人会显得率真而不虚伪，他们具有独立于世的高贵品质。就文学创作而言，有了“童心”，就可以自由地抒发真情实感，创作出有个性不从众的作品。“盖声色之来，发乎情性，由乎自然，是可以牵合矫强而致乎? 故自然发于情性，则自然止乎礼义，非情性之外复有礼义可止也。惟矫强乃失之，故以自然之为美耳，又非于情性之外复有所谓自然而然也。”他的“童心说”与庄子的真情感悟异曲同工、一脉相承。</p>
+<p>​     袁宏道等人也提出了“性灵”说，提倡真实地表达具有个性化的思想情感，“非从自己胸臆流出，不肯下笔”，反对“粉饰蹈袭”。他在《叙小修诗》中写：“……犹是无闻无识真人所作，故多真声…大概情至之语，自能感人，是谓其诗可传 也。”这种“真人”发出的“真声”才能称得上“真诗”，才是万世可传的“天籁”之音。</p>
+<p>​     曹雪芹也秉承了庄子的思想，将他的思想形象化。他所著的《红楼梦》刻画的贾宝玉正是一个“真人”形象，具有真性情，说话直来直去，心中所想便脱口而出，有所爱便会口随心出。他喜欢黛玉，一定程度上也是因为黛玉的纯洁率性的性情。曹雪芹肯定真人，追求真实，他将自己的情思寄予了宝玉，让他来展示自己的心声。</p>
+<h3 id="结语"><a class="markdownIt-Anchor" href="#结语"></a> 结语</h3>
 <p>闻一多先生曾经评论:“《庄子》会使你陶醉，正因为那里面充满了和熙的、郁蒸的、焚灼的各种温度的情绪。”当立体、全面地理解了庄子的感情观和他种种凡俗的“真”情之后，我们才会理解所谓“文章有温度”的境界——正是因为庄子本人肯定真实的情感，追求真实地流露，才会让他笔下行文在数千年后依旧留有温存。</p>
 <hr>
-<p>[<a href="#_ednref1">i]</a> 肖云, 赵小华. 庄子哲学中的情--性情之真、感情至深[J]. 阜阳师范学院学报（社会科学版）, 2001(1).</p>
+<p>[<a href="#_ednref1">i]</a> 肖云, 赵小华. 庄子哲学中的情–性情之真、感情至深[J]. 阜阳师范学院学报（社会科学版）, 2001(1).</p>
 <p>[<a href="#_ednref2">ii]</a> 蔡志忠 庄子说[M] 三联出版社</p>
 <p>[<a href="#_ednref3">iii]</a> 黄振新. 庄子之纯情特质及其影响[J]. 商丘师范学院学报, 2012, 28(2):31-34.</p>
 <p>[<a href="#_ednref4">iv]</a> 李泽厚. 中国古代思想史论[M]. 天津: 天津社会科学院 出版社，2003.</p>
-<p>[<a href="#_ednref5">v]</a> 张建业. 李贽全集注: 第 1 册: 焚书注( 1) [M]. 北京: 社会科学文献出版社，2010. </p>
+<p>[<a href="#_ednref5">v]</a> 张建业. 李贽全集注: 第 1 册: 焚书注( 1) [M]. 北京: 社会科学文献出版社，2010.</p>
 
           
         
@@ -2487,7 +2534,7 @@ S_{T_0+\delta T}=S_{T_0}+\frac{\partial S}{\partial T_{T=T_0}}
     
       <span class="post-meta-item-text">Site words total count&#58;</span>
     
-    <span title="Site words total count">46.1k</span>
+    <span title="Site words total count">46.8k</span>
   
 </div>
 
@@ -2506,7 +2553,7 @@ S_{T_0+\delta T}=S_{T_0}+\frac{\partial S}{\partial T_{T=T_0}}
 
 <div class="theme-info">
   <div class="powered-by"></div>
-  <span class="post-count">博客全站共46.1k字</span>
+  <span class="post-count">博客全站共46.8k字</span>
 </div>
 
         

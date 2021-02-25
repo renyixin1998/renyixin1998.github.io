@@ -79,12 +79,12 @@
 
 
 
-<meta name="description" content="期末论文什么的告一段落，今天开始接触搭建数据库。 在试验中我使用了DB Browser for SQLite来可视化本地数据库，选择Peewee为ORM框架。选择的原因在上一篇文章中有所描述。 首先，作为一种ORM框架，Peewee中Model类、fields和model实例与数据库的映射关系如下： Model class---Database table Field instance---Col">
+<meta name="description" content="期末论文什么的告一段落，今天开始接触搭建数据库。 在试验中我使用了DB Browser for SQLite来可视化本地数据库，选择Peewee为ORM框架。选择的原因在上一篇文章中有所描述。 首先，作为一种ORM框架，Peewee中Model类、fields和model实例与数据库的映射关系如下： Model class—Database table Field instance—Column">
 <meta property="og:type" content="article">
 <meta property="og:title" content="数据库之peewee+sqlite入门级练手">
 <meta property="og:url" content="http://yoursite.com/2020/06/16/%E6%95%B0%E6%8D%AE%E5%BA%93peewee/index.html">
 <meta property="og:site_name" content="Yixin&#39;s sharing">
-<meta property="og:description" content="期末论文什么的告一段落，今天开始接触搭建数据库。 在试验中我使用了DB Browser for SQLite来可视化本地数据库，选择Peewee为ORM框架。选择的原因在上一篇文章中有所描述。 首先，作为一种ORM框架，Peewee中Model类、fields和model实例与数据库的映射关系如下： Model class---Database table Field instance---Col">
+<meta property="og:description" content="期末论文什么的告一段落，今天开始接触搭建数据库。 在试验中我使用了DB Browser for SQLite来可视化本地数据库，选择Peewee为ORM框架。选择的原因在上一篇文章中有所描述。 首先，作为一种ORM框架，Peewee中Model类、fields和model实例与数据库的映射关系如下： Model class—Database table Field instance—Column">
 <meta property="og:locale" content="en_US">
 <meta property="og:image" content="http://yoursite.com/2020/06/16/%E6%95%B0%E6%8D%AE%E5%BA%93peewee/1.png">
 <meta property="og:image" content="http://yoursite.com/2020/06/16/%E6%95%B0%E6%8D%AE%E5%BA%93peewee/%E6%9F%A5%E8%AF%A2%E7%AC%A6%E5%8F%B7.png">
@@ -341,7 +341,7 @@
                   <span class="post-meta-item-text">Words count in article&#58;</span>
                 
                 <span title="Words count in article">
-                  1.2k
+                  1.1k
                 </span>
               
 
@@ -381,18 +381,16 @@
         <p>期末论文什么的告一段落，今天开始接触搭建数据库。</p>
 <p>在试验中我使用了DB Browser for SQLite来可视化本地数据库，选择Peewee为ORM框架。选择的原因在上一篇文章中有所描述。</p>
 <p>首先，作为一种ORM框架，Peewee中<code>Model</code>类、<code>fields</code>和<code>model实例</code>与数据库的映射关系如下：</p>
-<p><strong>Model class---Database table</strong></p>
-<p><strong>Field instance---Column on a table</strong></p>
-<p><strong>Model instance---Row in a database table</strong></p>
+<p><strong>Model class—Database table</strong></p>
+<p><strong>Field instance—Column on a table</strong></p>
+<p><strong>Model instance—Row in a database table</strong></p>
 <p>即一个Model类代表一个数据库的表，一个Field字段代表数据库中的一个字段，一个model类实例化对象则代表数据库中的一行</p>
 <p>接下来进行一些简单语句的介绍。</p>
-<h3 id="定义model-建立数据库">定义Model 建立数据库</h3>
+<h3 id="定义model-建立数据库"><a class="markdownIt-Anchor" href="#定义model-建立数据库"></a> 定义Model 建立数据库</h3>
 <p>在使用的时候，根据需求先定义好Model，然后可以通过<code>create_tables()</code>创建表，若是已经创建好数据库表了，可以通过<code>python -m pwiz</code>脚本工具直接创建Model。</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> peewee <span class="keyword">import</span> *</span><br><span class="line">db = SqliteDatabase(<span class="string">'quickstart.db'</span>)</span><br><span class="line">db.connect()</span><br><span class="line"><span class="comment">#连接数据库</span></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Material</span><span class="params">(Model)</span>:</span></span><br><span class="line">  name = CharField()</span><br><span class="line">  P1 = CharField()</span><br><span class="line">  P2 = BooleanField()</span><br><span class="line">  P3 = IntegerField()</span><br><span class="line">  </span><br><span class="line">  <span class="class"><span class="keyword">class</span> <span class="title">Meta</span>:</span></span><br><span class="line">    database = db</span><br></pre></td></tr></table></figure>
 <p>peewee将数据库中对应的各种类别，转化为了模块中的各种Filed，比如</p>
-<figure>
-<img src="/2020/06/16/%E6%95%B0%E6%8D%AE%E5%BA%93peewee/1.png" alt="1"><figcaption>1</figcaption>
-</figure>
+<p><img src="/2020/06/16/%E6%95%B0%E6%8D%AE%E5%BA%93peewee/1.png" alt="1"></p>
 <p>每个Filed都有一些参数可以设置：（写在括号里）</p>
 <ul>
 <li>null = False，当前这个Field是否可以为null值</li>
@@ -402,24 +400,20 @@
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 创建表</span></span><br><span class="line">Material.create_table()</span><br><span class="line"></span><br><span class="line"><span class="comment"># 创建表也可以这样, 可以创建多个</span></span><br><span class="line"><span class="comment"># database.create_tables([Person])</span></span><br></pre></td></tr></table></figure>
 <p>如果建完之后，发现缺少了一列，可以使用playhouse 里migrate模块进行修改（增删更名）</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> playhouse.migrate <span class="keyword">import</span> *</span><br><span class="line"></span><br><span class="line"><span class="comment"># 这是postgresql的，实例化出一个migrator对象</span></span><br><span class="line">db = SqliteDatabase(<span class="string">'quickstart.db'</span>)</span><br><span class="line">migrator = SqliteMigrator(db)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 使用migrate()执行一个或多个操作</span></span><br><span class="line"><span class="comment"># 添加了两个列，删除一个列</span></span><br><span class="line">title_field = CharField(default=<span class="string">''</span>)</span><br><span class="line">status_field = IntegerField(null=<span class="literal">True</span>)</span><br><span class="line">migrate(</span><br><span class="line">    migrator.add_column(<span class="string">'Material'</span>, <span class="string">'title1'</span>,title_field),<span class="comment">#‘Material表’‘新增title属性’ </span></span><br><span class="line">    migrator.drop_column(<span class="string">'Material'</span>, <span class="string">'title1'</span>,title_field),<span class="comment">#‘Material表’‘新增title属性’</span></span><br><span class="line">)</span><br></pre></td></tr></table></figure>
-<h3 id="对数据的操作">对数据的操作</h3>
-<h4 id="增加">增加</h4>
+<h3 id="对数据的操作"><a class="markdownIt-Anchor" href="#对数据的操作"></a> 对数据的操作</h3>
+<h4 id="增加"><a class="markdownIt-Anchor" href="#增加"></a> 增加</h4>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#添加一条数据</span></span><br><span class="line">p = Material(name = <span class="string">'The first'</span>,P1 = <span class="string">'good'</span>,P2 = <span class="number">0</span>,P3 = <span class="number">2</span>)</span><br><span class="line">p.save()</span><br><span class="line"></span><br><span class="line"><span class="comment">#方法二insert</span></span><br><span class="line">p_id = Material.insert(&#123;</span><br><span class="line">    <span class="string">'name'</span>: <span class="string">'The second'</span>,</span><br><span class="line">    <span class="string">'P1'</span> :<span class="string">'good'</span>,</span><br><span class="line">    <span class="string">'P2'</span> : <span class="number">1</span>,</span><br><span class="line">    <span class="string">'P3'</span> : <span class="number">2</span></span><br><span class="line">&#125;).execute()</span><br><span class="line"><span class="comment">#打印出新插入数据的id</span></span><br><span class="line">print(p_id)</span><br><span class="line"></span><br><span class="line"><span class="comment">#插入很多数据，性能最好的是使用insert_many()</span></span><br><span class="line">NUM = <span class="number">10000</span></span><br><span class="line">data = [&#123;</span><br><span class="line">            <span class="string">'name'</span>: <span class="string">'123'</span></span><br><span class="line">        &#125; <span class="keyword">for</span> i <span class="keyword">in</span> range(NUM)]</span><br><span class="line"></span><br><span class="line"><span class="keyword">with</span> database.atomic():</span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">0</span>, NUM, <span class="number">100</span>):</span><br><span class="line">        <span class="comment"># 每次批量插入100条，分成多次插入</span></span><br><span class="line">        Material.insert_many(data[i:i + <span class="number">100</span>]).execute()</span><br></pre></td></tr></table></figure>
-<h4 id="删除">删除：</h4>
+<h4 id="删除"><a class="markdownIt-Anchor" href="#删除"></a> 删除：</h4>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#使用delete().where().execute()进行删除，where()是条件，execute()负责执行语句。若是已经查询出来的实例，则直接使用delete_instance()删除。</span></span><br><span class="line">Material.delete().where(Material.name == <span class="string">'A'</span>).execute()</span><br><span class="line"></span><br><span class="line">已经实例化的数据（有id了）, 使用delete_instance</span><br><span class="line"></span><br><span class="line">p.id = <span class="number">1</span></span><br><span class="line">p.save()</span><br><span class="line">p.delete_instance()</span><br></pre></td></tr></table></figure>
-<h4 id="修改">修改</h4>
+<h4 id="修改"><a class="markdownIt-Anchor" href="#修改"></a> 修改</h4>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">##已经实例化的数据,指定了id这个primary key,则此时保存就是更新数据</span></span><br><span class="line"></span><br><span class="line">p = Material(name = <span class="string">'New_name'</span>,P1 = <span class="string">'new'</span>,P2 = <span class="number">0</span>,P3 = <span class="number">2</span>)</span><br><span class="line">p.id = <span class="number">1</span></span><br><span class="line">p.save()</span><br></pre></td></tr></table></figure>
-<h4 id="查询">查询</h4>
+<h4 id="查询"><a class="markdownIt-Anchor" href="#查询"></a> 查询</h4>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#查询单条数据</span></span><br><span class="line">p = Material.get(Material.id == <span class="number">1</span>)</span><br><span class="line">print(p.name, p.P1, p.P2,p.P3)</span><br><span class="line"><span class="comment">#使用where().get()查询</span></span><br><span class="line">p = Material.select().where(Material.name ==<span class="string">'The first'</span>).get()</span><br><span class="line">print(p.name, p.P1, p.P2,p.P3)</span><br><span class="line"><span class="comment">#查询多条数据</span></span><br><span class="line">persons = Material.select().where(Material.P2 ==<span class="number">0</span> ).get()</span><br><span class="line"><span class="keyword">for</span> p <span class="keyword">in</span> Material:</span><br><span class="line">    print(p.name, p.P1, p.P2,p.P3)</span><br></pre></td></tr></table></figure>
-<h4 id="统计排序limit">统计、排序、limit</h4>
+<h4 id="统计-排序-limit"><a class="markdownIt-Anchor" href="#统计-排序-limit"></a> 统计、排序、limit</h4>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 查询整张表的数据条数</span></span><br><span class="line">total_num = Material.select().count()</span><br><span class="line"></span><br><span class="line"><span class="comment"># 查询name为liuchungui的Person数量, 返回数量为1</span></span><br><span class="line">num = Person.select().where(Person.name == <span class="string">'liuchungui'</span>).count()</span><br><span class="line"></span><br><span class="line"><span class="comment"># 按照P3大小排序</span></span><br><span class="line">Materials = Material.select().order_by(Material.P3.desc())</span><br><span class="line"></span><br><span class="line"><span class="comment"># 按照创建时间升序排序</span></span><br><span class="line">persons = Person.select().order_by(Person.create_time.asc())</span><br></pre></td></tr></table></figure>
-<h4 id="查询符">查询符</h4>
-<figure>
-<img src="/2020/06/16/%E6%95%B0%E6%8D%AE%E5%BA%93peewee/查询符号.png" alt="查询符号"><figcaption>查询符号</figcaption>
-</figure>
-<figure>
-<img src="/2020/06/16/%E6%95%B0%E6%8D%AE%E5%BA%93peewee/条件语句.png" alt="条件语句"><figcaption>条件语句</figcaption>
-</figure>
+<h4 id="查询符"><a class="markdownIt-Anchor" href="#查询符"></a> 查询符</h4>
+<p><img src="/2020/06/16/%E6%95%B0%E6%8D%AE%E5%BA%93peewee/%E6%9F%A5%E8%AF%A2%E7%AC%A6%E5%8F%B7.png" alt="查询符号"></p>
+<p><img src="/2020/06/16/%E6%95%B0%E6%8D%AE%E5%BA%93peewee/%E6%9D%A1%E4%BB%B6%E8%AF%AD%E5%8F%A5.png" alt="条件语句"></p>
 <p>其中，==、&lt;、&lt;=、&gt;、&gt;=、!=是很容易理解的，重点提下<code>&lt;&lt;</code>、<code>&gt;&gt;</code>和<code>%</code>。用示例说明：</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># &lt;&lt;使用，查询省份属于湖北和湖南的，对应sql语句：select * from person where province in ('湖南', '湖北')</span></span><br><span class="line">persons = Person.select().where(Person.province &lt;&lt; [<span class="string">'湖南'</span>, <span class="string">'湖北'</span>])</span><br><span class="line"></span><br><span class="line"><span class="comment"># &gt;&gt;使用，查询省份为空的，sql语句: select * from person where province is Null</span></span><br><span class="line">persons = Person.select().where(Person.province &gt;&gt; <span class="literal">None</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># %使用，查询省份中含有 湖 字，sql语句：select * from person where province like '%湖%'</span></span><br><span class="line">persons = Person.select().where(Person.province % <span class="string">'%湖%'</span>)</span><br></pre></td></tr></table></figure>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 查询湖南和湖北的, 注意需要用()将Person.province == '湖南'包一层</span></span><br><span class="line">persons = Person.select().where((Person.province == <span class="string">'湖南'</span>) | (Person.province == <span class="string">'湖北'</span>))</span><br><span class="line"></span><br><span class="line"><span class="comment"># 查询湖南和身高1.75</span></span><br><span class="line">persons = Person.select().where((Person.province == <span class="string">'湖南'</span>) &amp; (Person.height == <span class="number">1.75</span>))</span><br></pre></td></tr></table></figure>
@@ -602,7 +596,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#定义model-建立数据库"><span class="nav-number">1.</span> <span class="nav-text">定义Model 建立数据库</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#对数据的操作"><span class="nav-number">2.</span> <span class="nav-text">对数据的操作</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#增加"><span class="nav-number">2.1.</span> <span class="nav-text">增加</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#删除"><span class="nav-number">2.2.</span> <span class="nav-text">删除：</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#修改"><span class="nav-number">2.3.</span> <span class="nav-text">修改</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#查询"><span class="nav-number">2.4.</span> <span class="nav-text">查询</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#统计排序limit"><span class="nav-number">2.5.</span> <span class="nav-text">统计、排序、limit</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#查询符"><span class="nav-number">2.6.</span> <span class="nav-text">查询符</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#定义model-建立数据库"><span class="nav-number">1.</span> <span class="nav-text"> 定义Model 建立数据库</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#对数据的操作"><span class="nav-number">2.</span> <span class="nav-text"> 对数据的操作</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#增加"><span class="nav-number">2.1.</span> <span class="nav-text"> 增加</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#删除"><span class="nav-number">2.2.</span> <span class="nav-text"> 删除：</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#修改"><span class="nav-number">2.3.</span> <span class="nav-text"> 修改</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#查询"><span class="nav-number">2.4.</span> <span class="nav-text"> 查询</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#统计-排序-limit"><span class="nav-number">2.5.</span> <span class="nav-text"> 统计、排序、limit</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#查询符"><span class="nav-number">2.6.</span> <span class="nav-text"> 查询符</span></a></li></ol></li></ol></div>
             
 
           </div>
@@ -636,7 +630,7 @@
     
       <span class="post-meta-item-text">Site words total count&#58;</span>
     
-    <span title="Site words total count">46.1k</span>
+    <span title="Site words total count">46.8k</span>
   
 </div>
 
@@ -655,7 +649,7 @@
 
 <div class="theme-info">
   <div class="powered-by"></div>
-  <span class="post-count">博客全站共46.1k字</span>
+  <span class="post-count">博客全站共46.8k字</span>
 </div>
 
         
